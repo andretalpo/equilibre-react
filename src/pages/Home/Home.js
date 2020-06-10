@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GeneralTemplate } from '../../components/templates';
+import { GeneralTemplate } from '../../templates';
 import './Home.css';
 
 

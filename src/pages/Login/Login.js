@@ -1,11 +1,12 @@
 import React from 'react';
-import { GeneralTemplate } from '../../components/templates';
+import { GeneralTemplate } from '../../templates';
 import { AuthForm } from '../../components/atoms';
 
 const Signup = props => {
   return (
     <GeneralTemplate>
-      <AuthForm {...props} />
+      <h1>Login Page</h1>
+  <AuthForm {...props} />
     </GeneralTemplate>
   );
 };

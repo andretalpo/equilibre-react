@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GeneralTemplate } from '../../components/templates';
+import { GeneralTemplate } from '../../templates';
 import { AuthForm } from '../../components/atoms';
 import './SignUp.css';
 
@@ -13,7 +13,8 @@ class SignUp extends Component {
    
     return (
         <GeneralTemplate>
-            <AuthForm/>
+          <h1>SignUp Page</h1>
+          <AuthForm/>
         </GeneralTemplate>
         
     );

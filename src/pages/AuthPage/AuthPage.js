@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { AuthForm } from '../../components/atoms';
+import ApiService from '../../api/service';
+import { Link } from 'react-router-dom'; 
 
 class AuthPage extends Component {
 
-  componentWillUnmount() {
+
+
+  componentDidMount() {
     
   }
 
   render() {
-   
+    ApiService.test();
     return (
           <div className='form-align'>
-              <AuthForm />
+              <h1>LOGOU!!!!!!!!</h1>
+              <Link to="/logged-user">Loged-User</Link>
+
           </div>
     );
 
