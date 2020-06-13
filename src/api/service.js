@@ -56,14 +56,9 @@ class ApiService {
     });
   }
 
-  listProducts = async () => {
-    const { data } = await this.api.get('/api/public/products');
-    
-    return data;
-  };
-
-  subscribeUser = async values => {
+  signUpUser = async values => {
     try {
+      console.log(values);
       const { data } = await this.api.post('/api/public/auth/signup', values);
       
       return data;

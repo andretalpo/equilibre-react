@@ -55,6 +55,11 @@ class App extends Component {
           component={AuthPage}
           userInfo={this.state.userInfo}
         />
+        <Route
+          exact
+          path="/auth-route"
+          render={props => <AuthPage {...props}/>}
+        />
       </Switch>
     );
   }

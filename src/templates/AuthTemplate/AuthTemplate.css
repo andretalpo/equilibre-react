@@ -1,0 +1,26 @@
+.main-container {
+    display: flex;
+    
+}
+
+.left-container {
+    background-image: url('../../assets/images/moedas.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 50%;
+    height: 100vh;
+}
+
+.right-container {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-container img {
+    width: 400px;
+    height: 200px;
+}
+
