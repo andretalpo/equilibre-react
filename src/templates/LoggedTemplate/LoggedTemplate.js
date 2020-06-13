@@ -4,16 +4,24 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import CategoryIcon from '@material-ui/icons/Category';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import './LoggedTemplate.css';
+import { Container } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
-const drawerWidth = 240;
+const drawerWidth = 265;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
+      padding: '15px',
     },
   },
   menuButton: {
@@ -41,15 +50,29 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    backgroundImage: 'url(/images/market.jpg)',
+    backgroundPosition: 'left',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    color: '#fafafa',
+  },
+  divider: {
+    backgroundColor: '#fafafa'
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  listItem: {
+    padding: '15px'
+  },
+  title: {
+    flexGrow: 1,
+  }
 }));
 
 function ResponsiveDrawer(props) {
-  const { window } = props;
+  const { window, history } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -61,14 +84,34 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Divider variant="middle" />
+      <Box
+        mb={2}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography>EQUILIBRE</Typography>
+      </Box>
+      <Divider classes={{ root: classes.divider }} variant="middle" />
       <List>
-        <ListItem button>
-          <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/dashboard')}>
+          <ListItemIcon><DashboardIcon color="secondary" /></ListItemIcon>
+          <ListItemText color="secondary" primary="Dashboard" />
+        </ListItem>
+        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/cards')}>
+          <ListItemIcon><CreditCardIcon color="secondary" /></ListItemIcon>
           <ListItemText primary="Cartões" />
         </ListItem>
+        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/expenses')}>
+          <ListItemIcon><AttachMoneyIcon color="secondary" /></ListItemIcon>
+          <ListItemText primary="Compras" />
+        </ListItem>
+        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/categories')}>
+          <ListItemIcon><CategoryIcon color="secondary" /></ListItemIcon>
+          <ListItemText primary="Categorias" />
+        </ListItem>
       </List>
-      <Divider variant="middle" />
+      <Divider classes={{ root: classes.divider }} variant="middle" />
     </div>
   );
 
@@ -76,7 +119,7 @@ function ResponsiveDrawer(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar elevation={0} color="transparent" position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -86,6 +129,17 @@ function ResponsiveDrawer(props) {
             className={classes.menuButton}
           >
             <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            {props.title}
+        </Typography>
+          <IconButton
+            color="inherit"
+            edge="end"
+            aria-label="logout"
+            onClick={handleDrawerToggle}
+          >
+            <ExitToApp />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -98,7 +152,7 @@ function ResponsiveDrawer(props) {
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
-            classes={{ paper: classes.drawerPaper, }}
+            classes={{ paper: classes.drawerPaper }}
             ModalProps={{ keepMounted: true, }}
           >
             {drawer}
@@ -116,7 +170,9 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <h1>Conteudo</h1>
+        <Container>
+          {props.children}
+        </Container>
       </main>
     </div>
   );

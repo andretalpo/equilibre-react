@@ -5,11 +5,22 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: '#fafafa',
+    },
+  },
+});
 
 ReactDOM.render(
   <BrowserRouter>
     <CssBaseline />
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
