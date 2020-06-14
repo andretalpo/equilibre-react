@@ -110,6 +110,7 @@ export default function LandingPage({...props}) {
                 </Grid>
                 <Grid item xs={3}>
                   <Paper className={classes.paper}>
+
                     <img src={grid4} alt={`pic-${grid4}`} ></img>
                   </Paper>
                 </Grid>
