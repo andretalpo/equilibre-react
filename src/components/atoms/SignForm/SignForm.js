@@ -80,15 +80,27 @@ function SignForm({...props}) {
           />
           {isSubmitting && <LinearProgress />}
           <br />
-          <Button
+          <div>
+            <Button
+                className="button"
+                variant="contained"
+                color="primary"
+                disabled={isSubmitting}
+                onClick={submitForm}
+            >
+                Cadastrar
+            </Button>
+            <Button
             className="button"
             variant="contained"
-            color="primary"
+            color="secondary"
             disabled={isSubmitting}
-            onClick={submitForm}
+            onClick={ value => props.history.push('/')}
           >
-            Criar
+            Voltar
           </Button>
+
+          </div>
         </Form>
       )}
     </Formik>

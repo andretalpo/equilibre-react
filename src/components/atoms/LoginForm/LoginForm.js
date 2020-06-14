@@ -5,6 +5,7 @@ import { Button, LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import './LoginForm.css';
 import ApiService from '../../../api/service';
+import { Link } from 'react-router-dom';
 
 
 function LoginForm({ logUser,...props}) {
@@ -77,6 +78,7 @@ function LoginForm({ logUser,...props}) {
           />
           {isSubmitting && <LinearProgress />}
           <br />
+          <div>
           <Button
             className="button"
             variant="contained"
@@ -86,6 +88,17 @@ function LoginForm({ logUser,...props}) {
           >
             Logar
           </Button>
+          <Button
+            className="button"
+            variant="contained"
+            color="secondary"
+            disabled={isSubmitting}
+            onClick={ value => props.history.push('/')}
+          >
+            Voltar
+          </Button>
+          </div>
+
         </Form>
       )}
     </Formik>

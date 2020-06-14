@@ -1,6 +1,6 @@
 import React from 'react';
 import './AuthTemplate.css';
-import logo6 from '../../assets/images/logo6.jpg';
+import logo from '../../assets/images/logo9.png';
 
 class AuthTemplate extends React.Component {
   
@@ -9,7 +9,7 @@ class AuthTemplate extends React.Component {
         <div className="main-container">
             <div className="left-container"></div>
             <div className="right-container">
-                <h1>Equilibre</h1>
+                <img src={logo} alt='logo'></img>
                 {this.props.children}
             </div>
         </div>

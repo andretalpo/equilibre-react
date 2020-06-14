@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import { Home, SignUp, AuthPage, Login } from './pages';
+import { Home, SignUp, AuthPage, Login, LandingPage } from './pages';
 import { ProtectedRoute } from './components/authentication';
 
 class App extends Component {
@@ -36,7 +36,7 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={props => <Home {...props} />}
+          render={props => <LandingPage {...props} />}
         />
         <Route
           exact
