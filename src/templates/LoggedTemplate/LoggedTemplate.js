@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     color: '#fafafa',
-    boxShadow: '3px 3px 3px -1px rgba(120,120,120,1);'
+    boxShadow: '3px 3px 3px -1px rgba(120,120,120,1);',
+    overflowX: 'hidden'
   },
   divider: {
     backgroundColor: '#eeeeee'
