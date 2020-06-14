@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      padding: '15px',
+      padding: '10px',
     },
   },
   menuButton: {
@@ -55,19 +55,27 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     color: '#fafafa',
+    boxShadow: '3px 3px 3px -1px rgba(120,120,120,1);'
   },
   divider: {
-    backgroundColor: '#fafafa'
+    backgroundColor: '#eeeeee'
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
   listItem: {
-    padding: '15px'
+    padding: '10px',
+    marginLeft: '10px'
   },
   title: {
     flexGrow: 1,
+  },
+  listItemSelected: {
+    backgroundColor: theme.palette.primary.main,
+    margin: '10px',
+    borderRadius: '5px',
+    width: drawerWidth - 20,
   }
 }));
 
@@ -94,19 +102,19 @@ function ResponsiveDrawer(props) {
       </Box>
       <Divider classes={{ root: classes.divider }} variant="middle" />
       <List>
-        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/dashboard')}>
+        <ListItem classes={{ root: classes.listItem }} className={props.title === 'Dashboard' ? classes.listItemSelected : ''} button onClick={() => history.push('/dashboard')}>
           <ListItemIcon><DashboardIcon color="secondary" /></ListItemIcon>
           <ListItemText color="secondary" primary="Dashboard" />
         </ListItem>
-        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/cards')}>
+        <ListItem classes={{ root: classes.listItem }} className={props.title === 'Cartões' ? classes.listItemSelected : ''} button onClick={() => history.push('/cards')}>
           <ListItemIcon><CreditCardIcon color="secondary" /></ListItemIcon>
           <ListItemText primary="Cartões" />
         </ListItem>
-        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/expenses')}>
+        <ListItem classes={{ root: classes.listItem }} className={props.title === 'Compras' ? classes.listItemSelected : ''} button onClick={() => history.push('/expenses')}>
           <ListItemIcon><AttachMoneyIcon color="secondary" /></ListItemIcon>
           <ListItemText primary="Compras" />
         </ListItem>
-        <ListItem classes={{ root: classes.listItem }} button onClick={() => history.push('/categories')}>
+        <ListItem classes={{ root: classes.listItem }} className={props.title === 'Categorias' ? classes.listItemSelected : ''} button onClick={() => history.push('/categories')}>
           <ListItemIcon><CategoryIcon color="secondary" /></ListItemIcon>
           <ListItemText primary="Categorias" />
         </ListItem>
@@ -122,7 +130,6 @@ function ResponsiveDrawer(props) {
       <AppBar elevation={0} color="transparent" position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -132,9 +139,8 @@ function ResponsiveDrawer(props) {
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             {props.title}
-        </Typography>
+          </Typography>
           <IconButton
-            color="inherit"
             edge="end"
             aria-label="logout"
             onClick={handleDrawerToggle}

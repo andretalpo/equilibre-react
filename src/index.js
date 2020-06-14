@@ -9,10 +9,18 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   palette: {
+    primary: {
+      main: '#4CAF50'
+    },
     secondary: {
       main: '#fafafa',
     },
   },
+  typography: {
+    h6: {
+      color: 'rgba(0, 0, 0, 0.54)'
+    }
+  }
 });
 
 ReactDOM.render(
