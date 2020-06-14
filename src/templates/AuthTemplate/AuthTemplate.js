@@ -1,6 +1,6 @@
 import React from 'react';
 import './AuthTemplate.css';
-import logo from '../../assets/images/logo9.png';
+import logo from '../../assets/images/logo8.png';
 
 class AuthTemplate extends React.Component {
   

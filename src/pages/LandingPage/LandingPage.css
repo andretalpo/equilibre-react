@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100px;
-    background-color: #465A65;
+    background-color: black;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -31,11 +31,26 @@
     display: flex;
     justify-self: center;
     align-items: center;
-    border: black solid 1px;
     width: 50vw;
 }
 
 .first-section-right-div img {
     width: 500px;
+    height: 500px;
+}
+
+.second-section {
+   height: 500px;
+   display: flex;
+}
+
+.second-section img{
+    height: 200px;
+    width: 200px;
+ }
+ 
+
+.third-section {
+    background-color: #F5F5F5;
     height: 500px;
 }
