@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden'
   },
   divider: {
-    backgroundColor: '#eeeeee'
+    backgroundColor: '#4F4F51'
   },
   content: {
     flexGrow: 1,
