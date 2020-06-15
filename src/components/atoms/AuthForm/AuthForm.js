@@ -24,7 +24,7 @@ const AuthForm = ({logUser, ...props}) => {
       // action.setSubmitting(false);
       
   
-      props.history.push('/logged-user');
+      props.history.push('/dashboard');
     } catch (err) {
       setLoginApiErrorMessage(err.response.data.message);
     }
