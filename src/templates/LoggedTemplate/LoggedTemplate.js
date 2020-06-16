@@ -20,6 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import './LoggedTemplate.css';
 import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import logo from '../../assets/images/logo8.png';
 
 const drawerWidth = 265;
 
@@ -99,7 +100,7 @@ function ResponsiveDrawer(props) {
         alignItems="center"
         justifyContent="center"
       >
-        <Typography>EQUILIBRE</Typography>
+        <img className="logo-logged-template" src={logo}/>
       </Box>
       <Divider classes={{ root: classes.divider }} variant="middle" />
       <List>

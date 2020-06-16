@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 //Images&Logos
-import logo from '../../assets/images/logo8-256px.png';
+import logo from '../../assets/images/logo8.png';
 import pic1 from '../../assets/images/landingPage-1.jpg';
 import grid1 from '../../assets/images/grid1.jpg';
 import grid2 from '../../assets/images/grid2.jpg';
