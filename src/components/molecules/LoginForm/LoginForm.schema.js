@@ -6,7 +6,7 @@ const formSchema = yup.object().shape({
         .email('Formato inválido'),
     password: yup.string()
         .required('Campo obrigatório')
-        .min(5, 'Mínimo de 3 caracteres')
+        .min(3, 'Mínimo de 3 caracteres')
         .max(100, 'Máximo de 100 caracteres'),
 });
 
