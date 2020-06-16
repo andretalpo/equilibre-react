@@ -22,10 +22,11 @@
 .first-section-left-div {
     display: flex;
     flex-direction: column;
-    justify-self: center;
+    justify-content: center;
     align-items: center;
     width: 50vw;
 }
+
 
 .first-section-right-div {
     display: flex;
@@ -35,22 +36,70 @@
 }
 
 .first-section-right-div img {
-    width: 500px;
-    height: 500px;
+    width: 50vw;
+    height: 100%;
+
 }
 
 .second-section {
    height: 500px;
    display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .second-section img{
     height: 200px;
     width: 200px;
  }
+
+ .grid {
+    height: 300px;
+    width:3200px;
+ }
  
 
 .third-section {
     background-color: #F5F5F5;
     height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.third-section-first-container{
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    height: 400px;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+
+}
+
+.third-section-first-container h1{
+    margin: 0 20px 10px 20px;
+
+}
+
+.third-section-second-container {
+    display: flex;
+    margin: 10px;
+}
+
+.third-section-img-size-align{
+    background-color: white;
+    border-radius: 5px;
+    width: 200px;
+    height: 100px;
+
+}
+
+.third-section-img-size-align img{
+    width: 150px;
+    margin: 10px;
 }

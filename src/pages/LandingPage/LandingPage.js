@@ -19,6 +19,8 @@ import grid1 from '../../assets/images/grid1.jpg';
 import grid2 from '../../assets/images/grid2.jpg';
 import grid3 from '../../assets/images/grid3.jpg';
 import grid4 from '../../assets/images/grid4.jpg';
+import appleGoogleStoreLogo from '../../assets/images/app-store-google.png';
+
 
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
@@ -76,10 +78,15 @@ export default function LandingPage({...props}) {
             <div className="first-section">
                 <div className="first-section-left-div">
                         <h1>As despesas do seu cartão no seu controle</h1>
+                        <ul>A forma inteligente de acompanhar os seus gastos
+                          <li>Primeiro Item</li>
+                          <li>Segundo Item</li>
+                          <li>Terciro Item</li>
+                        </ul>
                         <Button
                             className="button"
                             variant="contained"
-                            color="secondary"
+                            color="primary"
                             onClick={ value => props.history.push('/signup')}
                         >
                             Descubre como
@@ -91,34 +98,43 @@ export default function LandingPage({...props}) {
                 </div>
              </div>
             <div >
-              <div className={`second-section ${classes.root}`}>
-              <Grid container spacing={4}>
-                <Grid item xs={2}>
+              <div className={`${classes.root}`}>
+              <Grid container spacing={4} className="second-section">
+                <Grid item xs={2} className="grid">
                   <Paper className={classes.paper}>
                     <img src={grid1} alt={`pic-${grid1}`} ></img> 
+                    <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos </p>
                   </Paper>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="grid">
                   <Paper className={classes.paper}>
                     <img src={grid2} alt={`pic-${grid2}`} ></img>
+                    <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de </p>
                   </Paper>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="grid">
                   <Paper className={classes.paper}>
                    <img src={grid3} alt={`pic-${grid3}`} ></img>
+                   <p>Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum </p>
                   </Paper>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="grid">
                   <Paper className={classes.paper}>
-
                     <img src={grid4} alt={`pic-${grid4}`} ></img>
+                    <p>Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos </p>
                   </Paper>
                 </Grid>
               </Grid>
  
               </div>
             <div className="third-section">
-
+                <div className="third-section-first-container">
+                  <h1>Em breve, disponivel para as plataformas abaixo:</h1>
+                  <div className="third-section-second-container">
+                    <img src={appleGoogleStoreLogo} alt={`AppleGoogleStoreLogo`} ></img>
+                </div>
+                </div>
+                
             </div>
         </div>
       </div>
