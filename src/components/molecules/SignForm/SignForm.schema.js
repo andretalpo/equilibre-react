@@ -10,7 +10,7 @@ const formSchema = yup.object().shape({
         .max(100, 'Máximo de 100 caracteres'),
     name: yup.string()
         .required('Campo obrigatório')
-        .min(1, 'Mínimo de 3 caracteres')
+        .min(3, 'Mínimo de 3 caracteres')
         .max(100, 'Máximo de 100 caracteres'),
 });
 

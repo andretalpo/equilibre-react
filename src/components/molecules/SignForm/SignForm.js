@@ -16,9 +16,13 @@ function SignForm({ ...props }) {
   };
 
   const onSubmitSignUp = async (values, action) => {
-    const response = await ApiService.signUpUser(values);
-    props.history.push('/login');//Sucesso
-    setSignApiErrorMessage(message);//falha
+    try {
+      await ApiService.signUpUser(values);
+      props.history.push('/login');
+    } catch (err) {
+      console.log(err);
+      setSignApiErrorMessage(err.response.data.message);
+    }
   };
 
   return (
@@ -47,26 +51,30 @@ function SignForm({ ...props }) {
                 type="password"
                 label="Senha" />
               {isSubmitting && <LinearProgress />}
+              
               {signApiErrorMessage ? <p>{signApiErrorMessage}</p> : ''}
-              <Button
-                className="button"
-                variant="contained"
-                color="primary"
-                disabled={isSubmitting}
-                onClick={submitForm}
-              >
-                Cadastrar
-              </Button>
 
-              <Button
-                className="button"
-                variant="contained"
-                color="secondary"
-                disabled={isSubmitting}
-                onClick={() => props.history.push('/')}
-              >
-                Voltar
-              </Button>
+              <div>
+                <Button
+                  className="button"
+                  variant="contained"
+                  color="primary"
+                  disabled={isSubmitting}
+                  onClick={submitForm}
+                >
+                  Cadastrar
+                </Button>
+
+                <Button
+                  className="button"
+                  variant="contained"
+                  color="secondary"
+                  disabled={isSubmitting}
+                  onClick={() => props.history.push('/')}
+                >
+                  Voltar
+                </Button>
+              </div>
             </div>
           </Form>
         )

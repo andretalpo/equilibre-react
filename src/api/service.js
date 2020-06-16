@@ -57,12 +57,8 @@ class ApiService {
   }
 
   signUpUser = async values => {
-    try {
-      const { data } = await this.api.post('/api/public/auth/signup', values);
-      return data;
-    } catch (err) {
-      return err;
-    }
+    const { data } = await this.api.post('/api/public/auth/signup', values);
+    return data;
   };
 
   loginUser = async values => {
