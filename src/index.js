@@ -4,10 +4,31 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#4CAF50'
+    },
+    secondary: {
+      main: '#fafafa',
+    },
+  },
+  typography: {
+    h6: {
+      color: 'rgba(0, 0, 0, 0.54)'
+    }
+  }
+});
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
