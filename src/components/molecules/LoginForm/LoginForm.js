@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Button, LinearProgress } from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import './LoginForm.css';
 import ApiService from '../../../api/service';
-import { Link } from 'react-router-dom';
+import { Button } from '../../atoms';
 
 
 function LoginForm({ logUser,...props}) {
@@ -30,11 +30,20 @@ function LoginForm({ logUser,...props}) {
   
       props.history.push('/logged-user');
     } catch (err) {
-      setLoginApiErrorMessage(err.response.data.message);
+      console.log(err.response.data.message)
+      if(err.toString().includes('401')){
+        console.log('401')
+        setLoginApiErrorMessage(err.response.data.message);
+      } else {
+        setLoginApiErrorMessage("Internal Server Error");
+      }
+      
     }
   };
 
+
   return (
+    
     <Formik
       initialValues={{
         email: '',
@@ -43,18 +52,17 @@ function LoginForm({ logUser,...props}) {
       validate={values => {
         const errors = {};
         if (!values.email) {
-          errors.email = 'Required';
+          errors.email = 'Requerido';
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
         ) {
-          errors.email = 'Invalid email address';
+          errors.email = 'Email inválido';
         }
         return errors;
       }}
       onSubmit={onSubmitLogin}
     >
       {({ 
-        submitForm, 
         values,
         errors,
         touched,
@@ -62,16 +70,18 @@ function LoginForm({ logUser,...props}) {
         handleBlur,
         handleSubmit,
         isSubmitting, }) => (
-        <Form>
+        <Form >
           <Field
             component={TextField}
             name="email"
+            error={errors.email|| loginApiErrorMessage}
             type="email"
             label="Email"
           />
           <br />
           <Field
             component={TextField}
+            error={errors.password || loginApiErrorMessage}
             name="password"
             type="password"
             label="Senha"
@@ -80,25 +90,18 @@ function LoginForm({ logUser,...props}) {
           <br />
           <div>
           <Button
-            className="button"
-            variant="contained"
-            color="primary"
-            disabled={isSubmitting}
-            onClick={submitForm}
+            className="button-primary"
+            onClick={handleSubmit}
           >
             Logar
           </Button>
           <Button
-            className="button"
-            variant="contained"
-            color="secondary"
-            disabled={isSubmitting}
+            className="button-secondary"
             onClick={ value => props.history.push('/')}
           >
             Voltar
           </Button>
           </div>
-
         </Form>
       )}
     </Formik>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthTemplate } from '../../templates';
-import { SignUpForm } from '../../components/atoms';
+import { SignUpForm } from '../../components/molecules';
 
 const SignUp = props => {
   return (

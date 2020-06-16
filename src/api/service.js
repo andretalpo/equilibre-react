@@ -69,7 +69,7 @@ class ApiService {
 
   loginUser = async values => {
     const { data } = await this.api.post('/api/public/auth/login', values);
-    
+    console.log(data)
     return data;
   };
 

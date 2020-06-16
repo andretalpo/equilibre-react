@@ -1,0 +1,11 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+.button {
+    color: #FAFAFA !important;
+}
+
+.button-voltar {
+    color: #FAFAFA !important;
+}
