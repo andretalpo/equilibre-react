@@ -1,14 +1,13 @@
 import React from 'react';
-import { GeneralTemplate } from '../../templates';
-import { AuthForm } from '../../components/atoms';
+import { AuthTemplate } from '../../templates';
+import { LoginForm } from '../../components/molecules';
 
-const Signup = props => {
+const Login = props => {
   return (
-    <GeneralTemplate>
-      <h1>Login Page</h1>
-  <AuthForm {...props} />
-    </GeneralTemplate>
+    <AuthTemplate>
+      <LoginForm {...props} />
+    </AuthTemplate>
   );
 };
 
-export default Signup;
+export default Login;

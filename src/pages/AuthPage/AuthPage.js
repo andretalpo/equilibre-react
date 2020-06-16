@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
-import ApiService from '../../api/service';
-import { Link } from 'react-router-dom'; 
-
-class AuthPage extends Component {
-
+import React, { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import { Button, LinearProgress } from '@material-ui/core';
+import { TextField } from 'formik-material-ui';
 
 
-  componentDidMount() {
-    
-  }
+function AuthPage() {
 
-  render() {
-    ApiService.test();
-    return (
-          <div className='form-align'>
-              <h1>LOGOU!!!!!!!!</h1>
-              <Link to="/logged-user">Loged-User</Link>
+  const [loginApiErrorMessage, setLoginApiErrorMessage] = useState('');
+  const initialState = {
+    email: '',
+    password: '',
+  };
 
-          </div>
-    );
-
-  }
-};
+  return (
+    <div>
+      <h1>LOGOUUU</h1>
+    </div>
+  );
+}
 
 export default AuthPage;

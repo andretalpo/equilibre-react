@@ -1,25 +1,13 @@
-import React, { Component } from 'react';
-import { GeneralTemplate } from '../../templates';
-import { AuthForm } from '../../components/atoms';
-import './SignUp.css';
+import React from 'react';
+import { AuthTemplate } from '../../templates';
+import { SignUpForm } from '../../components/molecules';
 
-class SignUp extends Component {
-
-  componentWillUnmount() {
-    
-  }
-
-  render() {
-   
-    return (
-        <GeneralTemplate>
-          <h1>SignUp Page</h1>
-          <AuthForm/>
-        </GeneralTemplate>
-        
-    );
-
-  }
+const SignUp = props => {
+  return (
+    <AuthTemplate>
+      <SignUpForm {...props} />
+    </AuthTemplate>
+  );
 };
 
 export default SignUp;

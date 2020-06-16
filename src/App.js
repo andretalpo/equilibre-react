@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import { Home, SignUp, AuthPage, Login, Dashboard } from './pages';
+import { Home, SignUp, AuthPage, Login, LandingPage, Dashboard } from './pages';
 import { ProtectedRoute } from './components/authentication';
 
 class App extends Component {
@@ -36,7 +36,7 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={props => <Home {...props} />}
+          render={props => <LandingPage {...props} />}
         />
         <Route
           exact
@@ -54,6 +54,11 @@ class App extends Component {
           loggedUser={this.state.loggedUser}
           component={Dashboard}
           userInfo={this.state.userInfo}
+        />
+        <Route
+          exact
+          path="/auth-route"
+          render={props => <AuthPage {...props}/>}
         />
       </Switch>
     );
