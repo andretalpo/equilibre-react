@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress } from '@material-ui/core';
@@ -33,49 +32,33 @@ function SignForm({ ...props }) {
     >
       {
         ({ submitForm, isSubmitting }) => (
-          <Form>
-            <div className="flex">
-              <Field
-                component={TextField}
-                name="name"
-                type="text"
-                label="Nome" />
-              <Field
-                component={TextField}
-                name="email"
-                type="email"
-                label="Email" />
-              <Field
-                component={TextField}
-                name="password"
-                type="password"
-                label="Senha" />
-              {isSubmitting && <LinearProgress />}
-              
-              {signApiErrorMessage ? <p>{signApiErrorMessage}</p> : ''}
+          <Form className="form-container">
+            <Field
+              component={TextField}
+              name="name"
+              type="text"
+              label="Nome" />
+            <Field
+              component={TextField}
+              name="email"
+              type="email"
+              label="Email" />
+            <Field
+              component={TextField}
+              name="password"
+              type="password"
+              label="Senha" />
+            {isSubmitting && <LinearProgress />}
 
-              <div>
-                <Button
-                  className="button"
-                  variant="contained"
-                  color="primary"
-                  disabled={isSubmitting}
-                  onClick={submitForm}
-                >
-                  Cadastrar
-                </Button>
+            {signApiErrorMessage ? <p>{signApiErrorMessage}</p> : ''}
 
-                <Button
-                  className="button"
-                  variant="contained"
-                  color="secondary"
-                  disabled={isSubmitting}
-                  onClick={() => props.history.push('/')}
-                >
-                  Voltar
-                </Button>
-              </div>
-            </div>
+            <Button className="button-primary button-align" onClick={submitForm}>
+              Cadastrar
+            </Button>
+
+            <Button className="button-secondary button-align" onClick={value => props.history.push('/')}>
+              Voltar
+            </Button>
           </Form>
         )
       }
