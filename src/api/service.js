@@ -20,7 +20,7 @@ class ApiService {
 
       if (!tokenInfo) {
         window.location = '/login';
-         
+
         return;
       }
 
@@ -37,7 +37,7 @@ class ApiService {
         if (status === 401 && (message === 'jwt expired' || message === 'Token not found')) {
           try {
             const { data } = await axios.get('http://localhost:5000/api/private/refresh-token', { headers: { Authorization: `${type} ${refresh_token}` } })
-            
+
             localStorage.setItem('logged-user-info', JSON.stringify(data));
 
             config.headers.Authorization = `${data.type} ${data.token}`;
@@ -57,19 +57,12 @@ class ApiService {
   }
 
   signUpUser = async values => {
-    try {
-      console.log(values);
-      const { data } = await this.api.post('/api/public/auth/signup', values);
-      
-      return data;
-    } catch (err) {
-      return err.message;
-    }
+    const { data } = await this.api.post('/api/public/auth/signup', values);
+    return data;
   };
 
   loginUser = async values => {
     const { data } = await this.api.post('/api/public/auth/login', values);
-    console.log(data)
     return data;
   };
 

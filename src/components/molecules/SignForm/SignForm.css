@@ -1,1 +1,8 @@
-.button {}
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-align {
+    margin-top: 15px !important;
+}

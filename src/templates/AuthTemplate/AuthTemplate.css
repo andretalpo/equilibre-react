@@ -1,6 +1,5 @@
 .main-container {
     display: flex;
-    
 }
 
 .left-container {
@@ -8,11 +7,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 50vw;
-
 }
 
 .right-container {
-    width: 50%;
+    width: 50vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -20,7 +18,14 @@
 }
 
 .right-container img {
-    width: 400px;
-
+    height: 300px;
 }
 
+@media(max-width: 768px) {
+    .left-container {
+        width: 0;
+    }
+    .right-container {
+        width: 100vw;
+    }
+}
