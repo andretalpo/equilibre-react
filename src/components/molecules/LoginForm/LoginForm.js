@@ -18,11 +18,10 @@ function LoginForm({ logUser,...props}) {
 
   const onSubmitLogin = async (values, action) => {
     try {
+      
       const logged = await ApiService.loginUser(values);
       
-      console.log(`chegou ate aqui`)
       logUser();
-      console.log(`passou loguser`)
       localStorage.setItem('logged-user-info', JSON.stringify(logged));
   
       // action.setSubmitting(false);
@@ -74,7 +73,7 @@ function LoginForm({ logUser,...props}) {
           <Field
             component={TextField}
             name="email"
-            error={errors.email|| loginApiErrorMessage}
+            error={errors.email|| (loginApiErrorMessage && true)}
             type="email"
             label="Email"
           />
@@ -88,20 +87,21 @@ function LoginForm({ logUser,...props}) {
           />
           {isSubmitting && <LinearProgress />}
           <br />
-          <div>
           <Button
-            className="button-primary"
+            className="button-primary button-align"
             onClick={handleSubmit}
           >
             Logar
           </Button>
           <Button
-            className="button-secondary"
+            className="button-secondary button-align"
             onClick={ value => props.history.push('/')}
           >
             Voltar
           </Button>
-          </div>
+          {
+            loginApiErrorMessage ? loginApiErrorMessage : ''
+          }
         </Form>
       )}
     </Formik>
