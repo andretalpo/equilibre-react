@@ -92,23 +92,23 @@ export default function LandingPage({...props}) {
              </div>
             <div >
               <div className={`second-section ${classes.root}`}>
-              <Grid container spacing={3}>
-                <Grid item xs={3}>
+              <Grid container spacing={4}>
+                <Grid item xs={2}>
                   <Paper className={classes.paper}>
                     <img src={grid1} alt={`pic-${grid1}`} ></img> 
                   </Paper>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Paper className={classes.paper}>
                     <img src={grid2} alt={`pic-${grid2}`} ></img>
                   </Paper>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Paper className={classes.paper}>
                    <img src={grid3} alt={`pic-${grid3}`} ></img>
                   </Paper>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Paper className={classes.paper}>
 
                     <img src={grid4} alt={`pic-${grid4}`} ></img>

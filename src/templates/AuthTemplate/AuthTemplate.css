@@ -6,9 +6,9 @@
 .left-container {
     background-image: url('../../assets/images/authPage.jpg');
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    width: 50%;
-    height: 100vh;
+    background-size: cover;
+    width: 50vw;
+
 }
 
 .right-container {
