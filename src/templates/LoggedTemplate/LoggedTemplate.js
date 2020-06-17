@@ -100,7 +100,7 @@ function ResponsiveDrawer(props) {
         alignItems="center"
         justifyContent="center"
       >
-        <img className="logo-logged-template" src={logo}/>
+        <img className="logo-logged-template" src={logo} alt="Logo"/>
       </Box>
       <Divider classes={{ root: classes.divider }} variant="middle" />
       <List>

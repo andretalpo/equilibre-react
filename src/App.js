@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import { Home, SignUp, AuthPage, Login, LandingPage, Dashboard } from './pages';
+import { SignUp, Login, LandingPage, Dashboard } from './pages';
 import { ProtectedRoute } from './components/authentication';
 
 class App extends Component {
@@ -17,16 +17,20 @@ class App extends Component {
 
   verifyLoggedUser = async () => {
     const loggedUserInfo = localStorage.getItem('logged-user-info');
-
-    // eslint-disable-next-line react/no-direct-mutation-state
     if (loggedUserInfo) {
       this.state.loggedUser = true;
     }
+
+    const userInfo = localStorage.getItem('user-info');
+    if (userInfo) {
+      this.state.userInfo = JSON.parse(userInfo);
+    }
   };
 
-  logUser = () => {
+  logUser = (userInfo) => {
     this.setState({
       loggedUser: true,
+      userInfo
     });
   }
   
@@ -54,11 +58,6 @@ class App extends Component {
           loggedUser={this.state.loggedUser}
           component={Dashboard}
           userInfo={this.state.userInfo}
-        />
-        <Route
-          exact
-          path="/auth-route"
-          render={props => <AuthPage {...props}/>}
         />
       </Switch>
     );

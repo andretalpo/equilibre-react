@@ -16,11 +16,17 @@ function LoginForm({ logUser, ...props }) {
 
   const onSubmitLogin = async (values, action) => {
     try {
+      console.log(values);
       const logged = await ApiService.loginUser(values);
-      logUser();
+      console.log(logged);
+      const userInfo = await ApiService.getUser(values.email);
+      console.log(userInfo);
+      logUser(userInfo);
       localStorage.setItem('logged-user-info', JSON.stringify(logged));
+      localStorage.setItem('user-info', JSON.stringify(userInfo));
       props.history.push('/dashboard');
     } catch (err) {
+      console.log(err);
       console.log(err.response.data.message)
       setLoginApiErrorMessage(err.response.data.message);
     }
