@@ -45,7 +45,8 @@ class ApiService {
             return config;
           } catch (error) {
             localStorage.removeItem('logged-user-info');
-
+            localStorage.removeItem('user-info');
+            
             window.location = '/login';
 
             return;
@@ -66,15 +67,8 @@ class ApiService {
     return data;
   };
 
-  getUserInfo = async () => {
-    const { data } = await this.api.get('/api/private/user',);
-
-    return data.user || {};
-  };
-
-  test = async () => {
-    const { data } = await this.api.get('/api/private/test',);
-
+  getUser = async (email) => {
+    const { data } = await this.api.get(`/api/private/user?email=${email}`);
     return data;
   };
 }
