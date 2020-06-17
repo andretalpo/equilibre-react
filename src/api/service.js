@@ -71,12 +71,6 @@ class ApiService {
     const { data } = await this.api.get(`/api/private/user?email=${email}`);
     return data;
   };
-
-  test = async () => {
-    const { data } = await this.api.get('/api/private/test',);
-
-    return data;
-  };
 }
 
 export default new ApiService();
