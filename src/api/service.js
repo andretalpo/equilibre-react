@@ -68,10 +68,8 @@ class ApiService {
   };
 
   getUser = async (email) => {
-    console.log(email);
     const { data } = await this.api.get(`/api/private/user?email=${email}`);
-    console.log(data);
-    return data.user || {};
+    return data;
   };
 
   test = async () => {
