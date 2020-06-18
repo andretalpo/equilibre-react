@@ -18,7 +18,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import './LoggedTemplate.css';
-import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import logo from '../../assets/images/logo8.png';
 
@@ -64,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
   },
   listItem: {
     padding: '10px',
@@ -177,10 +176,10 @@ function ResponsiveDrawer(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Container>
+        <div className={`${classes.toolbar} logged-app-bar`} />
+        <div>
           {props.children}
-        </Container>
+        </div>
       </main>
     </div>
   );
