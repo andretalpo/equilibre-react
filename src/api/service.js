@@ -72,6 +72,11 @@ class ApiService {
     return data;
   };
 
+  listAllCategories = async (userId) => {
+    const { data } = await this.api.get(`/api/private/category/${userId}`);
+    return data;
+  };
+
   test = async () => {
     const { data } = await this.api.get('/api/private/test',);
 
