@@ -1,15 +1,21 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import { LoggedTemplate } from '../../templates';
 import { ListCategories } from '../../components/molecules';
 
 
-const Categories = (props) => {
-    return <LoggedTemplate 
-            {...props} 
+class Categories extends Component {
+    
+    
+    render () {
+        return (<LoggedTemplate 
+            {...this.props} 
             title='Categories'
             >
-                <ListCategories/>
+                <ListCategories {...this.props}/>
             </LoggedTemplate>
+        )
+    }
+    
 }
 
 export default Categories;
