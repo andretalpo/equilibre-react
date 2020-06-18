@@ -46,7 +46,7 @@ class ApiService {
           } catch (error) {
             localStorage.removeItem('logged-user-info');
             localStorage.removeItem('user-info');
-            
+
             window.location = '/login';
 
             return;
@@ -71,6 +71,15 @@ class ApiService {
     const { data } = await this.api.get(`/api/private/user?email=${email}`);
     return data;
   };
+
+  getExpenses = async (cardId, startDate, endDate) => {
+    try {
+      const { data } = await this.api.get(`/api/private/expense/${cardId}?startDate=${startDate}&endDate=${endDate}`);
+      return data.expenses;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new ApiService();
