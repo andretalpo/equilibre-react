@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
 import ApiService from '../../../api/service';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,45 +34,34 @@ class ListCategories extends Component {
   };
   
   async componentDidMount () {
-    console.log('DID MOUNT')
-    console.log(this.state.userInfo);
+
     const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
 
-
-
-    const categoriesToRender = allCategories.map((element,index) => {
-      return (
-      <ListItem>
-      <ListItemText
-        primary={`${element.name}`}
-      />
-      <ListItemSecondaryAction>
-      <IconButton edge="end" aria-label="edit">
-          <EditIcon />
-        </IconButton>
-        <IconButton edge="end" aria-label="delete" onClick={ value => this.deleteCategory(`${element._id}`)}>
-          <DeleteIcon />
-        </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem> )
-      }); 
-
-      this.setState({
-        categories: categoriesToRender,
-      });
-      console.log(this.state.categories)
-    
+    this.setState({
+      categories: allCategories,
+    });
   };
 
-  async deleteCategory (value) {
-      try {
-    
-        console.log(value);
-      } catch (err) {
-        console.log('falhou')
-    
+  async deleteCategory (categoryID) {
+    try {
+      console.log(categoryID)
+      const body = {
+        _id : categoryID
       }
+      console.log(JSON.stringify(body));
+      const data = await ApiService.deleteCategory(body);
+      console.log(data)
+      const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
+      
+      this.setState({
+        categories: allCategories,
+      });
+      
+    } catch (err) {
+      console.log(err)
+    
     }
+  }
 
   render() {
     const { classes } = this.props;
@@ -84,23 +74,25 @@ class ListCategories extends Component {
                   <List dense={this.state.dense}>
                     {
                       this.state.categories.length === 0
-                      ? (<h1>teste2</h1>)
-                      :  this.state.categories
-
+                      ? (<Skeleton animation="wave" />)
+                      :  this.state.categories.map( (element,index) => {
+                          return (
+                          <ListItem key={`element-${index}`}>
+                            <ListItemText
+                              primary={`${element.name}`}
+                            />
+                            <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="edit">
+                                <EditIcon />
+                              </IconButton>
+                              <IconButton edge="end" aria-label="delete" onClick={ value => this.deleteCategory(`${element._id}`)}>
+                                <DeleteIcon />
+                              </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                          )
+                       })
                     }
-                      {/* <ListItem>
-                        <ListItemText
-                          primary="Alimentação"
-                        />
-                        <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="edit">
-                            <EditIcon />
-                          </IconButton>
-                          <IconButton edge="end" aria-label="delete" onClick={ value => this.deleteCategory('teste')}>
-                            <DeleteIcon />
-                          </IconButton>
-                        </ListItemSecondaryAction>
-                      </ListItem> */}
                   </List>
                 </div>
               </Grid>

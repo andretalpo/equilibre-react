@@ -58,11 +58,13 @@ class ApiService {
   }
 
   signUpUser = async values => {
+
     const { data } = await this.api.post('/api/public/auth/signup', values);
     return data;
   };
 
   loginUser = async values => {
+
     const { data } = await this.api.post('/api/public/auth/login', values);
     return data;
   };
@@ -74,6 +76,12 @@ class ApiService {
 
   listAllCategories = async (userId) => {
     const { data } = await this.api.get(`/api/private/category/${userId}`);
+    return data;
+  };
+
+  deleteCategory = async (values) => {
+    console.log(values)
+    const { data } = await this.api.delete('/api/private/category', { data: { _id: values._id}});
     return data;
   };
 
