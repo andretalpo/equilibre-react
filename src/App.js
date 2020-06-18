@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import { SignUp, Login, LandingPage, Dashboard } from './pages';
+import { SignUp, Login, LandingPage, Dashboard, Expenses } from './pages';
 import { ProtectedRoute } from './components/authentication';
 
 class App extends Component {
@@ -57,6 +57,13 @@ class App extends Component {
           path="/dashboard"
           loggedUser={this.state.loggedUser}
           component={Dashboard}
+          userInfo={this.state.userInfo}
+        />
+        <ProtectedRoute
+          exact
+          path="/expenses"
+          loggedUser={this.state.loggedUser}
+          component={Expenses}
           userInfo={this.state.userInfo}
         />
       </Switch>
