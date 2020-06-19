@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 
+
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -40,9 +42,9 @@ const initialState = {
 
 
 export default function ModalEditCategory(props) {
-//   const classes = useStyles();
-//   // getModalStyle is not a pure function, we roll the style only on the first render
-//   const [modalStyle] = React.useState(getModalStyle);
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -59,18 +61,18 @@ export default function ModalEditCategory(props) {
         <IconButton edge="end" aria-label="edit" onClick={handleOpen}>
             <EditIcon />
         </IconButton>
-      {/* <button type="button" onClick={handleOpen}>
-      </button> */}
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-          <div>
+          <div style={modalStyle} className={classes.paper}>
           <Formik
             initialValues={initialState}
-            onSubmit={values => props.editCategory(values, props.categoryId)}
+            onSubmit={values => {
+              handleClose();
+              props.editCategory(values, props.categoryId)}}
             >
             {
                 ({ submitForm, isSubmitting, handleSubmit }) => (
@@ -80,7 +82,7 @@ export default function ModalEditCategory(props) {
                         name="category"
                         placeholder={props.categoryName}
                         type="text"
-                        label="Categoria"
+                        label="Nome da categoria"
                     />
                     <Button type="submit" className="button-primary button-align" >
                         Salvar

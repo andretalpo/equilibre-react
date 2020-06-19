@@ -79,9 +79,14 @@ class ApiService {
     return data;
   };
 
-  deleteCategory = async (values) => {
-    console.log(values)
-    const { data } = await this.api.delete('/api/private/category', { data: { _id: values._id}});
+  deleteCategory = async (category) => {
+    const { data } = await this.api.delete('/api/private/category', { data: { _id: category._id}});
+    return data;
+  };
+
+  editCategory = async (category) => {
+    console.log(category)
+    const { data } = await this.api.put('/api/private/category', category);
     return data;
   };
 

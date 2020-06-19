@@ -8,30 +8,31 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
 import ApiService from '../../../api/service';
 import { ModalEditCategory } from '../../molecules';
+import './ListCategories.css';
 
 
 import Skeleton from '@material-ui/lab/Skeleton';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    maxWidth: 752,
-  },
-  demo: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  title: {
-    margin: theme.spacing(4, 0, 2),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     width: '100%',
+//     backgroundColor: theme.palette.secondary.main,
+//     paddingLeft: '10px',
+//     marginBottom: '8px',
+//     borderRadius: '8px',
+//   },
+//   title: {
+//     margin: theme.spacing(4, 0, 2),
+//   },
+// }));
 
 
 class ListCategories extends Component {
+
   state = {
     dense: false,
     categories: [],
@@ -67,15 +68,16 @@ class ListCategories extends Component {
 
   async editCategory (values,categoryId) {
     try {
+      console.log(values)
+      const category = {
+        _id: categoryId,
+        newName: values.category
+      }
+      console.log(category)
+      const data = await ApiService.editCategory(category);
+      console.log(data)
       
-      console.log(values);
-      console.log(categoryId);
-      const data = await ApiService.editCategory(values);
-      const allCategories = await ApiService.editCategory(values);
-
-      this.setState({
-        categories: allCategories,
-      });
+      this.componentDidMount ()
       
     } catch (err) {
       console.log(err)
@@ -84,14 +86,13 @@ class ListCategories extends Component {
   }
 
   render() {
-    const { classes } = this.props;
 
     return (
-          <div className={classes.root}>
+          <div >
             <Grid item xs={12} md={6}>
-                <Typography variant="h6" className={classes.title}>
+                <Typography variant="h6" >
                 </Typography>
-                <div className={classes.demo}>
+                <div >
                   <List dense={this.state.dense}>
                     {
                       this.state.categories.length === 0
@@ -103,10 +104,13 @@ class ListCategories extends Component {
                               primary={`${element.name}`}
                             />
                             <ListItemSecondaryAction>
-                                <ModalEditCategory  editCategory={ this.editCategory } categoryId={ element._id } categoryName={ element.name }/>
-                              <IconButton edge="end" aria-label="delete" onClick={ value => this.deleteCategory(`${element._id}`)}>
+                              <div className="align-edit-delete-button">
+                              <ModalEditCategory   editCategory={ this.editCategory } categoryId={ element._id } categoryName={ element.name }/>
+                              <IconButton  edge="end" aria-label="delete" onClick={ value => this.deleteCategory(`${element._id}`)}>
                                 <DeleteIcon />
                               </IconButton>
+                              </div>
+
                             </ListItemSecondaryAction>
                         </ListItem>
                           )
@@ -120,4 +124,4 @@ class ListCategories extends Component {
     }
 } 
 
-export default withStyles(useStyles)(ListCategories)
+export default ListCategories
