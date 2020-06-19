@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { withStyles } from '@material-ui/core/styles';
 import ApiService from '../../../api/service';
-import { ModalEditCategory } from '../../molecules';
+import { CategoryListItems } from '../../molecules';
 import './ListCategories.css';
 
 
@@ -47,7 +40,7 @@ class ListCategories extends Component {
     });
   };
 
-  async deleteCategory (categoryId) {
+  deleteCategory = async (categoryId) => {
     try {
       const body = {
         _id : categoryId
@@ -66,7 +59,7 @@ class ListCategories extends Component {
     }
   }
 
-  async editCategory (values,categoryId) {
+ editCategory = async (values,categoryId) => {
     try {
       console.log(values)
       const category = {
@@ -77,7 +70,11 @@ class ListCategories extends Component {
       const data = await ApiService.editCategory(category);
       console.log(data)
       
-      this.componentDidMount ()
+      const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
+      
+      this.setState({
+        categories: allCategories,
+      });
       
     } catch (err) {
       console.log(err)
@@ -99,20 +96,7 @@ class ListCategories extends Component {
                       ? (<Skeleton animation="wave" />)
                       :  this.state.categories.map( (element,index) => {
                           return (
-                          <ListItem key={`element-${index}`}>
-                            <ListItemText
-                              primary={`${element.name}`}
-                            />
-                            <ListItemSecondaryAction>
-                              <div className="align-edit-delete-button">
-                              <ModalEditCategory   editCategory={ this.editCategory } categoryId={ element._id } categoryName={ element.name }/>
-                              <IconButton  edge="end" aria-label="delete" onClick={ value => this.deleteCategory(`${element._id}`)}>
-                                <DeleteIcon />
-                              </IconButton>
-                              </div>
-
-                            </ListItemSecondaryAction>
-                        </ListItem>
+                            <CategoryListItems element={element} editCategory={this.editCategory} categoryId={element._id} categoryName={element.name} key={`elementList-${index}`}/>
                           )
                        })
                     }
