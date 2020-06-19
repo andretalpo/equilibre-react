@@ -3,8 +3,12 @@ import { LoggedTemplate } from '../../templates';
 import { ListCategories } from '../../components/molecules';
 
 
+
 class Categories extends Component {
     
+    async componentDidMount () {
+
+      };
     
     render () {
         return (<LoggedTemplate 

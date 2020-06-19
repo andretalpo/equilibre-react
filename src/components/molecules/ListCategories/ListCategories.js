@@ -11,7 +11,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
 import ApiService from '../../../api/service';
+import { ModalEditCategory } from '../../molecules';
+
+
 import Skeleton from '@material-ui/lab/Skeleton';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,15 +46,13 @@ class ListCategories extends Component {
     });
   };
 
-  async deleteCategory (categoryID) {
+  async deleteCategory (categoryId) {
     try {
-      console.log(categoryID)
       const body = {
-        _id : categoryID
+        _id : categoryId
       }
-      console.log(JSON.stringify(body));
-      const data = await ApiService.deleteCategory(body);
-      console.log(data)
+      await ApiService.deleteCategory(body);
+
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
       this.setState({
@@ -63,8 +65,27 @@ class ListCategories extends Component {
     }
   }
 
+  async editCategory (values,categoryId) {
+    try {
+      
+      console.log(values);
+      console.log(categoryId);
+      const data = await ApiService.editCategory(values);
+      const allCategories = await ApiService.editCategory(values);
+
+      this.setState({
+        categories: allCategories,
+      });
+      
+    } catch (err) {
+      console.log(err)
+    
+    }
+  }
+
   render() {
     const { classes } = this.props;
+
     return (
           <div className={classes.root}>
             <Grid item xs={12} md={6}>
@@ -82,9 +103,7 @@ class ListCategories extends Component {
                               primary={`${element.name}`}
                             />
                             <ListItemSecondaryAction>
-                            <IconButton edge="end" aria-label="edit">
-                                <EditIcon />
-                              </IconButton>
+                                <ModalEditCategory  editCategory={ this.editCategory } categoryId={ element._id } categoryName={ element.name }/>
                               <IconButton edge="end" aria-label="delete" onClick={ value => this.deleteCategory(`${element._id}`)}>
                                 <DeleteIcon />
                               </IconButton>
