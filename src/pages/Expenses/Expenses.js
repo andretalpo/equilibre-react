@@ -31,11 +31,16 @@ class Expenses extends React.Component {
             <LoggedTemplate {...this.props} title="Compras">
                 {this.state.expenses.length <= 0 ? (<Skeleton animation="wave" />) :
                     <List>
-                        {this.state.expenses.map((expense, index) => <ExpenseListItem expense={expense} key={index} />)}
+                        {this.state.expenses.map((expense, index) => <ExpenseListItem expense={expense} deleteMethod={this.deleteExpense} key={index} />)}
                     </List>
                 }
             </LoggedTemplate>
         );
+    }
+
+    deleteExpense = async (expense) => {
+        await ApiService.deleteExpense(expense._id);
+        this.componentDidMount();
     }
 }
 

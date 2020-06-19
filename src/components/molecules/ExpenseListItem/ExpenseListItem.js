@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ExpenseListItem = ({ expense }) => {
+const ExpenseListItem = ({ expense, deleteMethod }) => {
     const classes = useStyles();
     return (
         <ListItem classes={{ root: classes.root }} disableGutters alignItems="flex-start">
@@ -61,7 +61,7 @@ const ExpenseListItem = ({ expense }) => {
                 <IconButton edge="end" aria-label="comments">
                     <EditIcon />
                 </IconButton>
-                <IconButton edge="end" aria-label="comments">
+                <IconButton edge="end" aria-label="comments" onClick={() => deleteMethod(expense)}>
                     <DeleteIcon />
                 </IconButton>
                 <Typography

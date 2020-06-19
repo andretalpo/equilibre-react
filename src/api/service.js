@@ -81,6 +81,14 @@ class ApiService {
     }
   }
 
+  deleteExpense = async id => {
+    try {
+      await this.api.delete(`/api/private/expense/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   getCategories = async (userId) => {
     try {
       const { data } = await this.api.get(`/api/private/category/${userId}`);
