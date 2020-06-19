@@ -80,6 +80,15 @@ class ApiService {
       console.log(error);
     }
   }
+
+  getCategories = async (userId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/category/${userId}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new ApiService();

@@ -8,23 +8,31 @@ import Typography from '@material-ui/core/Typography';
 import { ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Formatter from '../../../utils/Formatter';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.secondary.main,
+        paddingLeft: '10px',
+        marginBottom: '8px',
+        borderRadius: '8px',
     },
     inline: {
         display: 'block',
     },
+    colorDefault: {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.secondary.main
+    }
 }));
 
-const ExpenseListItem = ({ expense, index }) => {
+const ExpenseListItem = ({ expense }) => {
     const classes = useStyles();
     return (
-        <ListItem disableGutters alignItems="flex-start" key={index}>
+        <ListItem classes={{ root: classes.root }} disableGutters alignItems="flex-start">
             <ListItemAvatar>
-                <Avatar>{expense.date}</Avatar>
+                <Avatar classes={{ colorDefault: classes.colorDefault }}>{Formatter.formatDate(expense.date)}</Avatar>
             </ListItemAvatar>
             <ListItemText
                 primary={expense.name}
@@ -44,7 +52,7 @@ const ExpenseListItem = ({ expense, index }) => {
                             className={classes.inline}
                             color="textPrimary"
                         >
-                            {expense.category}
+                            {expense.category.name}
                         </Typography>
                     </React.Fragment>
                 }
@@ -62,7 +70,7 @@ const ExpenseListItem = ({ expense, index }) => {
                     className={classes.inline}
                     color="textPrimary"
                 >
-                    {expense.value}
+                    {`R$${Formatter.formatValue(expense.value)}`}
                 </Typography>
             </ListItemSecondaryAction>
         </ListItem>

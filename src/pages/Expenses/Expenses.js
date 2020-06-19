@@ -3,6 +3,7 @@ import { LoggedTemplate } from '../../templates';
 import List from '@material-ui/core/List';
 import { ExpenseListItem } from '../../components/molecules';
 import ApiService from '../../api/service';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 class Expenses extends React.Component {
     state = {
@@ -11,8 +12,15 @@ class Expenses extends React.Component {
 
     async componentDidMount() {
         try {
-            const expenses = await ApiService.getExpenses('5ee17abd65dcb1515c65cbac', '2020-01-01', '2020-12-31');
-            this.setState({ expenses })
+            const expenses = await ApiService.getExpenses('5eebff1cebc3bb0e44658b87', '2020-01-01', '2020-12-31');
+            const categories = await ApiService.getCategories(this.props.userInfo._id);
+            const expensesWithCategories = expenses.map(expense => (
+                {
+                    ...expense,
+                    category: categories.find(c => c._id === expense.category)
+                }
+            ));
+            this.setState({ expenses: expensesWithCategories })
         } catch (err) {
             console.log(err);
         }
@@ -21,9 +29,11 @@ class Expenses extends React.Component {
     render() {
         return (
             <LoggedTemplate {...this.props} title="Compras">
-                <List>
-                    {this.state.expenses.map((expense, index) => <ExpenseListItem expense={expense} index={index} />)}
-                </List>
+                {this.state.expenses.length <= 0 ? (<Skeleton animation="wave" />) :
+                    <List>
+                        {this.state.expenses.map((expense, index) => <ExpenseListItem expense={expense} key={index} />)}
+                    </List>
+                }
             </LoggedTemplate>
         );
     }
