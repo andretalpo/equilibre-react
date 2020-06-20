@@ -4,8 +4,8 @@ import './Button.css';
 
 export default function ContainedButtons(props) {
     return (
-        <Button className={props.className} onClick={props.onClick}>
-            {props.children}
-        </Button>
+            <Button type={props.type} className={props.className} onClick={ props.onClick }>
+                {props.children}
+            </Button>
     );
 }

@@ -27,7 +27,7 @@ class Expenses extends React.Component {
     async handleChangeCard() {
         //Mudar estado do cartao selecionado
         const expenses = await ApiService.getExpenses(this.state.selectedCard._id, '2020-01-01', '2020-12-01');
-        const categories = await ApiService.getCategories(this.props.userInfo._id);
+        const categories = await ApiService.listAllCategories(this.props.userInfo._id);
         const expensesWithCategories = expenses.map(expense => (
             {
                 ...expense,
@@ -100,7 +100,12 @@ class Expenses extends React.Component {
                 {this.state.expenses.length <= 0 ? (<Skeleton animation="wave" />) :
                     <List>
                         {this.state.expenses.map((expense, index) =>
-                            <ExpenseListItem expense={expense} cards={this.state.cards} categories={this.state.categories} deleteMethod={this.deleteExpense} key={index} />
+                            <ExpenseListItem expense={expense} 
+                                cards={this.state.cards} 
+                                categories={this.state.categories} 
+                                deleteMethod={this.deleteExpense} 
+                                editMethod={this.editExpense}
+                                key={index} />
                         )}
                     </List>
                 }
@@ -110,6 +115,11 @@ class Expenses extends React.Component {
 
     deleteExpense = async (expense) => {
         await ApiService.deleteExpense(expense._id);
+        this.componentDidMount();
+    }
+
+    editExpense = async (expense) => {
+        await ApiService.editExpense(expense);
         this.componentDidMount();
     }
 }

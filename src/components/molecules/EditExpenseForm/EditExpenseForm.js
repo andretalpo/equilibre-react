@@ -4,17 +4,19 @@ import { LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { Button } from '../../atoms';
 import formSchema from './EditExpenseForm.schema';
-import Formatter from '../../../utils/Formatter';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import UTCMomentUtils from '../../../utils/UTCMomentUtils';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import moment from 'moment';
 
-function EditExpenseForm({ expense, cards, categories }) {
+function EditExpenseForm({ expense, cards, categories, submitMethod }) {
     const [apiErrorMessage, setApiErrorMessage] = useState('');
     const initialState = {
         "name": expense.name,
-        "value": Formatter.formatValue(expense.value),
+        "value": expense.value,
         "date": expense.date,
         "stablishment": expense.stablishment,
         "category": expense.category,
@@ -22,6 +24,7 @@ function EditExpenseForm({ expense, cards, categories }) {
     };
     const [selectedCard, setSelectedCard] = useState(initialState.card);
     const [selectedCategory, setSelectedCategory] = useState(initialState.category);
+    const [selectedDate, handleChangeDate] = useState(initialState.date);
 
     const handleChangeCard = (e) => {
         setSelectedCard(e.target.value);
@@ -32,15 +35,20 @@ function EditExpenseForm({ expense, cards, categories }) {
     }
 
     const onSubmitForm = async (values, action) => {
-        
-        console.log(values);
+        submitMethod({
+            ...values,
+            _id: expense._id,
+            date: moment(selectedDate).utc().format('yyyy-MM-DD'),
+            card: selectedCard._id,
+            category: selectedCategory._id
+        });
     }
 
     return (
         <Formik
             initialValues={initialState}
-            // validationSchema={formSchema}
-            onSubmit={values => console.log("entrou")}
+            validationSchema={formSchema}
+            onSubmit={onSubmitForm}
         >
             {
                 ({ handleSubmit, isSubmitting, }) => (
@@ -54,7 +62,7 @@ function EditExpenseForm({ expense, cards, categories }) {
                         <Field
                             component={TextField}
                             name="value"
-                            type="text"
+                            type="number"
                             label="Valor"
                         />
                         <Field
@@ -63,12 +71,20 @@ function EditExpenseForm({ expense, cards, categories }) {
                             type="text"
                             label="Estabelecimento"
                         />
-                        <Field
-                            component={TextField}
-                            name="date"
-                            type="text"
-                            label="Data"
-                        />
+
+                        <MuiPickersUtilsProvider utils={UTCMomentUtils}>
+                            <KeyboardDatePicker
+                                margin="normal"
+                                id="date-start"
+                                label="De"
+                                format="DD/MM/yyyy"
+                                value={selectedDate}
+                                onChange={handleChangeDate}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
 
                         <FormControl fullWidth>
                             <InputLabel id="select-card">Categoria</InputLabel>
