@@ -1,12 +1,20 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+
+//Internal Components
+import { ModalEditCategory } from '../../molecules';
+import { CategoryEditDialog } from '../../molecules';
+
+
+//Material-UI Components
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
-import { ModalEditCategory } from '../../molecules';
+
+//Material-UI Styles
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CategoryListItem(props) {
   const classes = useStyles();
-
+  console.log(props.element)
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
@@ -31,7 +39,7 @@ export default function CategoryListItem(props) {
             />
             <ListItemSecondaryAction>
                 <div className="align-edit-delete-button">
-                <ModalEditCategory   editCategory={props.editCategory} categoryId={props.element._id} categoryName={props.element.name} />
+                <CategoryEditDialog title="Editar Categoria" category={props.element} editCategory={props.editCategory}/>                     
                 <IconButton  edge="end" aria-label="delete" onClick={value => props.deleteCategory(`${props.element._id}`)}>
                     <DeleteIcon />
                 </IconButton>
