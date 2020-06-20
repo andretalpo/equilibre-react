@@ -46,7 +46,7 @@ class ApiService {
           } catch (error) {
             localStorage.removeItem('logged-user-info');
             localStorage.removeItem('user-info');
-            
+
             window.location = '/login';
 
             return;
@@ -75,10 +75,14 @@ class ApiService {
   };
 
   listAllCategories = async (userId) => {
-    const { data } = await this.api.get(`/api/private/category/${userId}`);
-    return data;
-  };
-
+    try {
+      const { data } = await this.api.get(`/api/private/category/${userId}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
   deleteCategory = async (category) => {
     const { data } = await this.api.delete('/api/private/category', { data: { _id: category._id}});
     return data;
@@ -90,11 +94,23 @@ class ApiService {
     return data;
   };
 
-  test = async () => {
-    const { data } = await this.api.get('/api/private/test',);
+  getExpenses = async (cardId, startDate, endDate) => {
+    try {
+      const { data } = await this.api.get(`/api/private/expense/${cardId}?startDate=${startDate}&endDate=${endDate}`);
+      return data.expenses;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-    return data;
-  };
+  deleteExpense = async id => {
+    try {
+      await this.api.delete(`/api/private/expense/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 }
 
 export default new ApiService();
