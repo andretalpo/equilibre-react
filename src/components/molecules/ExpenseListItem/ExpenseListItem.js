@@ -7,8 +7,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import Formatter from '../../../utils/Formatter';
+import EditDialog from '../EditDialog/EditDialog';
+import './ExpenseListItem.css';
+import EditExpenseForm from '../EditExpenseForm/EditExpenseForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,12 +60,14 @@ const ExpenseListItem = ({ expense, deleteMethod }) => {
                 }
             />
             <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="comments">
-                    <EditIcon />
-                </IconButton>
-                <IconButton edge="end" aria-label="comments" onClick={() => deleteMethod(expense)}>
-                    <DeleteIcon />
-                </IconButton>
+                <div className="side-icon-button">
+                    <EditDialog title="Editar Compra">
+                        <EditExpenseForm expense={expense} />
+                    </EditDialog>
+                    <IconButton onClick={() => deleteMethod(expense)}>
+                        <DeleteIcon />
+                    </IconButton>
+                </div>
                 <Typography
                     component="span"
                     variant="body1"
