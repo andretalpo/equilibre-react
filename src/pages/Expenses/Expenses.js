@@ -10,34 +10,40 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import Grid from '@material-ui/core/Grid';
+import './Expenses.css';
+import moment from 'moment';
 
 class Expenses extends React.Component {
     state = {
         expenses: [],
         cards: [],
+        categories: [],
         selectedCard: "",
-        startDate: new Date(),
-        endDate: new Date(),
+        startDate: moment(),
+        endDate: moment(),
     }
 
     async handleChangeCard() {
-        const expenses = await ApiService.getExpenses(this.state.selectedCard._id, this.state.startDate, this.state.endDate);
+        //Mudar estado do cartao selecionado
+        const expenses = await ApiService.getExpenses(this.state.selectedCard._id, '2020-01-01', '2020-12-01');
         const categories = await ApiService.getCategories(this.props.userInfo._id);
         const expensesWithCategories = expenses.map(expense => (
             {
                 ...expense,
+                card: this.state.selectedCard,
                 category: categories.find(c => c._id === expense.category)
             }
         ));
-        this.setState({ expenses: expensesWithCategories })
+        this.setState({ expenses: expensesWithCategories, categories })
     }
 
-    async handleChangeStartDate() {
-
+    async handleChangeStartDate(startDate) {
+        this.setState({ startDate });
     }
 
-    async handleChangeEndDate() {
-
+    async handleChangeEndDate(endDate) {
+        this.setState({ endDate });
     }
 
     async componentDidMount() {
@@ -54,39 +60,48 @@ class Expenses extends React.Component {
     render() {
         return (
             <LoggedTemplate {...this.props} title="Compras">
+
                 <FormControl fullWidth>
                     <InputLabel id="select-card">Cartão</InputLabel>
                     <Select value={this.state.selectedCard} onChange={this.handleChangeCard} labelId="select-card">
                         {this.state.cards.map((card, index) => <MenuItem key={index} value={card}>{`${card.name} - ${card.provider}`}</MenuItem>)}
                     </Select>
                 </FormControl>
+
                 <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <KeyboardDatePicker
-                        margin="normal"
-                        id="date-start"
-                        label="De"
-                        format="dd/MM/yyyy"
-                        value={this.state.startDate}
-                        onChange={this.handleChangeStartDate}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
-                    <KeyboardDatePicker
-                        margin="normal"
-                        id="date-end"
-                        label="Até"
-                        format="dd/MM/yyyy"
-                        value={this.state.endDate}
-                        onChange={this.handleChangeEndDate}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
+                    <Grid container justify="space-around">
+                        <KeyboardDatePicker
+                            className="datepicker-width"
+                            margin="normal"
+                            id="date-start"
+                            label="De"
+                            format="DD/MM/yyyy"
+                            value={this.state.startDate}
+                            onChange={(date) => this.handleChangeStartDate(date)}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                        <KeyboardDatePicker
+                            className="datepicker-width"
+                            margin="normal"
+                            id="date-end"
+                            label="Até"
+                            format="DD/MM/yyyy"
+                            value={this.state.endDate}
+                            onChange={(date) => this.handleChangeEndDate(date)}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </Grid>
                 </MuiPickersUtilsProvider>
+
                 {this.state.expenses.length <= 0 ? (<Skeleton animation="wave" />) :
                     <List>
-                        {this.state.expenses.map((expense, index) => <ExpenseListItem expense={expense} deleteMethod={this.deleteExpense} key={index} />)}
+                        {this.state.expenses.map((expense, index) =>
+                            <ExpenseListItem expense={expense} cards={this.state.cards} categories={this.state.categories} deleteMethod={this.deleteExpense} key={index} />
+                        )}
                     </List>
                 }
             </LoggedTemplate>

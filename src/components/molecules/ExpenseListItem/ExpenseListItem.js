@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ExpenseListItem = ({ expense, deleteMethod }) => {
+const ExpenseListItem = ({ expense, cards, categories, deleteMethod }) => {
     const classes = useStyles();
     return (
         <ListItem classes={{ root: classes.root }} disableGutters alignItems="flex-start">
@@ -62,7 +62,7 @@ const ExpenseListItem = ({ expense, deleteMethod }) => {
             <ListItemSecondaryAction>
                 <div className="side-icon-button">
                     <EditDialog title="Editar Compra">
-                        <EditExpenseForm expense={expense} />
+                        <EditExpenseForm expense={expense} cards={cards} categories={categories} />
                     </EditDialog>
                     <IconButton onClick={() => deleteMethod(expense)}>
                         <DeleteIcon />

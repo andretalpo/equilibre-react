@@ -5,8 +5,12 @@ import { TextField } from 'formik-material-ui';
 import { Button } from '../../atoms';
 import formSchema from './EditExpenseForm.schema';
 import Formatter from '../../../utils/Formatter';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
-function EditExpenseForm({ expense }) {
+function EditExpenseForm({ expense, cards, categories }) {
     const [apiErrorMessage, setApiErrorMessage] = useState('');
     const initialState = {
         "name": expense.name,
@@ -16,16 +20,27 @@ function EditExpenseForm({ expense }) {
         "category": expense.category,
         "card": expense.card
     };
+    const [selectedCard, setSelectedCard] = useState(initialState.card);
+    const [selectedCategory, setSelectedCategory] = useState(initialState.category);
 
-    const onSubmit = () => {
+    const handleChangeCard = (e) => {
+        setSelectedCard(e.target.value);
+    }
 
+    const handleChangeCategory = (e) => {
+        setSelectedCategory(e.target.value);
+    }
+
+    const onSubmitForm = async (values, action) => {
+        
+        console.log(values);
     }
 
     return (
         <Formik
             initialValues={initialState}
-            validationSchema={formSchema}
-            onSubmit={onSubmit}
+            // validationSchema={formSchema}
+            onSubmit={values => console.log("entrou")}
         >
             {
                 ({ handleSubmit, isSubmitting, }) => (
@@ -54,18 +69,20 @@ function EditExpenseForm({ expense }) {
                             type="text"
                             label="Data"
                         />
-                        <Field
-                            component={TextField}
-                            name="category.name"
-                            type="text"
-                            label="Categoria"
-                        />
-                        <Field
-                            component={TextField}
-                            name="card.name"
-                            type="text"
-                            label="Cartão"
-                        />
+
+                        <FormControl fullWidth>
+                            <InputLabel id="select-card">Categoria</InputLabel>
+                            <Select value={selectedCategory} onChange={handleChangeCategory} labelId="select-category">
+                                {categories.map((category, index) => <MenuItem key={index} value={category}>{`${category.name}`}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+
+                        <FormControl fullWidth>
+                            <InputLabel id="select-card">Cartão</InputLabel>
+                            <Select value={selectedCard} onChange={handleChangeCard} labelId="select-card">
+                                {cards.map((card, index) => <MenuItem key={index} value={card}>{`${card.name}`}</MenuItem>)}
+                            </Select>
+                        </FormControl>
 
                         {isSubmitting && <LinearProgress />}
 
