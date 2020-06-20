@@ -58,17 +58,39 @@ class ApiService {
   }
 
   signUpUser = async values => {
+
     const { data } = await this.api.post('/api/public/auth/signup', values);
     return data;
   };
 
   loginUser = async values => {
+
     const { data } = await this.api.post('/api/public/auth/login', values);
     return data;
   };
 
   getUser = async (email) => {
     const { data } = await this.api.get(`/api/private/user?email=${email}`);
+    return data;
+  };
+
+  listAllCategories = async (userId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/category/${userId}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  deleteCategory = async (category) => {
+    const { data } = await this.api.delete('/api/private/category', { data: { _id: category._id}});
+    return data;
+  };
+
+  editCategory = async (category) => {
+    console.log(category)
+    const { data } = await this.api.put('/api/private/category', category);
     return data;
   };
 
@@ -89,14 +111,6 @@ class ApiService {
     }
   }
 
-  getCategories = async (userId) => {
-    try {
-      const { data } = await this.api.get(`/api/private/category/${userId}`);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
 }
 
 export default new ApiService();

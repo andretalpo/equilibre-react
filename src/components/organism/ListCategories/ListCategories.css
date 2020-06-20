@@ -1,0 +1,9 @@
+.align-edit-delete-button{
+    display: flex !important;
+}
+
+.menu-positioning {
+    z-index: 10 !important;
+    position: absolute;
+
+}
