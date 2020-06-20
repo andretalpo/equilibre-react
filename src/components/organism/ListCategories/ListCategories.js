@@ -54,7 +54,7 @@ class ListCategories extends Component {
       console.log(values)
       const category = {
         _id: categoryId,
-        newName: values.category
+        newName: values.name
       }
       console.log(category)
       const data = await ApiService.editCategory(category);
@@ -86,7 +86,7 @@ class ListCategories extends Component {
                       ? (<Skeleton animation="wave" />)
                       :  this.state.categories.map( (element,index) => {
                           return (
-                            <CategoryListItems element={element} editCategory={this.editCategory} categoryId={element._id} categoryName={element.name} key={`elementList-${index}`}/>
+                            <CategoryListItems element={element} editCategory={this.editCategory} deleteCategory={this.deleteCategory} key={`elementList-${index}`}/>
                           )
                        })
                       }
