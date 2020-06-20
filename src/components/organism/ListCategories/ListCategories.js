@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
+import ApiService from '../../../api/service';
+
+//Internal Components
+import { CategoryListItems } from '../../molecules';
+
+//Material-UI COmponents
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import ApiService from '../../../api/service';
-import { CategoryListItems } from '../../molecules';
-import './ListCategories.css';
-
-
 import Skeleton from '@material-ui/lab/Skeleton';
 
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     width: '100%',
-//     backgroundColor: theme.palette.secondary.main,
-//     paddingLeft: '10px',
-//     marginBottom: '8px',
-//     borderRadius: '8px',
-//   },
-//   title: {
-//     margin: theme.spacing(4, 0, 2),
-//   },
-// }));
+//Importing CSS
+import './ListCategories.css';
 
 
 class ListCategories extends Component {
@@ -99,7 +89,7 @@ class ListCategories extends Component {
                             <CategoryListItems element={element} editCategory={this.editCategory} categoryId={element._id} categoryName={element.name} key={`elementList-${index}`}/>
                           )
                        })
-                    }
+                      }
                   </List>
                 </div>
               </Grid>

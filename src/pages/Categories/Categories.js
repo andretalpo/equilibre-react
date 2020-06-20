@@ -1,6 +1,6 @@
 import React from 'react';
 import { LoggedTemplate } from '../../templates';
-import { ListCategories } from '../../components/molecules';
+import { ListCategories } from '../../components/organism';
 
 
 
