@@ -5,3 +5,8 @@
 .logged-app-bar {
     min-height: 40px !important;
 }
+
+.floating-button-align {
+    display: flex;
+    justify-content: center;
+}

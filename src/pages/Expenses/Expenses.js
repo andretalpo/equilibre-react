@@ -12,8 +12,8 @@ class Expenses extends React.Component {
 
     async componentDidMount() {
         try {
-            const expenses = await ApiService.getExpenses('5eebff1cebc3bb0e44658b87', '2020-01-01', '2020-12-31');
-            const categories = await ApiService.getCategories(this.props.userInfo._id);
+            const expenses = await ApiService.getExpenses('5eee41e09be7821c0ab9e7b2', '2020-01-01', '2020-12-31');
+            const categories = await ApiService.listAllCategories(this.props.userInfo._id);
             const expensesWithCategories = expenses.map(expense => (
                 {
                     ...expense,

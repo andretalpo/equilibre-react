@@ -1,7 +1,6 @@
 import React from 'react';
 
 //Internal Components
-import { ModalEditCategory } from '../../molecules';
 import { CategoryEditDialog } from '../../molecules';
 
 

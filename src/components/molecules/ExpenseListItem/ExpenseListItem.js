@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
         backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.main,
         paddingLeft: '10px',
         marginBottom: '8px',
         borderRadius: '8px',

@@ -2,10 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
+    height: 200px;
     background-image: url('../../assets/images/Panorama-noturno-da-Ponte-Estaiada.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: initial;
+    background-position: center;
  
     padding-left: 20px;
     padding-right: 20px;
@@ -13,7 +14,7 @@
 
 .navbar img {
     width: 350px;
-    height: 200px;
+    
 }
 
 .first-section {
@@ -39,8 +40,8 @@
 }
 
 .first-section-right-div img {
-    width: 50vw;
-    height: 100%;
+    width: 700px;
+    height: 600px;
 
 }
 

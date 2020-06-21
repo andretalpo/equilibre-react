@@ -89,7 +89,7 @@ export default function LandingPage({...props}) {
                             color="primary"
                             onClick={ value => props.history.push('/signup')}
                         >
-                            Descubre como
+                            Descubra como
                         </Button>
 
                 </div>

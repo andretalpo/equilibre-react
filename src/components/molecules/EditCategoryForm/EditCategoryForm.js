@@ -4,7 +4,6 @@ import { LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { Button } from '../../atoms';
 import formSchema from './EditCategoryForm.schema';
-import Formatter from '../../../utils/Formatter';
 
 function EditCategoryForm( props ) {
 
