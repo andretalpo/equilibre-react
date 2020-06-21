@@ -41,7 +41,8 @@ const AddExpenseDialog = (props) => {
             const categories = await ApiService.listAllCategories(user._id)
             setCategories(categories)
             const cards = await ApiService.listAllCards(user._id)
-            setCards(cards);
+            const cardsArray = Object.keys(cards).map(i => cards[i])
+            setCards(cardsArray[0]);
           }
       
           getCategoryAndCardInfo();
@@ -60,6 +61,12 @@ const AddExpenseDialog = (props) => {
         setOpen(false);
     };
 
+    const addNewExpense = (expense,category,card) => {
+        console.log('Compra',expense);
+        console.log('Categoria',category);
+        console.log('Cartao',card);
+    };
+
 
 
     return (    
@@ -70,7 +77,7 @@ const AddExpenseDialog = (props) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
                 <DialogContent>
-                    <AddExpenseForm cards={cards} category={categories}/>
+                    <AddExpenseForm cards={cards} categories={categories} handleClose={handleClose} addNewExpense={addNewExpense}/>
                     <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>
                         Cancelar
                     </Button>
