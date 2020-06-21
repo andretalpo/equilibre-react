@@ -118,8 +118,8 @@ class Expenses extends React.Component {
         this.componentDidMount();
     }
 
-    editExpense = async (expense) => {
-        await ApiService.editExpense(expense);
+    editExpense = async (id, expense) => {
+        await ApiService.editExpense(id, expense);
         this.componentDidMount();
     }
 }

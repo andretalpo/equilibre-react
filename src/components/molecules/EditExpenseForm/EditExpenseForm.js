@@ -35,13 +35,13 @@ function EditExpenseForm({ expense, cards, categories, submitMethod }) {
     }
 
     const onSubmitForm = async (values, action) => {
-        submitMethod({
-            ...values,
-            _id: expense._id,
-            date: moment(selectedDate).utc().format('yyyy-MM-DD'),
-            card: selectedCard._id,
-            category: selectedCategory._id
-        });
+        submitMethod(expense._id,
+            {
+                ...values,
+                date: moment(selectedDate).utc().format('yyyy-MM-DD'),
+                card: selectedCard._id,
+                category: selectedCategory._id
+            });
     }
 
     return (
@@ -78,7 +78,7 @@ function EditExpenseForm({ expense, cards, categories, submitMethod }) {
                                 id="date-start"
                                 label="De"
                                 format="DD/MM/yyyy"
-                                value={selectedDate}
+                                value={moment(selectedDate).utc().format('yyyy-MM-DD')}
                                 onChange={handleChangeDate}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',

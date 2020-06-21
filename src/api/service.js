@@ -111,10 +111,10 @@ class ApiService {
     }
   }
 
-  editExpense = async expense => {
+  editExpense = async (id, expense) => {
     try {
       console.log(expense)
-      await this.api.put(`/api/private/expense/${expense._id}`, expense);
+      await this.api.put(`/api/private/expense/${id}`, expense);
     } catch (error) {
       console.log(error);
     }
