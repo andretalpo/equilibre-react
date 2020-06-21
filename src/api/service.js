@@ -111,6 +111,15 @@ class ApiService {
     }
   }
 
+  listAllCards = async id => {
+    try {
+      const { data }  = await this.api.get(`/api/private/card/${id}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 }
 
 export default new ApiService();
