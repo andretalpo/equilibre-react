@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import UTCMomentUtils from '../../../utils/UTCMomentUtils';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
+import DateUtils from "@date-io/moment";
 
 
 
@@ -28,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 function AddExpenseForm(props) {
-    
+    const value = 0;
     const initialState = {
         name: '',
-        value: '',
+        value: Formatter.formatValue(value),
         date: new Date() ,
         stablishment: '',
         category: '',
@@ -66,7 +67,7 @@ function AddExpenseForm(props) {
     return (
         <Formik
             initialValues={initialState}
-            // validationSchema={formSchema}
+            validationSchema={formSchema}
             onSubmit={expense => {
                 props.handleClose();
                 props.addNewExpense(expense,category,card);

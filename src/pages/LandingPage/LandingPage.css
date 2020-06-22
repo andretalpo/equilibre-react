@@ -17,6 +17,11 @@
     
 }
 
+.navbar button {
+    margin-left: 10px;
+    
+}
+
 .first-section {
     background-color: #F5F5F5;
     height: 800px;

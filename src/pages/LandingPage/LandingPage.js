@@ -60,19 +60,15 @@ export default function LandingPage({...props}) {
         <div>
              <div className="navbar">
                 <img src={logo} alt='logo'></img>
-                <Breadcrumbs aria-label="breadcrumb" >
-                    <StyledBreadcrumb
-                        component="a"
-                        href="#"
-                        label="Login"
-                        icon={<HomeIcon fontSize="small" />}
-                        onClick={ value => props.history.push('/login') }
-                    />
-                    <StyledBreadcrumb
-                        label="SignUp"
-                        onClick={ value => props.history.push('/signup') }
-                    />
-                </Breadcrumbs>
+                <div >
+                  <Button className="button-primary button-align" onClick={value => props.history.push('/login')}>
+                    LOGIN
+                  </Button>
+                  <Button className="button-secondary button-align" onClick={value => props.history.push('/signup')}>
+                    Sign Up
+                  </Button>
+                </div>
+
        
             </div>
             <div className="first-section">

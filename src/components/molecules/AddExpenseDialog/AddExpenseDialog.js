@@ -62,7 +62,9 @@ const AddExpenseDialog = (props) => {
     };
 
     const addNewExpense = (expense,category,card) => {
-        console.log('Compra',expense);
+        const value = expense.value.replace(',','.');
+        console.log(value)
+        console.log('Compra',parseFloat(value));
         console.log('Categoria',category);
         console.log('Cartao',card);
     };
