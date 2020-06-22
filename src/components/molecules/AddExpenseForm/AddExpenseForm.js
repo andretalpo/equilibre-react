@@ -91,8 +91,9 @@ function AddExpenseForm(props) {
                         <Field
                             component={TextField}
                             name="date"
-                            type="text"
+                            type="date"
                             label="Data"
+                            value=''
                         />
                         {/* <SimpleSelect label='Categoria' options={props.categories}/>
                         <SimpleSelect label='Cartao' options={props.cards}/> */}
