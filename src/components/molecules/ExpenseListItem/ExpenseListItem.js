@@ -8,9 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Formatter from '../../../utils/Formatter';
-import EditDialog from '../EditDialog/EditDialog';
+import EditExpenseDialog from '../EditExpenseDialog/EditExpenseDialog';
 import './ExpenseListItem.css';
-import EditExpenseForm from '../EditExpenseForm/EditExpenseForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,13 +28,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ExpenseListItem = ({ expense, deleteMethod }) => {
+const ExpenseListItem = ({ expense, cards, categories, deleteMethod, editMethod }) => {
     const classes = useStyles();
     return (
         <ListItem classes={{ root: classes.root }} disableGutters alignItems="flex-start">
+            
             <ListItemAvatar>
                 <Avatar classes={{ colorDefault: classes.colorDefault }}>{Formatter.formatDate(expense.date)}</Avatar>
             </ListItemAvatar>
+            
             <ListItemText
                 primary={expense.name}
                 secondary={
@@ -59,11 +60,15 @@ const ExpenseListItem = ({ expense, deleteMethod }) => {
                     </React.Fragment>
                 }
             />
+
             <ListItemSecondaryAction>
                 <div className="side-icon-button">
-                    <EditDialog title="Editar Compra">
-                        <EditExpenseForm expense={expense} />
-                    </EditDialog>
+                    <EditExpenseDialog
+                        title="Editar Compra"
+                        expense={expense}
+                        cards={cards}
+                        categories={categories}
+                        submitMethod={editMethod} />
                     <IconButton onClick={() => deleteMethod(expense)}>
                         <DeleteIcon />
                     </IconButton>
@@ -77,8 +82,8 @@ const ExpenseListItem = ({ expense, deleteMethod }) => {
                     {`R$${Formatter.formatValue(expense.value)}`}
                 </Typography>
             </ListItemSecondaryAction>
-        </ListItem>
 
+        </ListItem>
     );
 }
 
