@@ -12,8 +12,7 @@ import UTCMomentUtils from '../../../utils/UTCMomentUtils';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 
-function EditExpenseForm({ expense, cards, categories, submitMethod }) {
-    const [apiErrorMessage, setApiErrorMessage] = useState('');
+function EditExpenseForm({ expense, cards, categories, submitMethod, closeDialog }) {
     const initialState = {
         "name": expense.name,
         "value": expense.value,
@@ -35,6 +34,7 @@ function EditExpenseForm({ expense, cards, categories, submitMethod }) {
     }
 
     const onSubmitForm = async (values, action) => {
+        closeDialog();
         submitMethod(expense._id,
             {
                 ...values,
@@ -101,8 +101,6 @@ function EditExpenseForm({ expense, cards, categories, submitMethod }) {
                         </FormControl>
 
                         {isSubmitting && <LinearProgress />}
-
-                        {apiErrorMessage ? <p>{apiErrorMessage}</p> : ''}
 
                         <Button type="submit" className="button-primary button-align">
                             Salvar

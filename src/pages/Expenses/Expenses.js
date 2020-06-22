@@ -3,7 +3,6 @@ import { LoggedTemplate } from '../../templates';
 import List from '@material-ui/core/List';
 import { ExpenseListItem } from '../../components/molecules';
 import ApiService from '../../api/service';
-import Skeleton from '@material-ui/lab/Skeleton';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -24,36 +23,44 @@ class Expenses extends React.Component {
         endDate: moment(),
     }
 
-    async handleChangeCard() {
-        //Mudar estado do cartao selecionado
-        const expenses = await ApiService.getExpenses(this.state.selectedCard._id, '2020-01-01', '2020-12-01');
-        const categories = await ApiService.listAllCategories(this.props.userInfo._id);
-        const expensesWithCategories = expenses.map(expense => (
-            {
-                ...expense,
-                card: this.state.selectedCard,
-                category: categories.find(c => c._id === expense.category)
-            }
-        ));
-        this.setState({ expenses: expensesWithCategories, categories })
+    async handleChangeCard(event) {
+        this.setState({ selectedCard: event.target.value }, this.onChange);
     }
 
     async handleChangeStartDate(startDate) {
-        this.setState({ startDate });
+        this.setState({ startDate }, this.onChange);
     }
 
     async handleChangeEndDate(endDate) {
-        this.setState({ endDate });
+        this.setState({ endDate }, this.onChange);
     }
 
     async componentDidMount() {
         try {
             const cards = await ApiService.getCards(this.props.userInfo._id);
-            this.setState({ cards, selectedCard: cards[0] });
-
-            this.handleChangeCard();
+            const categories = await ApiService.listAllCategories(this.props.userInfo._id);
+            this.setState({ cards, selectedCard: cards[0], categories }, this.onChange);
         } catch (err) {
             console.log(err);
+        }
+    }
+
+    async onChange() {
+        const formatedStartDate = this.state.startDate ? this.state.startDate.format('yyyy-MM-DD') : {};
+        const formatedEndDate = this.state.endDate ? this.state.endDate.format('yyyy-MM-DD') : {};
+
+        const expenses = await ApiService.getExpenses(this.state.selectedCard._id, formatedStartDate, formatedEndDate);
+        if (expenses) {
+            const expensesWithCategories = expenses.map(expense => (
+                {
+                    ...expense,
+                    card: this.state.selectedCard,
+                    category: this.state.categories.find(c => c._id === expense.category)
+                }
+            ));
+            this.setState({ expenses: expensesWithCategories });
+        } else {
+            this.setState({ expenses: [] });
         }
     }
 
@@ -63,7 +70,7 @@ class Expenses extends React.Component {
 
                 <FormControl fullWidth>
                     <InputLabel id="select-card">Cartão</InputLabel>
-                    <Select value={this.state.selectedCard} onChange={this.handleChangeCard} labelId="select-card">
+                    <Select value={this.state.selectedCard} onChange={(card) => this.handleChangeCard(card)} labelId="select-card">
                         {this.state.cards.map((card, index) => <MenuItem key={index} value={card}>{`${card.name} - ${card.provider}`}</MenuItem>)}
                     </Select>
                 </FormControl>
@@ -97,18 +104,17 @@ class Expenses extends React.Component {
                     </Grid>
                 </MuiPickersUtilsProvider>
 
-                {this.state.expenses.length <= 0 ? (<Skeleton animation="wave" />) :
-                    <List>
-                        {this.state.expenses.map((expense, index) =>
-                            <ExpenseListItem expense={expense} 
-                                cards={this.state.cards} 
-                                categories={this.state.categories} 
-                                deleteMethod={this.deleteExpense} 
-                                editMethod={this.editExpense}
-                                key={index} />
-                        )}
-                    </List>
-                }
+                <List>
+                    {this.state.expenses.map((expense, index) =>
+                        <ExpenseListItem expense={expense}
+                            cards={this.state.cards}
+                            categories={this.state.categories}
+                            deleteMethod={this.deleteExpense}
+                            editMethod={this.editExpense}
+                            key={index} />
+                    )}
+                </List>
+
             </LoggedTemplate>
         );
     }

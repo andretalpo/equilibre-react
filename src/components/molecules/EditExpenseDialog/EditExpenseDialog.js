@@ -5,8 +5,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
 import { IconButton } from '@material-ui/core';
+import EditExpenseForm from '../EditExpenseForm/EditExpenseForm'
 
-const EditDialog = (props) => {
+const EditExpenseDialog = (props) => {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -25,7 +26,7 @@ const EditDialog = (props) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
                 <DialogContent>
-                    {props.children}
+                    <EditExpenseForm {...props} closeDialog={handleClose}/>
                     <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>
                         Cancelar
                     </Button>
@@ -35,4 +36,4 @@ const EditDialog = (props) => {
     );
 };
 
-export default EditDialog;
+export default EditExpenseDialog;

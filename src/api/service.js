@@ -89,7 +89,6 @@ class ApiService {
   };
 
   editCategory = async (category) => {
-    console.log(category)
     const { data } = await this.api.put('/api/private/category', category);
     return data;
   };
@@ -113,7 +112,6 @@ class ApiService {
 
   editExpense = async (id, expense) => {
     try {
-      console.log(expense)
       await this.api.put(`/api/private/expense/${id}`, expense);
     } catch (error) {
       console.log(error);
