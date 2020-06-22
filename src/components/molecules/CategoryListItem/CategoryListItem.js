@@ -1,7 +1,6 @@
 import React from 'react';
 
 //Internal Components
-import { ModalEditCategory } from '../../molecules';
 import { CategoryEditDialog } from '../../molecules';
 
 
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CategoryListItem(props) {
   const classes = useStyles();
-  console.log(props.element)
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">

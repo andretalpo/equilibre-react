@@ -32,11 +32,14 @@ const ExpenseListItem = ({ expense, cards, categories, deleteMethod, editMethod 
     const classes = useStyles();
     return (
         <ListItem classes={{ root: classes.root }} disableGutters alignItems="flex-start">
-            
+
             <ListItemAvatar>
-                <Avatar classes={{ colorDefault: classes.colorDefault }}>{Formatter.formatDate(expense.date)}</Avatar>
+                <Avatar variant="rounded" className="avatar-date" classes={{ colorDefault: classes.colorDefault }}>
+                    <p className="avatar-text-large">{Formatter.getDay(expense.date)}</p>
+                    <p className="avatar-text-small">{Formatter.getMonthYear(expense.date)}</p>
+                </Avatar>
             </ListItemAvatar>
-            
+
             <ListItemText
                 primary={expense.name}
                 secondary={

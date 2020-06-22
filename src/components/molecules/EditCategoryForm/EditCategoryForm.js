@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { Button } from '../../atoms';
 import formSchema from './EditCategoryForm.schema';
-import Formatter from '../../../utils/Formatter';
 
 function EditCategoryForm( props ) {
-
-    console.log(props.category)
-    const [apiErrorMessage, setApiErrorMessage] = useState('');
     const initialState = {
         "name": props.category.name,
     };
@@ -33,8 +29,6 @@ function EditCategoryForm( props ) {
                         />
 
                         {isSubmitting && <LinearProgress />}
-
-                        {apiErrorMessage ? <p>{apiErrorMessage}</p> : ''}
 
                         <Button type="submit" className="button-primary button-align">
                             Salvar

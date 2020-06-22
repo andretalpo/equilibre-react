@@ -22,7 +22,6 @@ const EditCategoryDialog = (props) => {
         setOpen(false);
     };
 
-    console.log(props.category)
     return (
         
         <div>
