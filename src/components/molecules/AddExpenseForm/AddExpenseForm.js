@@ -10,6 +10,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import UTCMomentUtils from '../../../utils/UTCMomentUtils';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import moment from 'moment';
 
 import { SimpleSelect } from '../../atoms';
 
@@ -26,13 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function AddExpenseForm(props) {
-    console.log(props)
-    const classes = useStyles();
-    const [apiErrorMessage, setApiErrorMessage] = useState('');
-    const [category, setCategory] = React.useState('');
-    const [card, setCard] = React.useState('');
-
-
+    
     const initialState = {
         name: '',
         value: '',
@@ -41,6 +38,15 @@ function AddExpenseForm(props) {
         category: '',
         card: '',
     };
+    
+    const classes = useStyles();
+    const [apiErrorMessage, setApiErrorMessage] = useState('');
+    const [category, setCategory] = React.useState('');
+    const [card, setCard] = React.useState('');
+    const [selectedDate, handleChangeDate] = useState(initialState.date);
+
+
+
 
     const handleChangeCategory = (event) => {
         setCategory(event.target.value);
@@ -88,15 +94,19 @@ function AddExpenseForm(props) {
                             type="text"
                             label="Estabelecimento"
                         />
-                        <Field
-                            component={TextField}
-                            name="date"
-                            type="date"
-                            label="Data"
-                            value=''
-                        />
-                        {/* <SimpleSelect label='Categoria' options={props.categories}/>
-                        <SimpleSelect label='Cartao' options={props.cards}/> */}
+                        <MuiPickersUtilsProvider utils={UTCMomentUtils}>
+                            <KeyboardDatePicker
+                                margin="normal"
+                                id="date-start"
+                                label="De"
+                                format="DD/MM/yyyy"
+                                value={moment(selectedDate).utc().format('yyyy-MM-DD')}
+                                onChange={handleChangeDate}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
                         <FormControl >
                             <InputLabel className={classes.formControl}id="demo-simple-select-label">Categoria</InputLabel>
                             <Select
