@@ -14,7 +14,6 @@ import UTCMomentUtils from '../../../utils/UTCMomentUtils';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 
-import { SimpleSelect } from '../../atoms';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,12 +32,12 @@ function AddExpenseForm(props) {
     const initialState = {
         name: '',
         value: '',
-        date: '' ,
+        date: new Date() ,
         stablishment: '',
         category: '',
         card: '',
     };
-    
+
     const classes = useStyles();
     const [apiErrorMessage, setApiErrorMessage] = useState('');
     const [category, setCategory] = React.useState('');
@@ -98,9 +97,10 @@ function AddExpenseForm(props) {
                             <KeyboardDatePicker
                                 margin="normal"
                                 id="date-start"
-                                label="De"
+                                label="Data"
                                 format="DD/MM/yyyy"
-                                value={moment(selectedDate).utc().format('yyyy-MM-DD')}
+                                // value={moment(selectedDate).utc().format('DD-MM-yyyy')}
+                                value={selectedDate}
                                 onChange={handleChangeDate}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
