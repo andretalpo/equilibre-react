@@ -58,10 +58,10 @@ function AddExpenseForm(props) {
       };
 
     const categoryOptions = props.categories.map((element,index) => {
-        return <MenuItem value={element.name} key={`options${index}`}>{element.name}</MenuItem>
+        return <MenuItem value={element._id} key={`options${index}`}>{element.name}</MenuItem>
       })
     const cardOptions = props.cards.map((element,index) => {
-        return <MenuItem value={element.name} key={`options${index}`}>{element.name}</MenuItem>
+        return <MenuItem value={element._id} key={`options${index}`}>{element.name}</MenuItem>
     })
 
     return (

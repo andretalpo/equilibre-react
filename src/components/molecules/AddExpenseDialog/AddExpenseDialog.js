@@ -6,10 +6,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import { IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { AddExpenseForm } from '../../molecules';
 import ApiService from '../../../api/service';
-
+import moment from 'moment';
 
 
 
@@ -61,12 +60,28 @@ const AddExpenseDialog = (props) => {
         setOpen(false);
     };
 
-    const addNewExpense = (expense,category,card) => {
-        const value = expense.value.replace(',','.');
-        console.log(value)
-        console.log('Compra',parseFloat(value));
-        console.log('Categoria',category);
-        console.log('Cartao',card);
+    const addNewExpense = async (expense,category,card) => {
+        
+        try {
+            const value = expense.value.replace(',','.');
+
+            console.log(card)
+            const newExpense = { ...expense};
+            newExpense.category = category
+            newExpense.card = card
+            newExpense.value = parseFloat(value);
+            newExpense.date = moment(expense.date).format('YYYY-MM-DD');
+            
+            console.log(newExpense)
+    
+            const data = await ApiService.addExpense(newExpense);
+
+        } catch (error) {
+            console.log(error)
+        }
+       
+
+
     };
 
 

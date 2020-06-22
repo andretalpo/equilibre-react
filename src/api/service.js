@@ -94,6 +94,16 @@ class ApiService {
     return data;
   };
 
+  addExpense = async (expense) => {
+    try {
+      console.log(expense)
+      const { data } = await this.api.post('/api/private/expense/',expense);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   getExpenses = async (cardId, startDate, endDate) => {
     try {
       const { data } = await this.api.get(`/api/private/expense/${cardId}?startDate=${startDate}&endDate=${endDate}`);
