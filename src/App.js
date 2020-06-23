@@ -33,6 +33,12 @@ class App extends Component {
       userInfo
     });
   }
+
+  logout = () => {
+    localStorage.removeItem('logged-user-info');
+    this.setState({ userInfo: {} });
+    window.location.reload();
+  }
   
   render() {
     return (
@@ -58,6 +64,7 @@ class App extends Component {
           loggedUser={this.state.loggedUser}
           component={Dashboard}
           userInfo={this.state.userInfo}
+          logout={this.logout}
         />
         <ProtectedRoute
            exact
@@ -65,6 +72,7 @@ class App extends Component {
            loggedUser={this.state.loggedUser}
            component={Categories}
            userInfo={this.state.userInfo}
+           logout={this.logout}
         />
         <ProtectedRoute
           exact
@@ -72,6 +80,7 @@ class App extends Component {
           loggedUser={this.state.loggedUser}
           component={Expenses}
           userInfo={this.state.userInfo}
+          logout={this.logout}
         />
       </Switch>
     );

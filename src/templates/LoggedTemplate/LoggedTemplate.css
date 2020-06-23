@@ -10,3 +10,7 @@
     display: flex;
     justify-content: center;
 }
+
+.MuiAppBar-colorPrimary {
+    background-color: #eeeeee !important;
+}

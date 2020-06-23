@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const ExpenseListItem = ({ expense, cards, categories, deleteMethod, editMethod }) => {
     const classes = useStyles();
     return (
-        <ListItem classes={{ root: classes.root }} disableGutters alignItems="flex-start">
+        <ListItem classes={{ root: classes.root }} disableGutters>
 
             <ListItemAvatar>
                 <Avatar variant="rounded" className="avatar-date" classes={{ colorDefault: classes.colorDefault }}>
