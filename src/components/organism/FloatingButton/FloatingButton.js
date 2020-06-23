@@ -23,13 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function FloatingButtons(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Fab color="primary" aria-label="add" >
-        <AddExpenseDialog/>
+        <AddExpenseDialog />
       </Fab>
     </div>
   );

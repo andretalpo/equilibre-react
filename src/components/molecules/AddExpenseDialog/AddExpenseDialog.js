@@ -76,6 +76,8 @@ const AddExpenseDialog = (props) => {
     
             const data = await ApiService.addExpense(newExpense);
 
+            props.history.push('/expenses');
+
         } catch (error) {
             console.log(error)
         }
