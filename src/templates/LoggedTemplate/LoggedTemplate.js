@@ -112,13 +112,13 @@ function ResponsiveDrawer(props) {
           <ListItemIcon><DashboardIcon color="secondary" /></ListItemIcon>
           <ListItemText color="secondary" primary="Dashboard" />
         </ListItem>
-        <ListItem classes={{ root: classes.listItem }} className={props.title === 'Cartões' ? classes.listItemSelected : ''} button onClick={() => history.push('/cards')}>
-          <ListItemIcon><CreditCardIcon color="secondary" /></ListItemIcon>
-          <ListItemText primary="Cartões" />
-        </ListItem>
         <ListItem classes={{ root: classes.listItem }} className={props.title === 'Compras' ? classes.listItemSelected : ''} button onClick={() => history.push('/expenses')}>
           <ListItemIcon><AttachMoneyIcon color="secondary" /></ListItemIcon>
           <ListItemText primary="Compras" />
+        </ListItem>
+        <ListItem classes={{ root: classes.listItem }} className={props.title === 'Cartões' ? classes.listItemSelected : ''} button onClick={() => history.push('/cards')}>
+          <ListItemIcon><CreditCardIcon color="secondary" /></ListItemIcon>
+          <ListItemText primary="Cartões" />
         </ListItem>
         <ListItem classes={{ root: classes.listItem }} className={props.title === 'Categorias' ? classes.listItemSelected : ''} button onClick={() => history.push('/categories')}>
           <ListItemIcon><CategoryIcon color="secondary" /></ListItemIcon>
