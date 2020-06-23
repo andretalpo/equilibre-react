@@ -1,4 +1,11 @@
 import React from 'react';
+import './LoggedTemplate.css';
+
+//Images
+import logo from '../../assets/images/logo8.png';
+
+//Material UI Components
+import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,9 +24,7 @@ import CategoryIcon from '@material-ui/icons/Category';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import './LoggedTemplate.css';
-import Box from '@material-ui/core/Box';
-import logo from '../../assets/images/logo8.png';
+
 
 const drawerWidth = 265;
 

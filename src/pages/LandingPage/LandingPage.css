@@ -2,10 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
-    background-image: url('../../assets/images/Panorama-noturno-da-Ponte-Estaiada.jpg');
+    height: 200px;
+    /* background-image: url('../../assets/images/Panorama-noturno-da-Ponte-Estaiada.jpg'); */
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: initial;
+    background-position: center;
  
     padding-left: 20px;
     padding-right: 20px;
@@ -13,12 +14,17 @@
 
 .navbar img {
     width: 350px;
-    height: 200px;
+    
+}
+
+.navbar button {
+    margin-left: 10px;
+    
 }
 
 .first-section {
     background-color: #F5F5F5;
-    height: 800px;
+    height: 600px;
     display: flex;
 }
 
@@ -27,7 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50vw;
+
 }
 
 
@@ -39,8 +45,8 @@
 }
 
 .first-section-right-div img {
-    width: 50vw;
-    height: 100%;
+    width: 700px;
+    height: 600px;
 
 }
 
@@ -59,6 +65,12 @@
  .grid {
     height: 300px;
     width:3200px;
+ }
+
+ .grid-container {
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: column;
  }
  
 

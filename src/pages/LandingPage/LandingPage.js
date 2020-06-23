@@ -3,10 +3,6 @@ import React from 'react';
 import './LandingPage.css';
 
 //Components Material-UI
-import { emphasize, withStyles } from '@material-ui/core/styles';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Chip from '@material-ui/core/Chip';
-import HomeIcon from '@material-ui/icons/Home';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -22,22 +18,22 @@ import grid4 from '../../assets/images/grid4.jpg';
 import appleGoogleStoreLogo from '../../assets/images/app-store-google.png';
 
 
-const StyledBreadcrumb = withStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.grey[100],
-    height: theme.spacing(3),
-    color: theme.palette.grey[800],
-    fontWeight: theme.typography.fontWeightRegular,
-    maxWidth: 'lg',
-    '&:hover, &:focus': {
-      backgroundColor: theme.palette.grey[300],
-    },
-    '&:active': {
-      boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-    },
-  },
-}))(Chip);
+// const StyledBreadcrumb = withStyles((theme) => ({
+//   root: {
+//     backgroundColor: theme.palette.grey[100],
+//     height: theme.spacing(3),
+//     color: theme.palette.grey[800],
+//     fontWeight: theme.typography.fontWeightRegular,
+//     maxWidth: 'lg',
+//     '&:hover, &:focus': {
+//       backgroundColor: theme.palette.grey[300],
+//     },
+//     '&:active': {
+//       boxShadow: theme.shadows[1],
+//       backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+//     },
+//   },
+// }))(Chip);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: 'justify',
     color: theme.palette.text.secondary,
   },
 }));
@@ -60,19 +56,15 @@ export default function LandingPage({...props}) {
         <div>
              <div className="navbar">
                 <img src={logo} alt='logo'></img>
-                <Breadcrumbs aria-label="breadcrumb" >
-                    <StyledBreadcrumb
-                        component="a"
-                        href="#"
-                        label="Login"
-                        icon={<HomeIcon fontSize="small" />}
-                        onClick={ value => props.history.push('/login') }
-                    />
-                    <StyledBreadcrumb
-                        label="SignUp"
-                        onClick={ value => props.history.push('/signup') }
-                    />
-                </Breadcrumbs>
+                <div >
+                  <Button className="button-primary button-align" onClick={value => props.history.push('/login')}>
+                    LOGIN
+                  </Button>
+                  <Button className="button-secondary button-align" onClick={value => props.history.push('/signup')}>
+                    Sign Up
+                  </Button>
+                </div>
+
        
             </div>
             <div className="first-section">
@@ -89,42 +81,39 @@ export default function LandingPage({...props}) {
                             color="primary"
                             onClick={ value => props.history.push('/signup')}
                         >
-                            Descubre como
+                            Descubra como
                         </Button>
 
                 </div>
-                <div className="first-section-right-div">
-                    <img src={pic1} alt='pic1'></img>
-                </div>
              </div>
             <div >
-              <div className={`${classes.root}`}>
-              <Grid container spacing={4} className="second-section">
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                    <img src={grid1} alt={`pic-${grid1}`} ></img> 
-                    <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos </p>
-                  </Paper>
+              <div >
+                <Grid container spacing={4} className="second-section grid-container">
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                      <img src={grid1} alt={`pic-${grid1}`} ></img> 
+                      <p>Lorem Ipsum </p>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                      <img src={grid2} alt={`pic-${grid2}`} ></img>
+                      <p>É um fato conhecido de todos </p>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                    <img src={grid3} alt={`pic-${grid3}`} ></img>
+                    <p>Existem muitas variações </p>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                      <img src={grid4} alt={`pic-${grid4}`} ></img>
+                      <p>Ele usa um dicionário  </p>
+                    </Paper>
+                  </Grid>
                 </Grid>
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                    <img src={grid2} alt={`pic-${grid2}`} ></img>
-                    <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de </p>
-                  </Paper>
-                </Grid>
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                   <img src={grid3} alt={`pic-${grid3}`} ></img>
-                   <p>Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum </p>
-                  </Paper>
-                </Grid>
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                    <img src={grid4} alt={`pic-${grid4}`} ></img>
-                    <p>Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos </p>
-                  </Paper>
-                </Grid>
-              </Grid>
  
               </div>
             <div className="third-section">

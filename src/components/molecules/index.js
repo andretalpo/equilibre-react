@@ -4,4 +4,7 @@ export { default as CategoryListItems } from '../molecules/CategoryListItem/Cate
 export { default as ExpenseListItem } from '../molecules/ExpenseListItem/ExpenseListItem';
 export { default as CategoryEditDialog } from './EditCategoryDialog/EditCategoryDialog';
 export { default as EditCategoryForm } from '../molecules/EditCategoryForm/EditCategoryForm';
+export { default as AddExpenseForm } from '../molecules/AddExpenseForm/AddExpenseForm';
+export { default as AddExpenseDialog } from '../molecules/AddExpenseDialog/AddExpenseDialog';
+
 
