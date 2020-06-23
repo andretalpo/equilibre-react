@@ -33,7 +33,7 @@ function AddExpenseForm(props) {
     const initialState = {
         name: '',
         value: Formatter.formatValue(value),
-        date: new Date() ,
+        date: moment(),
         stablishment: '',
         category: '',
         card: '',
@@ -43,10 +43,12 @@ function AddExpenseForm(props) {
     const [apiErrorMessage, setApiErrorMessage] = useState('');
     const [category, setCategory] = React.useState('');
     const [card, setCard] = React.useState('');
-    const [selectedDate, handleChangeDate] = useState(initialState.date);
+    const [selectedDate, setDate] = useState(initialState.date);
 
 
-
+    const handleChangeDate = (date) => {
+        setDate(date);
+    }
 
     const handleChangeCategory = (event) => {
         setCategory(event.target.value);
@@ -70,6 +72,7 @@ function AddExpenseForm(props) {
             validationSchema={formSchema}
             onSubmit={expense => {
                 props.handleClose();
+                expense.date = moment(selectedDate).format('yyyy-MM-DD');
                 props.addNewExpense(expense,category,card);
             }}
         >
@@ -100,7 +103,6 @@ function AddExpenseForm(props) {
                                 id="date-start"
                                 label="Data"
                                 format="DD/MM/yyyy"
-                                // value={moment(selectedDate).utc().format('DD-MM-yyyy')}
                                 value={selectedDate}
                                 onChange={handleChangeDate}
                                 KeyboardButtonProps={{

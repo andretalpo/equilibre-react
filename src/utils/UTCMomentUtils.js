@@ -4,7 +4,6 @@ import moment from 'moment';
 class UTCMomentUtils extends MomentUtils {
     format(value, formatString) {
         return moment(value)
-            .utc()
             .format(formatString);
     }
 }

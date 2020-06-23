@@ -39,9 +39,8 @@ const AddExpenseDialog = (props) => {
             const user = JSON.parse(userInfo)
             const categories = await ApiService.listAllCategories(user._id)
             setCategories(categories)
-            const cards = await ApiService.listAllCards(user._id)
-            const cardsArray = Object.keys(cards).map(i => cards[i])
-            setCards(cardsArray[0]);
+            const cards = await ApiService.getCards(user._id)
+            setCards(cards);
           }
       
           getCategoryAndCardInfo();
@@ -61,7 +60,7 @@ const AddExpenseDialog = (props) => {
     };
 
     const addNewExpense = async (expense,category,card) => {
-        
+        console.log(expense)
         try {
             const value = expense.value.replace(',','.');
 
@@ -70,7 +69,7 @@ const AddExpenseDialog = (props) => {
             newExpense.category = category
             newExpense.card = card
             newExpense.value = parseFloat(value);
-            newExpense.date = moment(expense.date).format('YYYY-MM-DD');
+            
             
             console.log(newExpense)
     
