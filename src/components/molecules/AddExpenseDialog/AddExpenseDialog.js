@@ -8,6 +8,7 @@ import { IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { AddExpenseForm } from '../../molecules';
 import ApiService from '../../../api/service';
+import Fab from '@material-ui/core/Fab';
 import moment from 'moment';
 
 
@@ -22,11 +23,20 @@ const useStyles = makeStyles((theme) => ({
     extendedIcon: {
         marginRight: theme.spacing(1),
     },
+    formControl: {
+        // margin: theme.spacing(1),
+        minWidth: 120,
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
     colorDefault: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.secondary.main
     },
     }));
+
+
 
 const AddExpenseDialog = (props) => {
 
@@ -89,9 +99,9 @@ const AddExpenseDialog = (props) => {
 
     return (    
         <div className={classes.root}>
-            <IconButton className={classes.root} color="secondary" onClick={handleClickOpen}>
-                <AddIcon />
-            </IconButton>
+            <Fab color="primary" aria-label="add" onClick={handleClickOpen} >
+                <AddIcon className={classes.root} color="secondary"/>
+            </Fab>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
                 <DialogContent>
