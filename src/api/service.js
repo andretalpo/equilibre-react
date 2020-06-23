@@ -82,14 +82,13 @@ class ApiService {
       console.log(error);
     }
   }
-  
+
   deleteCategory = async (category) => {
-    const { data } = await this.api.delete('/api/private/category', { data: { _id: category._id}});
+    const { data } = await this.api.delete('/api/private/category', { data: { _id: category._id } });
     return data;
   };
 
   editCategory = async (category) => {
-    console.log(category)
     const { data } = await this.api.put('/api/private/category', category);
     return data;
   };
@@ -130,6 +129,22 @@ class ApiService {
     }
   }
 
+  editExpense = async (id, expense) => {
+    try {
+      await this.api.put(`/api/private/expense/${id}`, expense);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getCards = async (userId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/card/${userId}`);
+      return data.cards;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new ApiService();

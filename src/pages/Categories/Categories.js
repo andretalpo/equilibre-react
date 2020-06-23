@@ -8,7 +8,7 @@ function Categories (props) {
     
     return (<LoggedTemplate 
             {...props} 
-            title='Categories'
+            title='Categorias'
             >
                 <ListCategories {...props}/>
             </LoggedTemplate>

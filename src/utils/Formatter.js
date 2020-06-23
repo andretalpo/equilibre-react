@@ -1,7 +1,16 @@
+import moment from 'moment';
+
 class Formatter {
-    formatDate = (date) => {
+    getDay = (date) => {
         if (date) {
-            return new Date(date).getUTCDate();
+            return moment(date).utc().format('DD');
+        }
+        return null;
+    }
+
+    getMonthYear = (date) => {
+        if (date) {
+            return '\n' + moment(date).utc().format('MMM/YY');
         }
         return null;
     }

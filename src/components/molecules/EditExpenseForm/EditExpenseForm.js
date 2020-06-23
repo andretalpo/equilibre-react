@@ -4,28 +4,51 @@ import { LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { Button } from '../../atoms';
 import formSchema from './EditExpenseForm.schema';
-import Formatter from '../../../utils/Formatter';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import UTCMomentUtils from '../../../utils/UTCMomentUtils';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import moment from 'moment';
 
-function EditExpenseForm({ expense }) {
-    const [apiErrorMessage, setApiErrorMessage] = useState('');
+function EditExpenseForm({ expense, cards, categories, submitMethod, closeDialog }) {
     const initialState = {
         "name": expense.name,
-        "value": Formatter.formatValue(expense.value),
+        "value": expense.value,
         "date": expense.date,
         "stablishment": expense.stablishment,
         "category": expense.category,
         "card": expense.card
     };
+    const [selectedCard, setSelectedCard] = useState(initialState.card);
+    const [selectedCategory, setSelectedCategory] = useState(initialState.category);
+    const [selectedDate, handleChangeDate] = useState(initialState.date);
 
-    const onSubmit = () => {
+    const handleChangeCard = (e) => {
+        setSelectedCard(e.target.value);
+    }
 
+    const handleChangeCategory = (e) => {
+        setSelectedCategory(e.target.value);
+    }
+
+    const onSubmitForm = async (values, action) => {
+        closeDialog();
+        submitMethod(expense._id,
+            {
+                ...values,
+                date: moment(selectedDate).utc().format('yyyy-MM-DD'),
+                card: selectedCard._id,
+                category: selectedCategory._id
+            });
     }
 
     return (
         <Formik
             initialValues={initialState}
             validationSchema={formSchema}
-            onSubmit={onSubmit}
+            onSubmit={onSubmitForm}
         >
             {
                 ({ handleSubmit, isSubmitting, }) => (
@@ -39,7 +62,7 @@ function EditExpenseForm({ expense }) {
                         <Field
                             component={TextField}
                             name="value"
-                            type="text"
+                            type="number"
                             label="Valor"
                         />
                         <Field
@@ -48,28 +71,36 @@ function EditExpenseForm({ expense }) {
                             type="text"
                             label="Estabelecimento"
                         />
-                        <Field
-                            component={TextField}
-                            name="date"
-                            type="text"
-                            label="Data"
-                        />
-                        <Field
-                            component={TextField}
-                            name="category.name"
-                            type="text"
-                            label="Categoria"
-                        />
-                        <Field
-                            component={TextField}
-                            name="card.name"
-                            type="text"
-                            label="Cartão"
-                        />
+
+                        <MuiPickersUtilsProvider utils={UTCMomentUtils}>
+                            <KeyboardDatePicker
+                                margin="normal"
+                                id="date-start"
+                                label="De"
+                                format="DD/MM/yyyy"
+                                value={moment(selectedDate).utc().format('yyyy-MM-DD')}
+                                onChange={handleChangeDate}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
+
+                        <FormControl fullWidth>
+                            <InputLabel id="select-card">Categoria</InputLabel>
+                            <Select value={selectedCategory} onChange={handleChangeCategory} labelId="select-category">
+                                {categories.map((category, index) => <MenuItem key={index} value={category}>{`${category.name}`}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+
+                        <FormControl fullWidth>
+                            <InputLabel id="select-card">Cartão</InputLabel>
+                            <Select value={selectedCard} onChange={handleChangeCard} labelId="select-card">
+                                {cards.map((card, index) => <MenuItem key={index} value={card}>{`${card.name}`}</MenuItem>)}
+                            </Select>
+                        </FormControl>
 
                         {isSubmitting && <LinearProgress />}
-
-                        {apiErrorMessage ? <p>{apiErrorMessage}</p> : ''}
 
                         <Button type="submit" className="button-primary button-align">
                             Salvar
