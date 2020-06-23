@@ -69,21 +69,14 @@ const AddExpenseDialog = (props) => {
     };
 
     const addNewExpense = async (expense,category,card) => {
-        console.log(expense)
+
         try {
             const value = expense.value.replace(',','.');
-
-            console.log(card)
             const newExpense = { ...expense};
             newExpense.category = category
             newExpense.card = card
             newExpense.value = parseFloat(value);
-            
-            
-            console.log(newExpense)
-    
-            const data = await ApiService.addExpense(newExpense);
-
+            await ApiService.addExpense(newExpense);
             props.history.push('/expenses');
 
         } catch (error) {

@@ -95,7 +95,6 @@ class ApiService {
 
   addExpense = async (expense) => {
     try {
-      console.log(expense)
       const { data } = await this.api.post('/api/private/expense/',expense);
       return data;
     } catch (error) {

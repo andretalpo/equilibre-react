@@ -19,7 +19,7 @@ class Formatter {
         if (value) {
             return value.toFixed(2).replace('.', ',');
         }
-        return '0,00';
+        return '';
     }
 }
 
