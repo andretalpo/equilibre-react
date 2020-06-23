@@ -128,7 +128,7 @@ function ResponsiveDrawer(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar elevation={0} color="transparent" position="fixed" className={classes.appBar}>
+      <AppBar elevation={0} position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             aria-label="open drawer"
@@ -144,7 +144,7 @@ function ResponsiveDrawer(props) {
           <IconButton
             edge="end"
             aria-label="logout"
-            onClick={handleDrawerToggle}
+            onClick={props.logout}
           >
             <ExitToApp />
           </IconButton>

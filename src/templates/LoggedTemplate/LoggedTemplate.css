@@ -5,3 +5,7 @@
 .logged-app-bar {
     min-height: 40px !important;
 }
+
+.MuiAppBar-colorPrimary {
+    background-color: #eeeeee !important;
+}
