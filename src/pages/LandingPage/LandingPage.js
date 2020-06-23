@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: 'justify',
     color: theme.palette.text.secondary,
   },
 }));
@@ -85,38 +85,35 @@ export default function LandingPage({...props}) {
                         </Button>
 
                 </div>
-                <div className="first-section-right-div">
-                    <img src={pic1} alt='pic1'></img>
-                </div>
              </div>
             <div >
-              <div className={`${classes.root}`}>
-              <Grid container spacing={4} className="second-section">
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                    <img src={grid1} alt={`pic-${grid1}`} ></img> 
-                    <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos </p>
-                  </Paper>
+              <div >
+                <Grid container spacing={4} className="second-section grid-container">
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                      <img src={grid1} alt={`pic-${grid1}`} ></img> 
+                      <p>Lorem Ipsum </p>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                      <img src={grid2} alt={`pic-${grid2}`} ></img>
+                      <p>É um fato conhecido de todos </p>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                    <img src={grid3} alt={`pic-${grid3}`} ></img>
+                    <p>Existem muitas variações </p>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={2} className="grid">
+                    <Paper className={classes.paper}>
+                      <img src={grid4} alt={`pic-${grid4}`} ></img>
+                      <p>Ele usa um dicionário  </p>
+                    </Paper>
+                  </Grid>
                 </Grid>
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                    <img src={grid2} alt={`pic-${grid2}`} ></img>
-                    <p>É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de </p>
-                  </Paper>
-                </Grid>
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                   <img src={grid3} alt={`pic-${grid3}`} ></img>
-                   <p>Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum </p>
-                  </Paper>
-                </Grid>
-                <Grid item xs={2} className="grid">
-                  <Paper className={classes.paper}>
-                    <img src={grid4} alt={`pic-${grid4}`} ></img>
-                    <p>Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos </p>
-                  </Paper>
-                </Grid>
-              </Grid>
  
               </div>
             <div className="third-section">

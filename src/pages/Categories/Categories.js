@@ -14,7 +14,7 @@ function Categories (props) {
             >
                 <ListCategories {...props}/>
                 <div className="floating-button-align">
-                    <AddExpenseDialog />
+                    <AddExpenseDialog {...props} />
                 </div>
             </LoggedTemplate>
         )

@@ -36,10 +36,6 @@ class Expenses extends React.Component {
         this.setState({ endDate }, this.onChange);
     }
 
-    handleNewExpenseAdded = () => {
-        this.props.history.push('/expenses');
-    }
-
     async componentDidMount() {
         try {
             const cards = await ApiService.getCards(this.props.userInfo._id);
@@ -120,7 +116,7 @@ class Expenses extends React.Component {
                     )}
                 </List>
                 <div className="floating-button-align">
-                    <AddExpenseDialog handleNewExpenseAdded={this.handleNewExpenseAdded}/>
+                    <AddExpenseDialog {...this.props}/>
                 </div>
             </LoggedTemplate>
         );

@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     height: 200px;
-    background-image: url('../../assets/images/Panorama-noturno-da-Ponte-Estaiada.jpg');
+    /* background-image: url('../../assets/images/Panorama-noturno-da-Ponte-Estaiada.jpg'); */
     background-repeat: no-repeat;
     background-size: initial;
     background-position: center;
@@ -24,7 +24,7 @@
 
 .first-section {
     background-color: #F5F5F5;
-    height: 800px;
+    height: 600px;
     display: flex;
 }
 
@@ -33,7 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50vw;
+
 }
 
 
@@ -65,6 +65,12 @@
  .grid {
     height: 300px;
     width:3200px;
+ }
+
+ .grid-container {
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: column;
  }
  
 
