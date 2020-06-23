@@ -24,7 +24,7 @@ import CategoryIcon from '@material-ui/icons/Category';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { FloatingButton } from '../../components/organism';
+
 
 const drawerWidth = 265;
 
@@ -184,9 +184,6 @@ function ResponsiveDrawer(props) {
         <div className={`${classes.toolbar} logged-app-bar`} />
         <div>
           {props.children}
-          <div className="floating-button-align">
-            <FloatingButton/>
-          </div>
         </div>
       </main>
     </div>

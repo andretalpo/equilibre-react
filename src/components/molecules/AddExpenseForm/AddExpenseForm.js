@@ -10,10 +10,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import UTCMomentUtils from '../../../utils/UTCMomentUtils';
+import LocalMomentUtils from '../../../utils/LocalMomentUtils';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
-import DateUtils from "@date-io/moment";
+
 
 
 
@@ -97,7 +97,7 @@ function AddExpenseForm(props) {
                             type="text"
                             label="Estabelecimento"
                         />
-                        <MuiPickersUtilsProvider utils={UTCMomentUtils}>
+                        <MuiPickersUtilsProvider utils={LocalMomentUtils}>
                             <KeyboardDatePicker
                                 margin="normal"
                                 id="date-start"

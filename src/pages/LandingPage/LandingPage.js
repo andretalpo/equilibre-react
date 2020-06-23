@@ -3,10 +3,6 @@ import React from 'react';
 import './LandingPage.css';
 
 //Components Material-UI
-import { emphasize, withStyles } from '@material-ui/core/styles';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Chip from '@material-ui/core/Chip';
-import HomeIcon from '@material-ui/icons/Home';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -22,22 +18,22 @@ import grid4 from '../../assets/images/grid4.jpg';
 import appleGoogleStoreLogo from '../../assets/images/app-store-google.png';
 
 
-const StyledBreadcrumb = withStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.grey[100],
-    height: theme.spacing(3),
-    color: theme.palette.grey[800],
-    fontWeight: theme.typography.fontWeightRegular,
-    maxWidth: 'lg',
-    '&:hover, &:focus': {
-      backgroundColor: theme.palette.grey[300],
-    },
-    '&:active': {
-      boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-    },
-  },
-}))(Chip);
+// const StyledBreadcrumb = withStyles((theme) => ({
+//   root: {
+//     backgroundColor: theme.palette.grey[100],
+//     height: theme.spacing(3),
+//     color: theme.palette.grey[800],
+//     fontWeight: theme.typography.fontWeightRegular,
+//     maxWidth: 'lg',
+//     '&:hover, &:focus': {
+//       backgroundColor: theme.palette.grey[300],
+//     },
+//     '&:active': {
+//       boxShadow: theme.shadows[1],
+//       backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+//     },
+//   },
+// }))(Chip);
 
 const useStyles = makeStyles((theme) => ({
   root: {

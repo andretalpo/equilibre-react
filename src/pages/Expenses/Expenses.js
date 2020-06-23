@@ -12,6 +12,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import Grid from '@material-ui/core/Grid';
 import './Expenses.css';
 import moment from 'moment';
+import { AddExpenseDialog } from '../../components/molecules';
 
 class Expenses extends React.Component {
     state = {
@@ -33,6 +34,10 @@ class Expenses extends React.Component {
 
     async handleChangeEndDate(endDate) {
         this.setState({ endDate }, this.onChange);
+    }
+
+    handleNewExpenseAdded = () => {
+        this.props.history.push('/expenses');
     }
 
     async componentDidMount() {
@@ -114,7 +119,9 @@ class Expenses extends React.Component {
                             key={index} />
                     )}
                 </List>
-
+                <div className="floating-button-align">
+                    <AddExpenseDialog handleNewExpenseAdded={this.handleNewExpenseAdded}/>
+                </div>
             </LoggedTemplate>
         );
     }
