@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import { SignUp, Login, LandingPage, Dashboard, Categories, Expenses } from './pages';
+import { SignUp, Login, LandingPage, Dashboard, Categories, Expenses, Cards } from './pages';
 import { ProtectedRoute } from './components/authentication';
 
 class App extends Component {
@@ -79,6 +79,14 @@ class App extends Component {
           path="/expenses"
           loggedUser={this.state.loggedUser}
           component={Expenses}
+          userInfo={this.state.userInfo}
+          logout={this.logout}
+        />
+        <ProtectedRoute
+          exact
+          path="/cards"
+          loggedUser={this.state.loggedUser}
+          component={Cards}
           userInfo={this.state.userInfo}
           logout={this.logout}
         />
