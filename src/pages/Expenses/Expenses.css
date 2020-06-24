@@ -3,9 +3,7 @@
 }
 
 .floating-button-align {
-    /* display: flex;
-    justify-content: center; */
     position: fixed;
-    top: 90vh;
+    top: 87vh;
     left: 43vw;
 }

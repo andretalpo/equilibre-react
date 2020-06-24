@@ -9,5 +9,7 @@ export { default as AddExpenseDialog } from '../molecules/AddExpenseDialog/AddEx
 export { default as CardListItem } from '../molecules/CardListItem/CardListItem';
 export { default as AddCategoryForm } from '../molecules/AddCategoryForm/AddCategoryForm';
 export { default as AddCategoryDialog } from '../molecules/AddCategoryDialog/AddCategoryDialog';
+export { default as AddCardDialog } from '../molecules/AddCardDialog/AddCardDialog';
+export { default as AddCardForm } from '../molecules/AddCardForm/AddCardForm';
 
 

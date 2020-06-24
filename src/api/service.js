@@ -156,6 +156,14 @@ class ApiService {
       console.log(error);
     }
   }
+
+  addCard = async(card) => {
+    try {
+      await this.api.post(`/api/private/card`, card);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new ApiService();

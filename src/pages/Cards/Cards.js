@@ -4,6 +4,7 @@ import List from '@material-ui/core/List';
 import { CardListItem } from '../../components/molecules';
 import ApiService from '../../api/service';
 import { AddExpenseDialog } from '../../components/molecules';
+import { AddCardDialog } from '../../components/molecules';
 
 class Cards extends React.Component {
     state = {
@@ -18,6 +19,7 @@ class Cards extends React.Component {
     render() {
         return (
             <LoggedTemplate {...this.props} title="Cartões">
+                <AddCardDialog {...this.props} addMethod={this.addCard} />
                 <List>
                     {this.state.cards.map((card, index) =>
                         <CardListItem card={card}
@@ -40,6 +42,11 @@ class Cards extends React.Component {
 
     editCard = async (id, card) => {
         await ApiService.editCard(id, card);
+        this.componentDidMount();
+    }
+
+    addCard = async (card) => {
+        await ApiService.addCard(card);
         this.componentDidMount();
     }
 }
