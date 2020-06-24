@@ -7,3 +7,9 @@
     position: absolute;
 
 }
+
+.add-button-align {
+    display: flex !important;
+    justify-content: flex-end !important;
+    
+}

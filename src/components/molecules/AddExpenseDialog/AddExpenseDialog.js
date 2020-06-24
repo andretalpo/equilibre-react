@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AddExpenseDialog = (props) => {
 
-    const [userInfo, setUserInfo] = useState(localStorage.getItem('user-info'));
+    const userInfo = localStorage.getItem('user-info');
     const [cards, setCards] = useState('');
     const [categories, setCategories] = useState('');
 
