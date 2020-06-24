@@ -40,7 +40,7 @@ function AddExpenseForm(props) {
     };
 
     const classes = useStyles();
-    const [apiErrorMessage, setApiErrorMessage] = useState('');
+
     const [category, setCategory] = React.useState('');
     const [card, setCard] = React.useState('');
     const [selectedDate, setDate] = useState(initialState.date);
@@ -134,8 +134,6 @@ function AddExpenseForm(props) {
                         </FormControl>
 
                         {isSubmitting && <LinearProgress />}
-
-                        {apiErrorMessage ? <p>{apiErrorMessage}</p> : ''}
 
                         <Button type="submit" className="button-primary button-align">
                             Adicionar

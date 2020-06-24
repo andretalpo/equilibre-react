@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     formControl: {
-        // margin: theme.spacing(1),
+        margin: theme.spacing(1),
         minWidth: 120,
       },
       selectEmpty: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AddExpenseDialog = (props) => {
 
-    const [userInfo, setUserInfo] = useState(localStorage.getItem('user-info'));
+    const userInfo = localStorage.getItem('user-info');
     const [cards, setCards] = useState('');
     const [categories, setCategories] = useState('');
 
@@ -95,7 +95,7 @@ const AddExpenseDialog = (props) => {
                 <AddIcon className={classes.root} color="secondary"/>
             </Fab>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
+                <DialogTitle id="form-dialog-title">Adicionar compra</DialogTitle>
                 <DialogContent>
                     <AddExpenseForm cards={cards} categories={categories} handleClose={handleClose} addNewExpense={addNewExpense}/>
                     <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>

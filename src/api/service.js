@@ -93,6 +93,11 @@ class ApiService {
     return data;
   };
 
+  addCategory = async (category) => {
+    const { data } = await this.api.post('/api/private/category', category);
+    return data;
+  };
+
   addExpense = async (expense) => {
     try {
       const { data } = await this.api.post('/api/private/expense/',expense);

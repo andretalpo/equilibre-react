@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import ApiService from '../../../api/service';
 
 //Internal Components
-import { CategoryListItems } from '../../molecules';
+import { CategoryListItems, AddCategoryDialog } from '../../molecules';
 
 //Material-UI COmponents
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
+
 
 //Importing CSS
 import './ListCategories.css';
@@ -51,14 +52,33 @@ class ListCategories extends Component {
 
  editCategory = async (values,categoryId) => {
     try {
-      console.log(values)
+
       const category = {
         _id: categoryId,
         newName: values.name
       }
-      console.log(category)
-      const data = await ApiService.editCategory(category);
-      console.log(data)
+
+      await ApiService.editCategory(category);
+
+      const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
+      
+      this.setState({
+        categories: allCategories,
+      });
+      
+    } catch (err) {
+      console.log(err)
+    
+    }
+  }
+
+  addCategory = async (category) => {
+    try {
+
+      const newCategory = { ...category }
+      newCategory.user = this.props.userInfo._id
+      await ApiService.addCategory(newCategory);
+
       
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
@@ -77,6 +97,10 @@ class ListCategories extends Component {
     return (
           <div >
             <Grid item xs={12} md={6}>
+              <div className="add-button-align">
+                <AddCategoryDialog addCategory={this.addCategory}/>
+              </div>
+                
                 <Typography variant="h6" >
                 </Typography>
                 <div >
