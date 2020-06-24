@@ -1,0 +1,120 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    /* background-image: url('../../assets/images/Panorama-noturno-da-Ponte-Estaiada.jpg'); */
+    background-repeat: no-repeat;
+    background-size: initial;
+    background-position: center;
+ 
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar img {
+    width: 350px;
+    
+}
+
+.navbar button {
+    margin-left: 10px;
+    
+}
+
+.first-section {
+    background-color: #F5F5F5;
+    height: 600px;
+    display: flex;
+}
+
+.first-section-left-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.first-section-right-div {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    width: 50vw;
+}
+
+.first-section-right-div img {
+    width: 700px;
+    height: 600px;
+
+}
+
+.second-section {
+   height: 500px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.second-section img{
+    height: 200px;
+    width: 200px;
+ }
+
+ .grid {
+    height: 300px;
+    width:3200px;
+ }
+
+ .grid-container {
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: column;
+ }
+ 
+
+.third-section {
+    background-color: #F5F5F5;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.third-section-first-container{
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    height: 400px;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+
+}
+
+.third-section-first-container h1{
+    margin: 0 20px 10px 20px;
+
+}
+
+.third-section-second-container {
+    display: flex;
+    margin: 10px;
+}
+
+.third-section-img-size-align{
+    background-color: white;
+    border-radius: 5px;
+    width: 200px;
+    height: 100px;
+
+}
+
+.third-section-img-size-align img{
+    width: 150px;
+    margin: 10px;
+}

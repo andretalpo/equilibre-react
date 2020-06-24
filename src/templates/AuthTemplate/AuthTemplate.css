@@ -1,0 +1,32 @@
+.main-container {
+    display: flex;
+}
+
+.left-container {
+    background-image: url('../../assets/images/authPage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50vw;
+}
+
+.right-container {
+    width: 50vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-container img {
+    margin: 40px auto;
+    height: 100px;
+}
+
+@media(max-width: 768px) {
+    .left-container {
+        width: 0;
+    }
+    .right-container {
+        width: 100vw;
+    }
+}

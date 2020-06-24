@@ -1,0 +1,9 @@
+.datepicker-width {
+    width: 150px;
+}
+
+.floating-button-align {
+    position: fixed;
+    top: 87vh;
+    left: 43vw;
+}
