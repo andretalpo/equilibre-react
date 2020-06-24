@@ -6,5 +6,6 @@ export { default as CategoryEditDialog } from './EditCategoryDialog/EditCategory
 export { default as EditCategoryForm } from '../molecules/EditCategoryForm/EditCategoryForm';
 export { default as AddExpenseForm } from '../molecules/AddExpenseForm/AddExpenseForm';
 export { default as AddExpenseDialog } from '../molecules/AddExpenseDialog/AddExpenseDialog';
+export { default as CardListItem } from '../molecules/CardListItem/CardListItem';
 
 

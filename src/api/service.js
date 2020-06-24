@@ -135,6 +135,22 @@ class ApiService {
       console.log(error);
     }
   }
+
+  deleteCard = async (id) => {
+    try {
+      await this.api.delete(`/api/private/card/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  editCard = async (id, card) => {
+    try {
+      await this.api.put(`/api/private/card/${id}`, card);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new ApiService();
