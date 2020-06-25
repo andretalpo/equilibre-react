@@ -43,8 +43,18 @@ class Dashboard extends React.Component {
     }
 
     async onChange() {
-        //buscar valor total
-        //buscar valor total de cada cartão
+        const formatedStartDate = this.state.startDate ? this.state.startDate.format('yyyy-MM-DD') : {};
+        const formatedEndDate = this.state.endDate ? this.state.endDate.format('yyyy-MM-DD') : {};
+        
+        const totalValue = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate);
+
+        const totalValuesByCard = await Promise.all(this.state.cards.map(async card => {
+            const totalValueByCard = await ApiService.getTotalValue(this.props.userInfo._id, this.state.startDate, this.state.endDate, card._id);
+            totalValueByCard._id = card._id;
+            return totalValueByCard;
+        }));
+        
+        this.setState({ totalValue, totalValuesByCard });
         //buscar valor por categoria ordenado por maior gasto
         //buscar top 10 compras mais caras
     }
