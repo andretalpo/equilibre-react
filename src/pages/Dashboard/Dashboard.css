@@ -2,3 +2,11 @@
     display: flex;
     justify-content: center;
 }
+
+.card-margin {
+    margin: 10px 0 10px 0 !important;
+}
+
+.adjusting-float-button-position {
+    height: 75px;
+}
