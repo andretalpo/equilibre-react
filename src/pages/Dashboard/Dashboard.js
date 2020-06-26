@@ -53,6 +53,11 @@ class Dashboard extends React.Component {
             totalValueByCard._id = card._id;
             return totalValueByCard;
         }));
+
+        const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+        
+        const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+        console.log(topTenExpenses);
         
         this.setState({ totalValue, totalValuesByCard });
         //buscar valor por categoria ordenado por maior gasto
