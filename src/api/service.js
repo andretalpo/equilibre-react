@@ -167,8 +167,26 @@ class ApiService {
 
   getTotalValue = async (userId, startDate, endDate, cardId) => {
     try {
-      const { data } = await this.api.get(`/api/private/expense?userId=${userId}&startDate=${startDate}&endDate=${endDate}&cardId=${cardId ? cardId : ''}`);
+      const { data } = await this.api.get(`/api/private/totalValue?userId=${userId}&startDate=${startDate}&endDate=${endDate}&cardId=${cardId ? cardId : ''}`);
       return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getValueByCategory = async (userId, startDate, endDate, cardId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/valueByCategory?userId=${userId}&startDate=${startDate}&endDate=${endDate}&cardId=${cardId ? cardId : ''}`);
+      return data.results;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getTopTenExpenses = async (userId, startDate, endDate, cardId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/topTenExpenses?userId=${userId}&startDate=${startDate}&endDate=${endDate}&cardId=${cardId ? cardId : ''}`);
+      return data.results;
     } catch (error) {
       console.log(error);
     }

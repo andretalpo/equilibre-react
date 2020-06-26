@@ -60,9 +60,11 @@ class Dashboard extends React.Component {
             return totalValueByCard;
         }));
 
+        const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+        
+        const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+
         this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard });
-        console.log(totalValuesByCard)
-        console.log(this.state.selectedCard)
         //buscar valor por categoria ordenado por maior gasto
         //buscar top 10 compras mais caras
     }
