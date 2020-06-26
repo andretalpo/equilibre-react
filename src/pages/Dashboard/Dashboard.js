@@ -11,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
+import { SimpleCard, CompPieChart } from '../../components/atoms';
+import Formartter from '../../utils/Formatter';
 
 class Dashboard extends React.Component {
     state = {
@@ -18,6 +20,8 @@ class Dashboard extends React.Component {
         selectedCard: {},
         startDate: moment().startOf('month'),
         endDate: moment(),
+        totalValue: 0,
+        totalValuesByCard: 0,
     }
 
     async handleChangeCard(event) {
@@ -42,24 +46,29 @@ class Dashboard extends React.Component {
         }
     }
 
+ 
     async onChange() {
         const formatedStartDate = this.state.startDate ? this.state.startDate.format('yyyy-MM-DD') : {};
         const formatedEndDate = this.state.endDate ? this.state.endDate.format('yyyy-MM-DD') : {};
         
-        const totalValue = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate);
+        console.log(this.state.selectedCard)
+        const totalValue = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate, this.state.selectedCard._id);
 
         const totalValuesByCard = await Promise.all(this.state.cards.map(async card => {
             const totalValueByCard = await ApiService.getTotalValue(this.props.userInfo._id, this.state.startDate, this.state.endDate, card._id);
             totalValueByCard._id = card._id;
             return totalValueByCard;
         }));
-        
-        this.setState({ totalValue, totalValuesByCard });
+
+        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard });
+        console.log(totalValuesByCard)
+        console.log(this.state.selectedCard)
         //buscar valor por categoria ordenado por maior gasto
         //buscar top 10 compras mais caras
     }
 
     render() {
+
         return (
             <LoggedTemplate {...this.props} title='Dashboard' >
 
@@ -98,7 +107,25 @@ class Dashboard extends React.Component {
                         />
                     </Grid>
                 </MuiPickersUtilsProvider>
+                <div className="card-margin" >
+                    {
+                        this.state.selectedCard.name === 'Todos'
+                        ?   (
+                                <SimpleCard title={`Gastos Totais`} data={`R$ ${Formartter.formatValue(this.state.totalValue)}`}/>
+                            )
+                        :
+                            (
+                                <SimpleCard title={`Gastos Totais - ${this.state.selectedCard.name}`} data={`R$ ${Formartter.formatValue(this.state.totalValue)}`}/>
+                            )
+                    }
+                    
+                </div>
+                <div>
+                    <SimpleCard className="center-graph-container"  graph={true}/>
 
+                </div>
+                <div className="adjusting-float-button-position">              
+                </div>
                 <div className="floating-button-align">
                     <AddExpenseDialog {...this.props} />
                 </div>
