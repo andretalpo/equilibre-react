@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
-import { SimpleCard, SimpleTable, ContainerCard, ValueByCategoryGraph, CompPieChart } from '../../components/atoms';
+import { SimpleTable, ContainerCard, ValueByCategoryGraph, CompPieChart } from '../../components/atoms';
 import Formartter from '../../utils/Formatter';
 import Typography from '@material-ui/core/Typography';
 
@@ -23,6 +23,7 @@ class Dashboard extends React.Component {
         endDate: moment(),
         totalValue: 0,
         totalValuesByCard: 0,
+        topTenExpenses: 0,
     }
 
     async handleChangeCard(event) {
@@ -130,7 +131,7 @@ class Dashboard extends React.Component {
                 </ContainerCard>
 
                 <div className="card-margin">
-                    <SimpleTable />
+                    <SimpleTable data={this.state.topTenExpenses} />
                 </div>
 
                 <div className="adjusting-float-button-position" />
