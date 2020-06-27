@@ -22,6 +22,7 @@ class Dashboard extends React.Component {
         endDate: moment(),
         totalValue: 0,
         totalValuesByCard: 0,
+        topTenExpenses: 0,
     }
 
     async handleChangeCard(event) {
@@ -63,7 +64,7 @@ class Dashboard extends React.Component {
         const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
         const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
 
-        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory });
+        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory, topTenExpenses });
         //buscar valor por categoria ordenado por maior gasto
         //buscar top 10 compras mais caras
     }
@@ -136,10 +137,7 @@ class Dashboard extends React.Component {
 
                 </div>
                 <div className="card-margin">
-                    <SimpleTable/>
-                </div>
-             
-                <div className="adjusting-float-button-position">              
+                    <SimpleTable data={this.state.topTenExpenses}/>
                 </div>
                 <ContainerCard className="card-margin">
                     <ValueByCategoryGraph categories={this.state.valueByCategory} />

@@ -1,0 +1,9 @@
+.title-align-font-weight {
+    padding-top: 10px;
+    font-weight: bolder !important;
+    text-align: center !important;
+}
+
+.header-font-weight {
+    font-weight: bold !important;
+}

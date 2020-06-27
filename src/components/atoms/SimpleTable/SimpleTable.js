@@ -7,6 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Formartter from '../../../utils/Formatter';
+import Typography from '@material-ui/core/Typography';
+import './SimpleTable.css'
 
 const useStyles = makeStyles({
   table: {
@@ -14,41 +17,35 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function SimpleTable() {
+export default function SimpleTable(props) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+    <TableContainer title="Editable Example" component={Paper}>
+        <Typography className={`${classes.title} title-align-font-weight`} color="textSecondary" gutterBottom>
+            TOP 10 Compras
+        </Typography>
+      <Table className={classes.root} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            <TableCell>Cateboria</TableCell>
-            <TableCell align="right">Gastos</TableCell>
-
+            <TableRow >
+                <TableCell className="header-font-weight">Compra</TableCell>
+                <TableCell className="header-font-weight" align="right">Valor</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-
-            </TableRow>
-          ))}
+            {
+                props.data === 0 
+                ? (<></>)
+                :(props.data.map((row,index) => (
+                    <TableRow key={`${row.name}-${index}`}>
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell align="right">{`R$${Formartter.formatValue(row.value)}`}</TableCell>
+        
+                    </TableRow>
+                  )))
+            }
         </TableBody>
       </Table>
     </TableContainer>
