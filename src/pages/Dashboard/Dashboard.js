@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
-import { SimpleCard, CompPieChart } from '../../components/atoms';
+import { SimpleCard, ContainerCard, ValueByCategoryGraph } from '../../components/atoms';
 import Formartter from '../../utils/Formatter';
 
 class Dashboard extends React.Component {
@@ -51,7 +51,6 @@ class Dashboard extends React.Component {
         const formatedStartDate = this.state.startDate ? this.state.startDate.format('yyyy-MM-DD') : {};
         const formatedEndDate = this.state.endDate ? this.state.endDate.format('yyyy-MM-DD') : {};
         
-        console.log(this.state.selectedCard)
         const totalValue = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate, this.state.selectedCard._id);
 
         const totalValuesByCard = await Promise.all(this.state.cards.map(async card => {
@@ -64,7 +63,7 @@ class Dashboard extends React.Component {
         
         const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
 
-        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard });
+        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory });
         //buscar valor por categoria ordenado por maior gasto
         //buscar top 10 compras mais caras
     }
@@ -120,14 +119,14 @@ class Dashboard extends React.Component {
                                 <SimpleCard title={`Gastos Totais - ${this.state.selectedCard.name}`} data={`R$ ${Formartter.formatValue(this.state.totalValue)}`}/>
                             )
                     }
-                    
                 </div>
                 <div>
                     <SimpleCard className="center-graph-container"  graph={true}/>
-
                 </div>
-                <div className="adjusting-float-button-position">              
-                </div>
+                <ContainerCard className="card-margin">
+                    <ValueByCategoryGraph categories={this.state.valueByCategory} />
+                </ContainerCard>
+                <div className="adjusting-float-button-position" />
                 <div className="floating-button-align">
                     <AddExpenseDialog {...this.props} />
                 </div>
