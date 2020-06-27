@@ -11,11 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
-<<<<<<< HEAD
-import { SimpleCard, SimpleTable } from '../../components/atoms';
-=======
-import { SimpleCard, ContainerCard, ValueByCategoryGraph } from '../../components/atoms';
->>>>>>> develop
+import { SimpleCard, SimpleTable, ContainerCard, ValueByCategoryGraph } from '../../components/atoms';
 import Formartter from '../../utils/Formatter';
 
 class Dashboard extends React.Component {
