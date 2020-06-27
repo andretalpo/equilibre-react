@@ -20,7 +20,7 @@ class Expenses extends React.Component {
         cards: [],
         categories: [],
         selectedCard: "",
-        startDate: moment(),
+        startDate: moment().startOf('month'),
         endDate: moment(),
     }
 

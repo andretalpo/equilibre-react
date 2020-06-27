@@ -100,7 +100,7 @@ class ApiService {
 
   addExpense = async (expense) => {
     try {
-      const { data } = await this.api.post('/api/private/expense/',expense);
+      const { data } = await this.api.post('/api/private/expense/', expense);
       return data;
     } catch (error) {
       console.log(error);
@@ -157,9 +157,36 @@ class ApiService {
     }
   }
 
-  addCard = async(card) => {
+  addCard = async (card) => {
     try {
       await this.api.post(`/api/private/card`, card);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getTotalValue = async (userId, startDate, endDate, cardId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/totalValue?userId=${userId}&startDate=${startDate}&endDate=${endDate}&cardId=${cardId ? cardId : ''}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getValueByCategory = async (userId, startDate, endDate, cardId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/valueByCategory?userId=${userId}&startDate=${startDate}&endDate=${endDate}&cardId=${cardId ? cardId : ''}`);
+      return data.results;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getTopTenExpenses = async (userId, startDate, endDate, cardId) => {
+    try {
+      const { data } = await this.api.get(`/api/private/topTenExpenses?userId=${userId}&startDate=${startDate}&endDate=${endDate}&cardId=${cardId ? cardId : ''}`);
+      return data.results;
     } catch (error) {
       console.log(error);
     }
