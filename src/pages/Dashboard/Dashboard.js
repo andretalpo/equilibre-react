@@ -11,7 +11,11 @@ import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
+<<<<<<< HEAD
 import { SimpleCard, SimpleTable } from '../../components/atoms';
+=======
+import { SimpleCard, ContainerCard, ValueByCategoryGraph } from '../../components/atoms';
+>>>>>>> develop
 import Formartter from '../../utils/Formatter';
 
 class Dashboard extends React.Component {
@@ -63,7 +67,7 @@ class Dashboard extends React.Component {
         const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
         const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
 
-        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard });
+        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory });
         //buscar valor por categoria ordenado por maior gasto
         //buscar top 10 compras mais caras
     }
@@ -141,6 +145,10 @@ class Dashboard extends React.Component {
              
                 <div className="adjusting-float-button-position">              
                 </div>
+                <ContainerCard className="card-margin">
+                    <ValueByCategoryGraph categories={this.state.valueByCategory} />
+                </ContainerCard>
+                <div className="adjusting-float-button-position" />
                 <div className="floating-button-align">
                     <AddExpenseDialog {...this.props} />
                 </div>
