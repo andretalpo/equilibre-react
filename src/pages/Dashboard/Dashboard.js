@@ -11,7 +11,11 @@ import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
+<<<<<<< HEAD
+import { SimpleCard, SimpleTable } from '../../components/atoms';
+=======
 import { SimpleCard, ContainerCard, ValueByCategoryGraph } from '../../components/atoms';
+>>>>>>> develop
 import Formartter from '../../utils/Formatter';
 
 class Dashboard extends React.Component {
@@ -56,11 +60,11 @@ class Dashboard extends React.Component {
         const totalValuesByCard = await Promise.all(this.state.cards.map(async card => {
             const totalValueByCard = await ApiService.getTotalValue(this.props.userInfo._id, this.state.startDate, this.state.endDate, card._id);
             totalValueByCard._id = card._id;
+            totalValueByCard.name = card.name;
             return totalValueByCard;
         }));
 
         const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
-        
         const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
 
         this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory });
@@ -69,7 +73,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
-
+        
         return (
             <LoggedTemplate {...this.props} title='Dashboard' >
 
@@ -121,7 +125,25 @@ class Dashboard extends React.Component {
                     }
                 </div>
                 <div>
-                    <SimpleCard className="center-graph-container"  graph={true}/>
+                    {
+                        this.state.selectedCard.name === "Todos"
+                        ? 
+                            (
+                                <SimpleCard className="center-graph-container"  data={this.state.totalValuesByCard} graph={true}/>
+                            )
+                        : 
+                            (
+                                <div></div>
+                            )
+                    }
+                    
+
+                </div>
+                <div className="card-margin">
+                    <SimpleTable/>
+                </div>
+             
+                <div className="adjusting-float-button-position">              
                 </div>
                 <ContainerCard className="card-margin">
                     <ValueByCategoryGraph categories={this.state.valueByCategory} />
