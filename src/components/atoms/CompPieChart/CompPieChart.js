@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import './CompPieChart.css'
 import {
   PieChart, Pie, Cell, Legend
 } from 'recharts';
@@ -38,11 +39,11 @@ class CompPieChart extends PureComponent {
             ?
             <Skeleton animation="wave" />
             :
-            <PieChart width={300} height={375}>
+            <PieChart width={290} height={375}>
               <Legend verticalAlign="top" height={36} />
               <Pie
                 data={this.props.data}
-                cx={150}
+                cx={140}
                 cy={175}
                 labelLine={false}
                 label={renderCustomizedLabel}
