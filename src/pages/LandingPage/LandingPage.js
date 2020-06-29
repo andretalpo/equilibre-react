@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 
 //Images&Logos
 import logo from '../../assets/images/logo8.png';
-import pic1 from '../../assets/images/landingPage-1.jpg';
 import grid1 from '../../assets/images/grid1.jpg';
 import grid2 from '../../assets/images/grid2.jpg';
 import grid3 from '../../assets/images/grid3.jpg';
@@ -18,22 +17,6 @@ import grid4 from '../../assets/images/grid4.jpg';
 import appleGoogleStoreLogo from '../../assets/images/app-store-google.png';
 
 
-// const StyledBreadcrumb = withStyles((theme) => ({
-//   root: {
-//     backgroundColor: theme.palette.grey[100],
-//     height: theme.spacing(3),
-//     color: theme.palette.grey[800],
-//     fontWeight: theme.typography.fontWeightRegular,
-//     maxWidth: 'lg',
-//     '&:hover, &:focus': {
-//       backgroundColor: theme.palette.grey[300],
-//     },
-//     '&:active': {
-//       boxShadow: theme.shadows[1],
-//       backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-//     },
-//   },
-// }))(Chip);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,17 +51,11 @@ export default function LandingPage({...props}) {
        
             </div>
             <div className="first-section">
-                <div className="first-section-left-div">
-                        <h1>As despesas do seu cartão no seu controle</h1>
-                        <ul>A forma inteligente de acompanhar os seus gastos
-                          <li>Primeiro Item</li>
-                          <li>Segundo Item</li>
-                          <li>Terciro Item</li>
-                        </ul>
+                <div className="first-section-div">
                         <Button
                             className="button"
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             onClick={ value => props.history.push('/signup')}
                         >
                             Descubra como
@@ -86,42 +63,34 @@ export default function LandingPage({...props}) {
 
                 </div>
              </div>
-            <div >
-              <div >
-                <Grid container spacing={4} className="second-section grid-container">
-                  <Grid item xs={2} className="grid">
-                    <Paper className={classes.paper}>
-                      <img src={grid1} alt={`pic-${grid1}`} ></img> 
-                      <p>Lorem Ipsum </p>
-                    </Paper>
-                  </Grid>
-                  <Grid item xs={2} className="grid">
-                    <Paper className={classes.paper}>
-                      <img src={grid2} alt={`pic-${grid2}`} ></img>
-                      <p>É um fato conhecido de todos </p>
-                    </Paper>
-                  </Grid>
-                  <Grid item xs={2} className="grid">
-                    <Paper className={classes.paper}>
-                    <img src={grid3} alt={`pic-${grid3}`} ></img>
-                    <p>Existem muitas variações </p>
-                    </Paper>
-                  </Grid>
-                  <Grid item xs={2} className="grid">
-                    <Paper className={classes.paper}>
-                      <img src={grid4} alt={`pic-${grid4}`} ></img>
-                      <p>Ele usa um dicionário  </p>
-                    </Paper>
-                  </Grid>
-                </Grid>
- 
+            <div className="second-section-div">
+              <h1>Porque usar o Equilibre?</h1>
+              <div className="second-section-grid">
+                <div className="grid-img-container">
+                  <img src={grid1} alt='grid1'></img>
+                  <p>Aplicativo fácil e intuitivo</p>
+                </div>
+                <div className="grid-img-container">
+                  <img src={grid2} alt='grid2'></img>
+                  <p>Categorize seus gastos para um melhor controle</p>
+                </div>
+                <div className="grid-img-container">
+                  <img src={grid3} alt='grid3'></img>
+                  <p>Entenda para onde está indo o seu dinheiro todo mês</p>
+                </div>
+                <div className="grid-img-container">
+                  <img src={grid4} alt='grid4'></img>
+                  <p>Viva tranquilo e sem surpresas no seu cartão</p>
+                </div>
               </div>
+           
+           
             <div className="third-section">
                 <div className="third-section-first-container">
-                  <h1>Em breve, disponivel para as plataformas abaixo:</h1>
+                  <h2>Em breve<br/>disponivel para as plataformas abaixo:</h2>
                   <div className="third-section-second-container">
                     <img src={appleGoogleStoreLogo} alt={`AppleGoogleStoreLogo`} ></img>
-                </div>
+                  </div>
                 </div>
                 
             </div>
