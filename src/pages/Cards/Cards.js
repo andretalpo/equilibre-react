@@ -8,7 +8,8 @@ import { AddCardDialog } from '../../components/molecules';
 
 class Cards extends React.Component {
     state = {
-        cards: []
+        cards: [],
+        refreshCards: false,
     }
 
     async componentDidMount() {
@@ -19,7 +20,7 @@ class Cards extends React.Component {
     render() {
         return (
             <LoggedTemplate {...this.props} title="Cartões">
-                <AddCardDialog {...this.props} addMethod={this.addCard} />
+                <AddCardDialog {...this.props} addMethod={this.addCard} onChange={this.onChange} />
                 <List>
                     {this.state.cards.map((card, index) =>
                         <CardListItem card={card}
@@ -29,7 +30,7 @@ class Cards extends React.Component {
                     )}
                 </List>
                 <div className="floating-button-align">
-                    <AddExpenseDialog {...this.props} />
+                    <AddExpenseDialog {...this.props} onChange={this.onChange} refresh={this.state.refreshCards}/>
                 </div>
             </LoggedTemplate>
         );
@@ -37,6 +38,7 @@ class Cards extends React.Component {
 
     deleteCard = async (card) => {
         await ApiService.deleteCard(card._id);
+        this.onChange();
         this.componentDidMount();
     }
 
@@ -48,6 +50,14 @@ class Cards extends React.Component {
     addCard = async (card) => {
         await ApiService.addCard(card);
         this.componentDidMount();
+    }
+
+    onChange = () => {
+        this.setState({
+            refreshCards: !this.state.refreshCards,
+        });
+        console.log(this.state.refreshCards)
+        
     }
 }
 

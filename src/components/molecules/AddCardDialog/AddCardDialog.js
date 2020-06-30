@@ -25,7 +25,7 @@ const AddCardDialog = (props) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Adicionar Cartão</DialogTitle>
                 <DialogContent>
-                    <AddCardForm userInfo={props.userInfo} closeDialog={handleClose} submitMethod={props.addMethod} />
+                    <AddCardForm userInfo={props.userInfo} closeDialog={handleClose} submitMethod={props.addMethod} onChange={props.onChange} />
                     <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>
                         Cancelar
                     </Button>

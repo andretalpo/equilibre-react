@@ -43,16 +43,18 @@ const AddExpenseDialog = (props) => {
     const [cards, setCards] = useState('');
     const [categories, setCategories] = useState('');
 
+    const getCategoryAndCardInfo = async () => {
+        const user = JSON.parse(userInfo)
+        const categories = await ApiService.listAllCategories(user._id)
+        setCategories(categories)
+        const cards = await ApiService.getCards(user._id)
+        setCards(cards);
+    }
+    
+
     useEffect(() => {
-        async function getCategoryAndCardInfo() {
-            const user = JSON.parse(userInfo)
-            const categories = await ApiService.listAllCategories(user._id)
-            setCategories(categories)
-            const cards = await ApiService.getCards(user._id)
-            setCards(cards);
-          }
-      
-          getCategoryAndCardInfo();
+        
+        getCategoryAndCardInfo();
 
       }, [userInfo]);
 
@@ -67,6 +69,11 @@ const AddExpenseDialog = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    if(props.refresh){
+        getCategoryAndCardInfo();
+        props.onChange();
+    }
 
     const addNewExpense = async (expense,category,card) => {
 

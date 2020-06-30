@@ -43,6 +43,8 @@ class ListCategories extends Component {
       this.setState({
         categories: allCategories,
       });
+
+      this.props.onChange();
       
     } catch (err) {
       console.log(err)
@@ -93,12 +95,12 @@ class ListCategories extends Component {
   }
 
   render() {
-
+    
     return (
           <div >
             <Grid item xs={12} md={6}>
               <div className="add-button-align">
-                <AddCategoryDialog addCategory={this.addCategory}/>
+                <AddCategoryDialog addCategory={this.addCategory} onChange={this.props.onChange}/>
               </div>
                 
                 <Typography variant="h6" >
