@@ -118,7 +118,7 @@ class Expenses extends React.Component {
                     )}
                 </List>
                 <div className="floating-button-align">
-                    <AddExpenseDialog {...this.props} />
+                    <AddExpenseDialog {...this.props} refreshExpenses={() => this.onChange({})}/>
                 </div>
             </LoggedTemplate>
         );
