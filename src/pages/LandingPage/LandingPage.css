@@ -20,7 +20,7 @@
 
 .first-section {
     background-color: #727272;
-    background-image: url('../../assets/images/landing-page1.jpeg');
+    background-image: url('../../assets/images/landing-page2.jpeg');
     width: 100vw;
     height: 300px;
     background-size: cover;
@@ -32,23 +32,22 @@
 .first-section-div {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-end;
+    justify-content: center;
     margin-bottom: 20px;
     width: 100%;
+    margin-right: 10px;
+}
+
+.first-section-div img {
+    width: 180px;
 }
 
 .button {
-    
-
-    
-}
-
-
-.first-section-div  h1{
-    text-align: center;
-
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
 }
 
 .second-section{
@@ -90,6 +89,10 @@
     
 }
 
+.grid-img-container p{
+    font-size: 17px;
+}
+
 
 
 
@@ -126,15 +129,3 @@
     margin: 20px;
 }
 
-.third-section-img-size-align{
-    background-color: white;
-    border-radius: 5px;
-    width: 200px;
-    height: 100px;
-
-}
-
-.third-section-img-size-align img{
-    width: 150px;
-    margin: 10px;
-}

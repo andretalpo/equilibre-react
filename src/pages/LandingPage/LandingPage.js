@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 
 //Images&Logos
 import logo from '../../assets/images/logo8.png';
+import controle from '../../assets/images/controle.jpeg'
 import grid1 from '../../assets/images/grid1.jpg';
 import grid2 from '../../assets/images/grid2.jpg';
 import grid3 from '../../assets/images/grid3.jpg';
@@ -52,7 +53,9 @@ export default function LandingPage({...props}) {
             </div>
             <div className="first-section">
                 <div className="first-section-div">
-                        <Button
+                    <img src={controle} alt="controle"></img>
+                    <div className="button">
+                      <Button
                             className="button"
                             variant="contained"
                             color="secondary"
@@ -60,8 +63,9 @@ export default function LandingPage({...props}) {
                         >
                             Descubra como
                         </Button>
-
-                </div>
+                    </div>
+                    
+            </div>
              </div>
             <div className="second-section-div">
               <h1>Porque usar o Equilibre?</h1>
@@ -80,14 +84,14 @@ export default function LandingPage({...props}) {
                 </div>
                 <div className="grid-img-container">
                   <img src={grid4} alt='grid4'></img>
-                  <p>Viva tranquilo e sem surpresas no seu cartão</p>
+                  <p>Viva tranquilo e sem surpresas com o seu cartão</p>
                 </div>
               </div>
            
            
             <div className="third-section">
                 <div className="third-section-first-container">
-                  <h2>Em breve<br/>disponivel para as plataformas abaixo:</h2>
+                  <h2>Em breve:</h2>
                   <div className="third-section-second-container">
                     <img src={appleGoogleStoreLogo} alt={`AppleGoogleStoreLogo`} ></img>
                   </div>
