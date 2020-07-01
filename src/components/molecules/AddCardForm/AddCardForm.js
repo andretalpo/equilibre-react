@@ -17,6 +17,7 @@ function AddCardForm({ submitMethod, closeDialog, userInfo }) {
         closeDialog();
         values.user = userInfo._id;
         submitMethod(values);
+       
     }
 
     return (
