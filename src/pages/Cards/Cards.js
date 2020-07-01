@@ -30,7 +30,7 @@ class Cards extends React.Component {
                     )}
                 </List>
                 <div className="floating-button-align">
-                    <AddExpenseDialog {...this.props} onChange={this.onChange} />
+                    <AddExpenseDialog {...this.props} cards={this.state.cards} />
                 </div>
             </LoggedTemplate>
         );
@@ -38,7 +38,6 @@ class Cards extends React.Component {
 
     deleteCard = async (card) => {
         await ApiService.deleteCard(card._id);
-        this.onChange();
         this.componentDidMount();
     }
 
@@ -50,14 +49,6 @@ class Cards extends React.Component {
     addCard = async (card) => {
         await ApiService.addCard(card);
         this.componentDidMount();
-    }
-
-    onChange = () => {
-        this.setState({
-            refreshCards: !this.state.refreshCards,
-        });
-        console.log(this.state.refreshCards)
-        
     }
 }
 

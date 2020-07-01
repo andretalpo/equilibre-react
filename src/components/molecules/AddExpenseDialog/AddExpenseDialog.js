@@ -43,23 +43,17 @@ const AddExpenseDialog = (props) => {
     const [cards, setCards] = useState('');
     const [categories, setCategories] = useState('');
 
-    const refreshCardCategory = async () => {
-        const user = JSON.parse(userInfo)
-        const categories = await ApiService.listAllCategories(user._id)
-        setCategories(categories)
-        const cards = await ApiService.getCards(user._id)
-        setCards(cards);
-    }
-    
+ 
 
     useEffect(() => {
         
         const getCategoryAndCardInfo = async () => {
-        const user = JSON.parse(userInfo)
-        const categories = await ApiService.listAllCategories(user._id)
-        setCategories(categories)
-        const cards = await ApiService.getCards(user._id)
-        setCards(cards);}
+            const user = JSON.parse(userInfo)
+            const categories = await ApiService.listAllCategories(user._id)
+            setCategories(categories)
+            const cards = await ApiService.getCards(user._id)
+            setCards(cards);
+        }
 
         getCategoryAndCardInfo();
 
@@ -98,14 +92,8 @@ const AddExpenseDialog = (props) => {
 
     };
 
-    if(props.refresh){
-        
-        refreshCardCategory();
-        props.onChange();
-        
-    }
+    return ( 
 
-    return (    
         <div className={classes.root}>
             <Fab color="primary" aria-label="add" onClick={handleClickOpen} >
                 <AddIcon className={classes.root} color="secondary"/>
@@ -113,7 +101,7 @@ const AddExpenseDialog = (props) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Adicionar compra</DialogTitle>
                 <DialogContent>
-                    <AddExpenseForm cards={cards} categories={categories} handleClose={handleClose} addNewExpense={addNewExpense}/>
+                    <AddExpenseForm cards={props.cards ? props.cards : cards} categories={props.categories ? props.categories : categories} handleClose={handleClose} addNewExpense={addNewExpense}/>
                     <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>
                         Cancelar
                     </Button>

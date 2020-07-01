@@ -19,16 +19,13 @@ class ListCategories extends Component {
 
   state = {
     dense: false,
-    categories: [],
   };
   
   async componentDidMount () {
 
     const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
 
-    this.setState({
-      categories: allCategories,
-    });
+    this.props.onChange(allCategories);
   };
 
   deleteCategory = async (categoryId) => {
@@ -40,11 +37,7 @@ class ListCategories extends Component {
 
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
-      this.setState({
-        categories: allCategories,
-      });
-
-      this.props.onChange();
+      this.props.onChange(allCategories);
       
     } catch (err) {
       console.log(err)
@@ -64,9 +57,7 @@ class ListCategories extends Component {
 
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
-      this.setState({
-        categories: allCategories,
-      });
+      this.props.onChange(allCategories);
       
     } catch (err) {
       console.log(err)
@@ -84,9 +75,7 @@ class ListCategories extends Component {
       
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
-      this.setState({
-        categories: allCategories,
-      });
+      this.props.onChange(allCategories);
       
     } catch (err) {
       console.log(err)
@@ -108,9 +97,9 @@ class ListCategories extends Component {
                 <div >
                   <List dense={this.state.dense}>
                     {
-                      this.state.categories.length === 0
+                      this.props.categories.length === 0
                       ? (<Skeleton animation="wave" />)
-                      :  this.state.categories.map( (element,index) => {
+                      :  this.props.categories.map( (element,index) => {
                           return (
                             <CategoryListItems element={element} editCategory={this.editCategory} deleteCategory={this.deleteCategory} key={`elementList-${index}`}/>
                           )
