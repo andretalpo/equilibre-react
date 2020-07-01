@@ -3,6 +3,7 @@ import ApiService from '../../../api/service';
 
 //Internal Components
 import { CategoryListItems, AddCategoryDialog } from '../../molecules';
+import { ConfirmDialog } from '../../atoms';
 
 //Material-UI COmponents
 import List from '@material-ui/core/List';
@@ -19,6 +20,7 @@ class ListCategories extends Component {
 
   state = {
     dense: false,
+    apiErrorMessage: '',
   };
   
   async componentDidMount () {
@@ -33,7 +35,13 @@ class ListCategories extends Component {
       const body = {
         _id : categoryId
       }
-      await ApiService.deleteCategory(body);
+      const data = await ApiService.deleteCategory(body);
+      
+      if(data){
+        this.setState({
+          apiErrorMessage: data,
+        })
+      }
 
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
@@ -83,6 +91,12 @@ class ListCategories extends Component {
     }
   }
 
+  clearApiErrorMessage = () => {
+    this.setState({
+        apiErrorMessage: '',
+    })
+  }
+
   render() {
     
     return (
@@ -105,6 +119,8 @@ class ListCategories extends Component {
                           )
                        })
                       }
+
+                    {this.state.apiErrorMessage ? <ConfirmDialog okMethod={this.clearApiErrorMessage} apiErrorMessage={this.state.apiErrorMessage} /> : ''}
                   </List>
                 </div>
               </Grid>

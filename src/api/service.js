@@ -84,8 +84,15 @@ class ApiService {
   }
 
   deleteCategory = async (category) => {
-    const { data } = await this.api.delete('/api/private/category', { data: { _id: category._id } });
-    return data;
+    
+    try {
+      await this.api.delete('/api/private/category', { data: { _id: category._id } });
+
+    } catch (error) {
+      return error.response.data.message;
+    }
+  
+
   };
 
   editCategory = async (category) => {
@@ -146,6 +153,7 @@ class ApiService {
       await this.api.delete(`/api/private/card/${id}`);
     } catch (error) {
       console.log(error);
+      return error.response.data.message;
     }
   }
 

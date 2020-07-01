@@ -27,7 +27,7 @@ export default function LandingPage({...props}) {
                     LOGIN
                   </Button>
                   <Button className="button-secondary button-align" onClick={value => props.history.push('/signup')}>
-                    Sign Up
+                    SIGN UP
                   </Button>
                 </div>
 
