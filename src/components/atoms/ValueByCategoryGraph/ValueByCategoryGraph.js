@@ -10,7 +10,7 @@ const ValueByCategoryGraph = ({ categories }) => {
                 <XAxis type="number" hide />
                 <YAxis type="category" dataKey="name" />
                 <Tooltip />
-                <Bar dataKey="value" fill="#4CAF50" >
+                <Bar dataKey="value" fill="#868FC6" >
                     <LabelList dataKey="value" position="insideTopRight" formatter={value => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
                 </Bar>
             </BarChart>

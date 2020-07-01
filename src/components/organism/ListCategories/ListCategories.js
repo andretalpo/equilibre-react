@@ -3,6 +3,7 @@ import ApiService from '../../../api/service';
 
 //Internal Components
 import { CategoryListItems, AddCategoryDialog } from '../../molecules';
+import { ConfirmDialog } from '../../atoms';
 
 //Material-UI COmponents
 import List from '@material-ui/core/List';
@@ -19,16 +20,14 @@ class ListCategories extends Component {
 
   state = {
     dense: false,
-    categories: [],
+    apiErrorMessage: '',
   };
   
   async componentDidMount () {
 
     const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
 
-    this.setState({
-      categories: allCategories,
-    });
+    this.props.onChange(allCategories);
   };
 
   deleteCategory = async (categoryId) => {
@@ -36,13 +35,17 @@ class ListCategories extends Component {
       const body = {
         _id : categoryId
       }
-      await ApiService.deleteCategory(body);
+      const data = await ApiService.deleteCategory(body);
+      
+      if(data){
+        this.setState({
+          apiErrorMessage: data,
+        })
+      }
 
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
-      this.setState({
-        categories: allCategories,
-      });
+      this.props.onChange(allCategories);
       
     } catch (err) {
       console.log(err)
@@ -62,9 +65,7 @@ class ListCategories extends Component {
 
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
-      this.setState({
-        categories: allCategories,
-      });
+      this.props.onChange(allCategories);
       
     } catch (err) {
       console.log(err)
@@ -82,9 +83,7 @@ class ListCategories extends Component {
       
       const allCategories = await ApiService.listAllCategories(this.props.userInfo._id);
       
-      this.setState({
-        categories: allCategories,
-      });
+      this.props.onChange(allCategories);
       
     } catch (err) {
       console.log(err)
@@ -92,8 +91,14 @@ class ListCategories extends Component {
     }
   }
 
-  render() {
+  clearApiErrorMessage = () => {
+    this.setState({
+        apiErrorMessage: '',
+    })
+  }
 
+  render() {
+    
     return (
           <div >
             <Grid item xs={12} md={6}>
@@ -106,14 +111,16 @@ class ListCategories extends Component {
                 <div >
                   <List dense={this.state.dense}>
                     {
-                      this.state.categories.length === 0
+                      this.props.categories.length === 0
                       ? (<Skeleton animation="wave" />)
-                      :  this.state.categories.map( (element,index) => {
+                      :  this.props.categories.map( (element,index) => {
                           return (
                             <CategoryListItems element={element} editCategory={this.editCategory} deleteCategory={this.deleteCategory} key={`elementList-${index}`}/>
                           )
                        })
                       }
+
+                    {this.state.apiErrorMessage ? <ConfirmDialog okMethod={this.clearApiErrorMessage} apiErrorMessage={this.state.apiErrorMessage} /> : ''}
                   </List>
                 </div>
               </Grid>

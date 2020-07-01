@@ -50,18 +50,20 @@ class Expenses extends React.Component {
         const formatedStartDate = this.state.startDate ? this.state.startDate.format('yyyy-MM-DD') : {};
         const formatedEndDate = this.state.endDate ? this.state.endDate.format('yyyy-MM-DD') : {};
 
-        const expenses = await ApiService.getExpenses(this.state.selectedCard._id, formatedStartDate, formatedEndDate);
-        if (expenses) {
-            const expensesWithCategories = expenses.map(expense => (
-                {
-                    ...expense,
-                    card: this.state.selectedCard,
-                    category: this.state.categories.find(c => c._id === expense.category)
-                }
-            ));
-            this.setState({ expenses: expensesWithCategories });
-        } else {
-            this.setState({ expenses: [] });
+        if (this.state.selectedCard) {
+            const expenses = await ApiService.getExpenses(this.state.selectedCard._id, formatedStartDate, formatedEndDate);
+            if (expenses) {
+                const expensesWithCategories = expenses.map(expense => (
+                    {
+                        ...expense,
+                        card: this.state.selectedCard,
+                        category: this.state.categories.find(c => c._id === expense.category)
+                    }
+                ));
+                this.setState({ expenses: expensesWithCategories });
+            } else {
+                this.setState({ expenses: [] });
+            }
         }
     }
 
@@ -116,7 +118,7 @@ class Expenses extends React.Component {
                     )}
                 </List>
                 <div className="floating-button-align">
-                    <AddExpenseDialog {...this.props}/>
+                    <AddExpenseDialog {...this.props} refreshExpenses={() => this.onChange({})}/>
                 </div>
             </LoggedTemplate>
         );

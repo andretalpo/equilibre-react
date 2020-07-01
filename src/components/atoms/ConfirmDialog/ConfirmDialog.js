@@ -4,8 +4,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
-import { AddCategoryForm } from '../../molecules';
-import './AddCategoryDialog.css';
+import Typography from '@material-ui/core/Typography';
+
 
 
 
@@ -35,29 +35,25 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const AddCategoryDialog = (props) => {
+const ConfirmDialog = (props) => {
 
     const [open, setOpen] = useState(false);
  
     const classes = useStyles();
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
     const handleClose = () => {
+        props.okMethod();
         setOpen(false);
     };
 
     return (    
         <div className={classes.root}>
-            <Button size="small" variant="outlined" onClick={handleClickOpen}>Adicionar</Button>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Adicionar categoria</DialogTitle>
+            <Dialog open={true} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Erro!</DialogTitle>
                 <DialogContent>
-                    <AddCategoryForm handleClose={handleClose} addCategory={props.addCategory} />
-                    <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>
-                        Cancelar
+                    <Typography>{props.apiErrorMessage}</Typography>
+                    <Button className="button-primary button-align w-100 mb-10"  onClick={handleClose}>
+                        OK
                     </Button>
                 </DialogContent>
             </Dialog>
@@ -65,4 +61,4 @@ const AddCategoryDialog = (props) => {
     );
 };
 
-export default AddCategoryDialog;
+export default ConfirmDialog;

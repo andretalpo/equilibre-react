@@ -50,22 +50,25 @@ class Dashboard extends React.Component {
 
 
     async onChange() {
-        const formatedStartDate = this.state.startDate ? this.state.startDate.format('yyyy-MM-DD') : {};
-        const formatedEndDate = this.state.endDate ? this.state.endDate.format('yyyy-MM-DD') : {};
+        const formatedStartDate = this.state.startDate ? this.state.startDate.format('yyyy-MM-DD') : '';
+        const formatedEndDate = this.state.endDate ? this.state.endDate.format('yyyy-MM-DD') : '';
 
-        const totalValue = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate, this.state.selectedCard._id);
+        if (formatedStartDate !== '' && formatedEndDate !== '' && formatedStartDate !== 'Invalid date' && formatedEndDate !== 'Invalid date') {
 
-        const totalValuesByCard = await Promise.all(this.state.cards.map(async card => {
-            const totalValueByCard = await ApiService.getTotalValue(this.props.userInfo._id, this.state.startDate, this.state.endDate, card._id);
-            totalValueByCard._id = card._id;
-            totalValueByCard.name = card.name;
-            return totalValueByCard;
-        }));
+            const totalValue = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate, this.state.selectedCard._id);
 
-        const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
-        const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+            const totalValuesByCard = await Promise.all(this.state.cards.map(async card => {
+                const totalValueByCard = await ApiService.getTotalValue(this.props.userInfo._id, this.state.startDate, this.state.endDate, card._id);
+                totalValueByCard._id = card._id;
+                totalValueByCard.name = card.name;
+                return totalValueByCard;
+            }));
 
-        this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory, topTenExpenses: topTenExpenses });
+            const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+            const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+
+            this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory, topTenExpenses: topTenExpenses });
+        }
     }
 
     render() {

@@ -43,16 +43,19 @@ const AddExpenseDialog = (props) => {
     const [cards, setCards] = useState('');
     const [categories, setCategories] = useState('');
 
+ 
+
     useEffect(() => {
-        async function getCategoryAndCardInfo() {
+        
+        const getCategoryAndCardInfo = async () => {
             const user = JSON.parse(userInfo)
             const categories = await ApiService.listAllCategories(user._id)
             setCategories(categories)
             const cards = await ApiService.getCards(user._id)
             setCards(cards);
-          }
-      
-          getCategoryAndCardInfo();
+        }
+
+        getCategoryAndCardInfo();
 
       }, [userInfo]);
 
@@ -67,6 +70,8 @@ const AddExpenseDialog = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
+    
+   
 
     const addNewExpense = async (expense,category,card) => {
 
@@ -79,6 +84,10 @@ const AddExpenseDialog = (props) => {
             await ApiService.addExpense(newExpense);
             props.history.push('/expenses');
 
+            if (props.refreshExpenses) {
+                props.refreshExpenses();
+            }            
+
         } catch (error) {
             console.log(error)
         }
@@ -87,9 +96,8 @@ const AddExpenseDialog = (props) => {
 
     };
 
+    return ( 
 
-
-    return (    
         <div className={classes.root}>
             <Fab color="primary" aria-label="add" onClick={handleClickOpen} >
                 <AddIcon className={classes.root} color="secondary"/>
@@ -97,7 +105,7 @@ const AddExpenseDialog = (props) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Adicionar compra</DialogTitle>
                 <DialogContent>
-                    <AddExpenseForm cards={cards} categories={categories} handleClose={handleClose} addNewExpense={addNewExpense}/>
+                    <AddExpenseForm cards={props.cards ? props.cards : cards} categories={props.categories ? props.categories : categories} handleClose={handleClose} addNewExpense={addNewExpense}/>
                     <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>
                         Cancelar
                     </Button>

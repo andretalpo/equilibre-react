@@ -1,15 +1,10 @@
 .navbar {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: 200px;
-    /* background-image: url('../../assets/images/Panorama-noturno-da-Ponte-Estaiada.jpg'); */
-    background-repeat: no-repeat;
-    background-size: initial;
-    background-position: center;
- 
-    padding-left: 20px;
-    padding-right: 20px;
+
 }
 
 .navbar img {
@@ -19,64 +14,91 @@
 
 .navbar button {
     margin-left: 10px;
+    margin-bottom: 20px;
     
 }
 
 .first-section {
-    background-color: #F5F5F5;
-    height: 600px;
+    background-color: #727272;
+    background-image: url('../../assets/images/landing-page2.jpeg');
+    width: 100vw;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
     display: flex;
+    color: white;
 }
 
-.first-section-left-div {
+.first-section-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.first-section-div img {
+    width: 180px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+}
+
+.second-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.second-section-div{
+    color: #727272;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.second-section-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+ }
+
+.grid-img-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 360px;
 
 }
 
-
-.first-section-right-div {
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    width: 50vw;
+.grid-img-container img {
+    
+    width: 300px;
+    margin: 10px;
+    border-radius: 5px;
+    
 }
 
-.first-section-right-div img {
-    width: 700px;
-    height: 600px;
-
+.grid-img-container p{
+    font-size: 17px;
 }
 
-.second-section {
-   height: 500px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
 
-.second-section img{
-    height: 200px;
-    width: 200px;
- }
 
- .grid {
-    height: 300px;
-    width:3200px;
- }
-
- .grid-container {
-     display: flex;
-     flex-wrap: wrap;
-     flex-direction: column;
- }
- 
 
 .third-section {
     background-color: #F5F5F5;
-    height: 500px;
+    height: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,13 +108,14 @@
     border-radius: 5px;
     color: white;
     background-color: black;
-    height: 400px;
-    width: 800px;
+    width: 90vw;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: column;
+    margin: 10px;
+
 
 }
 
@@ -103,18 +126,6 @@
 
 .third-section-second-container {
     display: flex;
-    margin: 10px;
+    margin: 20px;
 }
 
-.third-section-img-size-align{
-    background-color: white;
-    border-radius: 5px;
-    width: 200px;
-    height: 100px;
-
-}
-
-.third-section-img-size-align img{
-    width: 150px;
-    margin: 10px;
-}

@@ -84,8 +84,15 @@ class ApiService {
   }
 
   deleteCategory = async (category) => {
-    const { data } = await this.api.delete('/api/private/category', { data: { _id: category._id } });
-    return data;
+    
+    try {
+      await this.api.delete('/api/private/category', { data: { _id: category._id } });
+
+    } catch (error) {
+      return error.response.data.message;
+    }
+  
+
   };
 
   editCategory = async (category) => {
@@ -100,6 +107,9 @@ class ApiService {
 
   addExpense = async (expense) => {
     try {
+      Object.keys(expense).forEach(key => {
+        if (!expense[key]) delete expense[key];
+      });
       const { data } = await this.api.post('/api/private/expense/', expense);
       return data;
     } catch (error) {
@@ -126,6 +136,9 @@ class ApiService {
 
   editExpense = async (id, expense) => {
     try {
+      Object.keys(expense).forEach(key => {
+        if (!expense[key]) delete expense[key];
+      });
       await this.api.put(`/api/private/expense/${id}`, expense);
     } catch (error) {
       console.log(error);
@@ -146,11 +159,15 @@ class ApiService {
       await this.api.delete(`/api/private/card/${id}`);
     } catch (error) {
       console.log(error);
+      return error.response.data.message;
     }
   }
 
   editCard = async (id, card) => {
     try {
+      Object.keys(card).forEach(key => {
+        if (!card[key]) delete card[key];
+      });
       await this.api.put(`/api/private/card/${id}`, card);
     } catch (error) {
       console.log(error);
@@ -159,6 +176,9 @@ class ApiService {
 
   addCard = async (card) => {
     try {
+      Object.keys(card).forEach(key => {
+        if (!card[key]) delete card[key];
+      });
       await this.api.post(`/api/private/card`, card);
     } catch (error) {
       console.log(error);

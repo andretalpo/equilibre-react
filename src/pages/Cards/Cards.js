@@ -5,10 +5,13 @@ import { CardListItem } from '../../components/molecules';
 import ApiService from '../../api/service';
 import { AddExpenseDialog } from '../../components/molecules';
 import { AddCardDialog } from '../../components/molecules';
+import { ConfirmDialog } from '../../components/atoms';
 
 class Cards extends React.Component {
     state = {
-        cards: []
+        cards: [],
+        apiErrorMessage: '',
+        
     }
 
     async componentDidMount() {
@@ -19,7 +22,7 @@ class Cards extends React.Component {
     render() {
         return (
             <LoggedTemplate {...this.props} title="Cartões">
-                <AddCardDialog {...this.props} addMethod={this.addCard} />
+                <AddCardDialog {...this.props} addMethod={this.addCard}  />
                 <List>
                     {this.state.cards.map((card, index) =>
                         <CardListItem card={card}
@@ -28,16 +31,30 @@ class Cards extends React.Component {
                             key={index} />
                     )}
                 </List>
+                {this.state.apiErrorMessage ? <ConfirmDialog open okMethod={this.clearApiErrorMessage} apiErrorMessage={this.state.apiErrorMessage}/> : ''}
                 <div className="floating-button-align">
-                    <AddExpenseDialog {...this.props} />
+                    <AddExpenseDialog {...this.props} cards={this.state.cards} />
                 </div>
             </LoggedTemplate>
         );
     }
 
     deleteCard = async (card) => {
-        await ApiService.deleteCard(card._id);
+        const data = await ApiService.deleteCard(card._id);
+        
+        if(data){
+            this.setState({
+              apiErrorMessage: data,  
+            })
+        }
+
         this.componentDidMount();
+    }
+
+    clearApiErrorMessage = () => {
+        this.setState({
+            apiErrorMessage: '',
+        })
     }
 
     editCard = async (id, card) => {
