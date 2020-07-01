@@ -100,6 +100,9 @@ class ApiService {
 
   addExpense = async (expense) => {
     try {
+      Object.keys(expense).forEach(key => {
+        if (!expense[key]) delete expense[key];
+      });
       const { data } = await this.api.post('/api/private/expense/', expense);
       return data;
     } catch (error) {
@@ -126,6 +129,9 @@ class ApiService {
 
   editExpense = async (id, expense) => {
     try {
+      Object.keys(expense).forEach(key => {
+        if (!expense[key]) delete expense[key];
+      });
       await this.api.put(`/api/private/expense/${id}`, expense);
     } catch (error) {
       console.log(error);
@@ -151,6 +157,9 @@ class ApiService {
 
   editCard = async (id, card) => {
     try {
+      Object.keys(card).forEach(key => {
+        if (!card[key]) delete card[key];
+      });
       await this.api.put(`/api/private/card/${id}`, card);
     } catch (error) {
       console.log(error);
@@ -159,6 +168,9 @@ class ApiService {
 
   addCard = async (card) => {
     try {
+      Object.keys(card).forEach(key => {
+        if (!card[key]) delete card[key];
+      });
       await this.api.post(`/api/private/card`, card);
     } catch (error) {
       console.log(error);

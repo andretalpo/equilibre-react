@@ -41,8 +41,8 @@ function AddExpenseForm(props) {
 
     const classes = useStyles();
 
-    const [category, setCategory] = React.useState('');
-    const [card, setCard] = React.useState('');
+    const [category, setCategory] = React.useState(props.categories[0] ? props.categories[0]._id : '');
+    const [card, setCard] = React.useState(props.cards[0] ? props.cards[0]._id : '');
     const [selectedDate, setDate] = useState(initialState.date);
 
 

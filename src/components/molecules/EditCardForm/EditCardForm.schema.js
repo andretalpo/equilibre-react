@@ -6,6 +6,7 @@ const formSchema = yup.object().shape({
         .min(3, 'Mínimo de 3 caracteres')
         .max(20, 'Máximo de 20 caracteres'),
     provider: yup.string()
+        .required()
         .min(3, 'Mínimo de 3 caracteres')
         .max(50, 'Máximo de 20 caracteres'),
     expiration_date: yup.string()
