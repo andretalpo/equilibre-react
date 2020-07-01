@@ -9,7 +9,7 @@ import { AddCardDialog } from '../../components/molecules';
 class Cards extends React.Component {
     state = {
         cards: [],
-        refreshCards: false,
+        
     }
 
     async componentDidMount() {
@@ -20,7 +20,7 @@ class Cards extends React.Component {
     render() {
         return (
             <LoggedTemplate {...this.props} title="Cartões">
-                <AddCardDialog {...this.props} addMethod={this.addCard} onChange={this.onChange} />
+                <AddCardDialog {...this.props} addMethod={this.addCard}  />
                 <List>
                     {this.state.cards.map((card, index) =>
                         <CardListItem card={card}
@@ -30,7 +30,7 @@ class Cards extends React.Component {
                     )}
                 </List>
                 <div className="floating-button-align">
-                    <AddExpenseDialog {...this.props} onChange={this.onChange} refresh={this.state.refreshCards}/>
+                    <AddExpenseDialog {...this.props} onChange={this.onChange} />
                 </div>
             </LoggedTemplate>
         );

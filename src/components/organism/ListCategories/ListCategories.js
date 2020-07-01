@@ -100,7 +100,7 @@ class ListCategories extends Component {
           <div >
             <Grid item xs={12} md={6}>
               <div className="add-button-align">
-                <AddCategoryDialog addCategory={this.addCategory} onChange={this.props.onChange}/>
+                <AddCategoryDialog addCategory={this.addCategory}/>
               </div>
                 
                 <Typography variant="h6" >

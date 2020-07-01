@@ -43,7 +43,7 @@ const AddExpenseDialog = (props) => {
     const [cards, setCards] = useState('');
     const [categories, setCategories] = useState('');
 
-    const getCategoryAndCardInfo = async () => {
+    const refreshCardCategory = async () => {
         const user = JSON.parse(userInfo)
         const categories = await ApiService.listAllCategories(user._id)
         setCategories(categories)
@@ -54,6 +54,13 @@ const AddExpenseDialog = (props) => {
 
     useEffect(() => {
         
+        const getCategoryAndCardInfo = async () => {
+        const user = JSON.parse(userInfo)
+        const categories = await ApiService.listAllCategories(user._id)
+        setCategories(categories)
+        const cards = await ApiService.getCards(user._id)
+        setCards(cards);}
+
         getCategoryAndCardInfo();
 
       }, [userInfo]);
@@ -69,11 +76,8 @@ const AddExpenseDialog = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
-
-    if(props.refresh){
-        getCategoryAndCardInfo();
-        props.onChange();
-    }
+    
+   
 
     const addNewExpense = async (expense,category,card) => {
 
@@ -94,7 +98,12 @@ const AddExpenseDialog = (props) => {
 
     };
 
-
+    if(props.refresh){
+        
+        refreshCardCategory();
+        props.onChange();
+        
+    }
 
     return (    
         <div className={classes.root}>

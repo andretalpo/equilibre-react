@@ -16,8 +16,7 @@ function AddCategoryForm( props ) {
             validationSchema={formSchema}
             onSubmit={values => {
                 props.handleClose();
-                props.addCategory(values)
-                props.onChange()}}
+                props.addCategory(values)}}
         >
             {
                 ({ handleSubmit, isSubmitting, }) => (

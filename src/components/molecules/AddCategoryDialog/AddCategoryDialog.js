@@ -55,7 +55,7 @@ const AddCategoryDialog = (props) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Adicionar categoria</DialogTitle>
                 <DialogContent>
-                    <AddCategoryForm handleClose={handleClose} addCategory={props.addCategory} onChange={props.onChange}/>
+                    <AddCategoryForm handleClose={handleClose} addCategory={props.addCategory} />
                     <Button className="button-secondary button-align w-100 mb-10" onClick={handleClose}>
                         Cancelar
                     </Button>

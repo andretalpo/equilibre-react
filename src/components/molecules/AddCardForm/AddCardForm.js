@@ -5,7 +5,7 @@ import { TextField } from 'formik-material-ui';
 import { Button } from '../../atoms';
 import formSchema from '../EditCardForm/EditCardForm.schema';
 
-function AddCardForm({ submitMethod, closeDialog, userInfo, onChange }) {
+function AddCardForm({ submitMethod, closeDialog, userInfo }) {
 
     const initialState = {
         "name": "",
@@ -17,7 +17,7 @@ function AddCardForm({ submitMethod, closeDialog, userInfo, onChange }) {
         closeDialog();
         values.user = userInfo._id;
         submitMethod(values);
-        onChange();
+       
     }
 
     return (
