@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Equilibre - Aplicação Front-end
 
-## Available Scripts
+Equilibre é uma aplicação Web para controle de gastos com foco em cartões. Essa aplicação foi desenvolvida como projeto final do curso de WebDev da Ironhack. Esse repositorio armazena a aplicação Front-end.
 
-In the project directory, you can run:
+## Agradecimentos
 
-### `npm start`
+Nossos sinceros agradecimentos ao nosso instrutor Henrique Mendes e nossa TA Adriana Saty.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Características
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* Stack usada: REACT, Axios, Recharts, Moment, Formik, Yup & Material-UI
+* Deploy: Heroku
 
-### `npm test`
+* Link para a aplicação: [https://equilibre-app.herokuapp.com/]
+* Link para o repositório Back-end: [https://github.com/andretalpo/equilibre]
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como acessar o Equilibre
 
-### `npm run build`
+O primneiro passo para obter acesso ao Equilibre é criar um usuário através da pagina de SignUp, acessivel através dos botões "SIGN UP" e "DESCUBRA COMO" na landing page.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Uma vez com o usuário criado, basta logar e ter acesso as funcionalidades. A página de Dashboard será apresentada assim que o usuário logar. Todas as informações presentes no Dashboard são calculados através das compras/gastos inseridos na sessão COMPRAS.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+É necessário selecionar um cartão e uma categoria para a respectiva compra, por isso lembre-se de adicionar pelo menos um cartão e uma categoria antes de inserir a primeira compra.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Implementações futuras
 
-### `npm run eject`
+* Internacionalização
+* Layout Desktop
+* Novas features META e FATURA
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Pré requisitos
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para esse projeto, o deploy da aplicação Front-end foi realizada juntamente com o Back-end.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Para maiores informações, favor consultar o repositório do Back-end dessa aplicação
+[https://github.com/aldretalpo/equilibre]
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Autores
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Aplicação desenvolvida por **André Talpo - https://github.com/andretalpo** & **Paulo Salles - https://github.com/plsalles** - **Publicado em Julho/2020**
