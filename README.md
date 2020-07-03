@@ -33,7 +33,7 @@ Uma vez com o usuário criado, basta logar e ter acesso as funcionalidades. A p�
 Para esse projeto, o deploy da aplicação Front-end foi realizada juntamente com o Back-end.
 
 Para maiores informações, favor consultar o repositório do Back-end dessa aplicação
-[https://github.com/aldretalpo/equilibre]
+[https://github.com/andretalpo/equilibre]
 
 ## Autores
 
