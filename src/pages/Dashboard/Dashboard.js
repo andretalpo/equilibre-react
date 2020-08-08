@@ -111,7 +111,11 @@ class Dashboard extends React.Component {
 
                 <ContainerCard className="card-margin" title={`Gastos Totais`} >
                     <Typography variant="h5" component="h2">
-                        {`R$ ${Formartter.formatValue(this.state.totalValue)}`}
+                        { 
+                            this.state.totalValue === 0
+                                ? "R$0,00"
+                                :(`R$ ${Formartter.formatValue(this.state.totalValue)}`)
+                        }
                     </Typography>
                 </ContainerCard>
                 <div>
