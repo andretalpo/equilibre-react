@@ -127,7 +127,7 @@ class Categories extends Component {
                                 <List dense={this.state.dense}>
                                     {
                                         this.state.categories.length === 0 && this.state.didMounted === true
-                                        ?  <>Sem Categorias cadastradas</>
+                                        ?  <Typography variant="h6" >Sem categorias cadastradas</Typography>
                                         :  this.state.didMounted === false
                                         ?  <Skeleton animation="wave" />
                                         : this.state.categories.map( (element,index) => {
