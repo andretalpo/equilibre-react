@@ -58,14 +58,14 @@ class Dashboard extends React.Component {
             const totalValue = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate, this.state.selectedCard._id);
 
             const totalValuesByCard = await Promise.all(this.state.cards.map(async card => {
-                const totalValueByCard = await ApiService.getTotalValue(this.props.userInfo._id, this.state.startDate, this.state.endDate, card._id);
+                const totalValueByCard = await ApiService.getTotalValue(this.props.userInfo._id, formatedStartDate, formatedEndDate, card._id);
                 totalValueByCard._id = card._id;
                 totalValueByCard.name = card.name;
                 return totalValueByCard;
             }));
 
-            const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
-            const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, this.state.startDate, this.state.endDate, this.state.selectedCard._id);
+            const valueByCategory = await ApiService.getValueByCategory(this.props.userInfo._id, formatedStartDate, formatedEndDate, this.state.selectedCard._id);
+            const topTenExpenses = await ApiService.getTopTenExpenses(this.props.userInfo._id, formatedStartDate, formatedEndDate, this.state.selectedCard._id);
 
             this.setState({ totalValue: totalValue.result, totalValuesByCard: totalValuesByCard, valueByCategory: valueByCategory, topTenExpenses: topTenExpenses });
         }
