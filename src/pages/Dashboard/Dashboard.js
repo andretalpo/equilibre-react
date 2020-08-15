@@ -69,6 +69,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
+        let floactButtonHeight=window.innerHeight - 100;
 
         return (
             <LoggedTemplate {...this.props} title='Dashboard' >
@@ -138,8 +139,7 @@ class Dashboard extends React.Component {
                     <SimpleTable data={this.state.topTenExpenses} />
                 </div>
 
-                <div className="adjusting-float-button-position" />
-                <div className="floating-button-align">
+                <div className="floating-button-align" style={{top:floactButtonHeight}}>
                     <AddExpenseDialog {...this.props} />
                 </div>
             </LoggedTemplate>

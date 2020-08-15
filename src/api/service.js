@@ -3,7 +3,7 @@ import axios from 'axios';
 class ApiService {
   constructor() {
     this.api = axios.create({
-      baseURL: 'http://localhost:5000',
+      baseURL: 'http://192.168.0.179:5000',
     });
 
     this.api.interceptors.request.use(async config => {
@@ -26,7 +26,7 @@ class ApiService {
 
       const { type, token, refresh_token } = tokenInfo;
       try {
-        await axios.get('http://localhost:5000/api/private/verify-token', { headers: { Authorization: `${type} ${token}` } });
+        await axios.get('http://192.168.0.179:5000/api/private/verify-token', { headers: { Authorization: `${type} ${token}` } });
 
         config.headers.Authorization = `${type} ${token}`;
         return config;
@@ -36,7 +36,7 @@ class ApiService {
 
         if (status === 401 && (message === 'jwt expired' || message === 'Token not found')) {
           try {
-            const { data } = await axios.get('http://localhost:5000/api/private/refresh-token', { headers: { Authorization: `${type} ${refresh_token}` } })
+            const { data } = await axios.get('http://192.168.0.179:5000/api/private/refresh-token', { headers: { Authorization: `${type} ${refresh_token}` } })
 
             localStorage.setItem('logged-user-info', JSON.stringify(data));
 

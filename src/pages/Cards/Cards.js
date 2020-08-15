@@ -20,6 +20,7 @@ class Cards extends React.Component {
     }
 
     render() {
+        let floactButtonHeight=window.innerHeight - 100;
         return (
             <LoggedTemplate {...this.props} title="Cartões">
                 <AddCardDialog {...this.props} addMethod={this.addCard}  />
@@ -32,7 +33,7 @@ class Cards extends React.Component {
                     )}
                 </List>
                 {this.state.apiErrorMessage ? <ConfirmDialog open okMethod={this.clearApiErrorMessage} apiErrorMessage={this.state.apiErrorMessage}/> : ''}
-                <div className="floating-button-align">
+                <div className="floating-button-align" style={{top:floactButtonHeight}}>
                     <AddExpenseDialog {...this.props} cards={this.state.cards} />
                 </div>
             </LoggedTemplate>

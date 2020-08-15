@@ -111,41 +111,43 @@ class Categories extends Component {
 
     render () {
 
-        return (<LoggedTemplate 
-                    {...this.props} 
-                    title='Categorias'
-                    >
-                        <div >
-                            <Grid item xs={12} md={6}>
-                            <div className="add-button-align">
-                                <AddCategoryDialog addCategory={this.addCategory}/>
-                            </div>
-                                
-                                <Typography variant="h6" >
-                                </Typography>
-                                <div >
-                                <List dense={this.state.dense}>
-                                    {
-                                        this.state.categories.length === 0 && this.state.didMounted === true
-                                        ?  <Typography variant="h6" >Sem categorias cadastradas</Typography>
-                                        :  this.state.didMounted === false
-                                        ?  <Skeleton animation="wave" />
-                                        : this.state.categories.map( (element,index) => {
-                                                return (
-                                                    <CategoryListItems element={element} editCategory={this.editCategory} deleteCategory={this.deleteCategory} key={`elementList-${index}`}/>
-                                                )
-                                            })
-                                    }
-                                {this.state.apiErrorMessage ? <ConfirmDialog okMethod={this.clearApiErrorMessage} apiErrorMessage={this.state.apiErrorMessage} /> : ''}
-                                </List>
-                                </div>
-                            </Grid>
-                        </div>
-                        <div className="floating-button-align">
-                            <AddExpenseDialog {...this.props} categories={this.state.categories}/>
-                        </div>
-                </LoggedTemplate>
-        )
+      let floactButtonHeight=window.innerHeight - 100;
+
+      return (<LoggedTemplate 
+                  {...this.props} 
+                  title='Categorias'
+                  >
+                      <div className='size-list-categories'>
+                          <Grid item xs={12} md={6}>
+                          <div className="add-button-align">
+                              <AddCategoryDialog addCategory={this.addCategory}/>
+                          </div>
+                              
+                              <Typography variant="h6" >
+                              </Typography>
+                              <div >
+                              <List dense={this.state.dense}>
+                                  {
+                                      this.state.categories.length === 0 && this.state.didMounted === true
+                                      ?  <Typography variant="h6" >Sem categorias cadastradas</Typography>
+                                      :  this.state.didMounted === false
+                                      ?  <Skeleton animation="wave" />
+                                      : this.state.categories.map( (element,index) => {
+                                              return (
+                                                  <CategoryListItems element={element} editCategory={this.editCategory} deleteCategory={this.deleteCategory} key={`elementList-${index}`}/>
+                                              )
+                                          })
+                                  }
+                              {this.state.apiErrorMessage ? <ConfirmDialog okMethod={this.clearApiErrorMessage} apiErrorMessage={this.state.apiErrorMessage} /> : ''}
+                              </List>
+                              </div>
+                          </Grid>
+                      </div>
+                      <div className="floating-button-align" style={{top:floactButtonHeight}}>
+                          <AddExpenseDialog {...this.props} categories={this.state.categories}/>
+                      </div>
+              </LoggedTemplate>
+      )
     
     }
     

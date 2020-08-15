@@ -68,6 +68,7 @@ class Expenses extends React.Component {
     }
 
     render() {
+        let floactButtonHeight=window.innerHeight - 100;
         return (
             <LoggedTemplate {...this.props} title="Compras">
 
@@ -117,7 +118,7 @@ class Expenses extends React.Component {
                             key={index} />
                     )}
                 </List>
-                <div className="floating-button-align">
+                <div className="floating-button-align" style={{top:floactButtonHeight}}>
                     <AddExpenseDialog {...this.props} refreshExpenses={() => this.onChange({})}/>
                 </div>
             </LoggedTemplate>

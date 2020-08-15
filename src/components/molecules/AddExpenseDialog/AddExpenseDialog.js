@@ -99,9 +99,12 @@ const AddExpenseDialog = (props) => {
     return ( 
 
         <div className={classes.root}>
+            <div className='test'>
             <Fab color="primary" aria-label="add" onClick={handleClickOpen} >
                 <AddIcon className={classes.root} color="secondary"/>
             </Fab>
+
+            </div>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Adicionar compra</DialogTitle>
                 <DialogContent>
