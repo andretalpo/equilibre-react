@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
-import { SimpleTable, ContainerCard, ValueByCategoryGraph, CompPieChart } from '../../components/atoms';
+import { SimpleTable, ContainerCard, ValueByCategoryGraph, CompPieChart, BarChart } from '../../components/atoms';
 import Formartter from '../../utils/Formatter';
 import Typography from '@material-ui/core/Typography';
 
@@ -136,6 +136,8 @@ class Dashboard extends React.Component {
                 <div className="card-margin">
                     <SimpleTable data={this.state.topTenExpenses} />
                 </div>
+
+                <BarChart/>
 
                 <div className="adjusting-float-button-position" />
                 <div className="floating-button-align">
