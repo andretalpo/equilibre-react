@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
         totalValue: 0,
         totalValuesByCard: 0,
         topTenExpenses: 0,
+        valueByCategory: [{}]
     }
 
     async handleChangeCard(event) {
@@ -133,11 +134,13 @@ class Dashboard extends React.Component {
                     <ValueByCategoryGraph categories={this.state.valueByCategory} />
                 </ContainerCard>
 
+                <ContainerCard className="card-margin">
+                    <BarChart data={this.state.valueByCategory} color="rgba(134, 143, 198, 0.7)" title="Valor por categoria" />
+                </ContainerCard>
+
                 <div className="card-margin">
                     <SimpleTable data={this.state.topTenExpenses} />
                 </div>
-
-                <BarChart/>
 
                 <div className="adjusting-float-button-position" />
                 <div className="floating-button-align">
