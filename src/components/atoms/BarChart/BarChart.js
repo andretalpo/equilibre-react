@@ -47,7 +47,7 @@ class BarChart extends React.Component {
         });
         Chart.defaults.global.defaultFontFamily = "'Roboto', 'Helvetica', 'Arial', sans-serif";
         Chart.defaults.global.defaultFontColor = 'rgb(102,102,102)';
-        // Chart.defaults.global.defaultFontSize = 14;
+        Chart.defaults.global.defaultFontSize = 14;
     }
 
     componentDidUpdate() {
