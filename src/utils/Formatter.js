@@ -21,6 +21,13 @@ class Formatter {
         }
         return '';
     }
+
+    formatStringToCurrency = (value) => {
+        if (value) {
+            return 'R$ ' + new Number(value).toFixed(2).replace('.', ',');
+        }
+        return '';
+    }
 }
 
 export default new Formatter();

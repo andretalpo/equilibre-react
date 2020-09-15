@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from 'chart.js'
+import Formatter from '../../../utils/Formatter';
 
 class BarChart extends React.Component {
     constructor(props) {
@@ -29,19 +30,34 @@ class BarChart extends React.Component {
             },
             options: {
                 legend: {
-                    display: false
+                    display: false,
+                    labels: {
+                        fontStyle: 'bold'
+                    }
                 },
                 scales: {
                     xAxes: [{
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return Formatter.formatStringToCurrency(value);
+                            }
+                        },
                         gridLines: {
-                            display:false
+                            display: false
                         }
                     }],
                     yAxes: [{
                         gridLines: {
-                            display:false
-                        }   
+                            display: false
+                        }
                     }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (value, data) {
+                            return Formatter.formatStringToCurrency(value.xLabel);
+                        },
+                    }
                 },
             }
         });
